@@ -1,10 +1,10 @@
 import RegisterForm from "../Components/RegisterForm";
 
-function RegisterModalContainer() {
+function RegisterModalContainer({handleRegister, routerProps}) {
     return (
         <div>
             <h1>Register Modal Container</h1>
-            <RegisterForm />
+            <RegisterForm {...routerProps} handleRegister={handleRegister}/>
         </div>
     )
   }

@@ -1,23 +1,11 @@
 import {useState} from 'react'
 
-function LoginForm() {
+function LoginForm({handleLogin, history}) {
 
     const [formData, setFormData] = useState({
         username: "",
         password: ""
     })
-    
-    function handleSubmit(event) {
-        event.preventDefault()
-        fetch("http://localhost:3000/login", {
-            method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify(formData)
-        })
-            .then(res => res.json())
-            .then(userObj => console.log(userObj))
-        event.target.reset()
-    }
 
     function handleChange(event) {
         const key = event.target.id
@@ -30,7 +18,10 @@ function LoginForm() {
     return (
         <div>
             <h3>Login Form Component</h3>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={(event) => {
+                event.preventDefault()
+                handleLogin(formData, history)
+                }}>
                 <label htmlFor="username">Username</label>
                 <input 
                 type="text"

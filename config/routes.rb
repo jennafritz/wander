@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   # resources :itineraries
   # resources :user_itineraries
   resources :users, only: [:create]
-  post "/signup", to: "users#create"
+  post "/register", to: "users#create"
   post "/login", to: "users#login"
   # Routing logic: fallback requests for React Router.
   # Leave this here to help deploy your app later!
