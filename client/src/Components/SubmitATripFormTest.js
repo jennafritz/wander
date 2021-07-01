@@ -4,7 +4,7 @@ import ActivitiesFormTest from './ActivitiesFormTest'
 
 function SubmitATripFormTest() {
 
-    console.log(document.forms)
+    // console.log(document.forms)
 
     const [formData, setFormData] = useState({
         name: "",
@@ -18,10 +18,33 @@ function SubmitATripFormTest() {
 
     const [activitiesArray, setActivitiesArray] = useState([])
 
-    console.log(activitiesArray)
+    // console.log(activitiesArray)
 
     const updateActivitiesArray = (arrayOfActivities) => {
-        setActivitiesArray([...activitiesArray, arrayOfActivities])
+        let activities = [...activitiesArray]
+        let updatedActivities
+        arrayOfActivities.map(newActivity => {
+            let existsIndex = activities.findIndex(existingActivity => existingActivity.id === newActivity.id)
+            if(existsIndex >= 0){
+                activities.splice(existsIndex, 1, newActivity)
+                setActivitiesArray(activities)
+            } else {
+                updatedActivities = [...activities, newActivity]
+                setActivitiesArray(updatedActivities)
+            }
+        })
+
+        // let updatedActivitiesArray = 
+        // setActivitiesArray([...activitiesArray, arrayOfActivities])
+    }
+
+    const removeActivityFromParent = (activityId) => {
+        let activities = [...activitiesArray]
+        let existsIndex = activities.findIndex(existingActivity => existingActivity.id === activityId)
+        if(existsIndex >= 0){
+            activities.splice(existsIndex, 1)
+            setActivitiesArray(activities)
+        }
     }
 
     // const removeDuplicateActivities = () => {
@@ -107,7 +130,7 @@ function SubmitATripFormTest() {
                     return (
                         <div>
                             {`Day ${dayNumber}:`}
-                            <ActivitiesFormTest day={dayNumber} updateActivitiesArray={updateActivitiesArray}/>
+                            <ActivitiesFormTest day={dayNumber} updateActivitiesArray={updateActivitiesArray} removeActivityFromParent={removeActivityFromParent}/>
                         </div>
                     )
                     }
