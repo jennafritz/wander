@@ -11,6 +11,7 @@ import ProfilePageContainer from './Containers/ProfilePageContainer';
 import ItineraryDetailsContainer from './Containers/ItineraryDetailsContainer'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import {useState} from 'react'
+import { fetchAllItineraries, fetchMyItineraries } from './reducers.js/itinerariesReducer';
 
 function App() {
 
@@ -20,25 +21,25 @@ function App() {
 
   console.log(myItineraries)
 
- const getItineraries = (loggedInUser) => {
-    fetch("http://localhost:3000/itineraries", {
-      method: "GET",
-      headers: {
-        Authorization: `Bearer ${localStorage.token}`,
-        "Content-Type": "application/json"
-      }
-    })
-      .then(res => res.json())
-      .then(itinerariesArray => {
-        if(itinerariesArray.error){
-          alert(itinerariesArray.error)
-        } else {
-          let myItinerariesArray = itinerariesArray.filter(itinerary => itinerary.users.find(userObj => userObj.id === loggedInUser.id))
-          setItineraries(itinerariesArray)
-          setMyItineraries(myItinerariesArray)
-        }
-      })
-  }
+//  const getItineraries = (loggedInUser) => {
+//     fetch("http://localhost:3000/itineraries", {
+//       method: "GET",
+//       headers: {
+//         Authorization: `Bearer ${localStorage.token}`,
+//         "Content-Type": "application/json"
+//       }
+//     })
+//       .then(res => res.json())
+//       .then(itinerariesArray => {
+//         if(itinerariesArray.error){
+//           alert(itinerariesArray.error)
+//         } else {
+//           let myItinerariesArray = itinerariesArray.filter(itinerary => itinerary.users.find(userObj => userObj.id === loggedInUser.id))
+//           setItineraries(itinerariesArray)
+//           setMyItineraries(myItinerariesArray)
+//         }
+//       })
+//   }
 
   const handleLogin = (loginObj, history) => {
     fetch("http://localhost:3000/login", {
@@ -53,7 +54,8 @@ function App() {
           } else {
             localStorage.token = userInfo.token
             setUser(userInfo.user)
-            getItineraries(userInfo.user)
+            fetchAllItineraries()
+            fetchMyItineraries(userInfo.user.id)
             if(userInfo.user.id && userInfo.user.travel_season){
               history.push("/profile")
             } else if (userInfo.user.id) {

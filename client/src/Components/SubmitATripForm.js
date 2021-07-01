@@ -113,29 +113,6 @@ function SubmitATripForm() {
                 onChange={handleChange}
                 />
 
-                {/* {dayInputList.map((day, index) => {
-                    return(
-                        <div>
-                            <input 
-                            name="day"
-                            value={day.day}
-                            onChange={event => handleDayInputChange(event, index)}
-                            />
-                            {activityInputList.map((activity, index) => {
-                                return(
-                                <input 
-                                name="activity"
-                                value={activity.activity}
-                                onChange={(event) => handleActivityInputChange(event, index)}
-                                />
-                                )   
-                            })}
-                            <button onClick={() => handleAddActivity()} >Add Activity</button>
-                        </div>
-                    )
-                })}
-                <button onClick={() => handleAddDay()}>Add a Day</button> */}
-
                 <label htmlFor="activities">Activities</label>
                     {activityInputList.map((activity, index) => {
                         return(
