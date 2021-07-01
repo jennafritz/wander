@@ -1,6 +1,40 @@
+import {NavLink} from 'react-router-dom'
+
 function NavBar() {
     return (
-        <h3>NavBar Component</h3>
+        <div>
+            <h3>NavBar Component</h3>
+            <NavLink 
+            to="/profile"
+            exact
+            >
+            Profile
+            </NavLink>
+            <NavLink 
+            to="/myJourneys"
+            exact
+            >
+            My Journeys
+            </NavLink>
+            <NavLink 
+            to="/itineraryList"
+            exact
+            >
+            Itinerary Catalog
+            </NavLink>
+            <NavLink 
+            to="/recommendedItineraries"
+            exact
+            >
+            Recommended Adventures
+            </NavLink>
+            <NavLink 
+            to="/submitATrip"
+            exact
+            >
+            Submit a Trip
+            </NavLink>
+        </div>
     )
   }
   

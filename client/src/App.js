@@ -6,16 +6,39 @@ import ProfileSetupContainer from './Containers/ProfileSetupContainer';
 import SubmitATripForm from './Components/SubmitATripForm';
 import MyJourneysContainer from './Containers/MyJourneysContainer';
 import ItineraryListContainer from './Containers/ItineraryListContainer';
-import RecItineraryListContainer from './Containers/RecItineraryListContainer';
+import RecItinerariesListContainer from './Containers/RecItinerariesListContainer';
 import ProfilePageContainer from './Containers/ProfilePageContainer';
+import ItineraryDetailsContainer from './Containers/ItineraryDetailsContainer'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import {useEffect, useState} from 'react'
-import {useHistory} from 'react-router-dom'
+import {useState} from 'react'
 
 function App() {
 
   const [user, setUser] = useState({})
-  // let history = useHistory()
+  const [itineraries, setItineraries] = useState([])
+  const [myItineraries, setMyItineraries] = useState([])
+
+  console.log(myItineraries)
+
+ const getItineraries = (loggedInUser) => {
+    fetch("http://localhost:3000/itineraries", {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.token}`,
+        "Content-Type": "application/json"
+      }
+    })
+      .then(res => res.json())
+      .then(itinerariesArray => {
+        if(itinerariesArray.error){
+          alert(itinerariesArray.error)
+        } else {
+          let myItinerariesArray = itinerariesArray.filter(itinerary => itinerary.users.find(userObj => userObj.id === loggedInUser.id))
+          setItineraries(itinerariesArray)
+          setMyItineraries(myItinerariesArray)
+        }
+      })
+  }
 
   const handleLogin = (loginObj, history) => {
     fetch("http://localhost:3000/login", {
@@ -25,93 +48,19 @@ function App() {
     })
         .then(res => res.json())
         .then(userInfo => {
-          console.log(userInfo.user)
-          console.log("second then")
           if(userInfo.error){
             alert(userInfo.error)
           } else {
             localStorage.token = userInfo.token
             setUser(userInfo.user)
+            getItineraries(userInfo.user)
             if(userInfo.user.id && userInfo.user.travel_season){
               history.push("/profile")
             } else if (userInfo.user.id) {
               history.push("/questionnaire")
         }
         }})
-        // .then(() => {
-        //   if(user.id && user.travel_season){
-        //     return history.push("/profile")
-        //   } else if (user.id) {
-        //     return history.push("/questionnaire")
-        //   }
-        // })
-        // (user.id && user.travel_season) ? history.push("/profile") 
-        //   : (user.id) ? history.push("/questionnaire") : null
-          // console.log("third then")
-          // if(user.id && user.travel_season){
-          //   history.push("/profile")
-          // } else if (user.id) {
-          //   history.push("/questionnaire")
-          // }
-          // handleLoginRedirect(history)
-        // )
   }
-
-  // const handleLoginRedirect = (history) => {
-  //   console.log("handleLoginRedirect")
-  //   console.log(user)
-  //   if(user.id && user.budget){
-  //     history.push("/profile")
-  //   } else if (user.id) {
-  //     history.push("/profileSetup")
-  //   }
-  // }
-
-  // const handleLoginRedirect = () => {
-  //   console.log("handleLoginRedirect")
-  //   console.log(user)
-  //   // if(user.id && user.travel_season){
-  //   //   history.push("/profile")
-  //   // } else if (user.id) {
-  //   //   history.push("/questionnaire")
-  //   // }
-  // }
-
-  // useEffect(() => {
-  //   if(user.id && user.budget){
-  //     history.push("/profile")
-  //   } else if (user.id){
-  //     history.push("questionnaire")
-  //   }
-  //   // handleLoginRedirect()
-  // }, [user])
-
-  //tried to remake handleLogin as async function but don't really know what's going on
-    // const handleLogin = async (loginObj, history) => {
-    //   const fetcher = await fetch("http://localhost:3000/login", {
-    //       method: "POST",
-    //       headers: {"Content-Type": "application/json"},
-    //       body: JSON.stringify(loginObj)
-    //   })
-    //       // .then(res => res.json())
-          
-    //       // .then(userInfo => {
-    //         const response = await fetcher.json()
-    //         console.log(response.user)
-    //         console.log("second then")
-    //         if(response.error){
-    //           alert(response.error)
-    //         } else {
-    //           localStorage.token = response.token
-    //           const finalUser = await setUser(response.user)
-    //           return finalUser
-    //         }
-    //       // })
-    //       // .then((mystery) => {
-    //       //   console.log("third then")
-    //       //   console.log(mystery)
-    //       //   handleLoginRedirect(history)})
-    // }
 
   function handleRegister(registerObj) {
     fetch("http://localhost:3000/register", {
@@ -131,10 +80,11 @@ function App() {
         <Route exact path="/register" render={(routerProps) => <RegisterModalContainer routerProps={routerProps} handleRegister={handleRegister}/>} />
         <Route exact path="/questionnaire" render={() => <ProfileSetupContainer />} />
         <Route exact path="/submitATrip" render={() => <SubmitATripForm />} />
-        <Route exact path="/myJourneys" render={() => <MyJourneysContainer />} />
-        <Route exact path="/itineraryList" render={() => <ItineraryListContainer />} />
-        <Route exact path="/recommendedItineraries" render={() => <RecItineraryListContainer />} />
-        <Route exact path="/profile" render={() => <ProfilePageContainer user={user}/>} />
+        <Route exact path="/myJourneys" render={() => <MyJourneysContainer myItineraries={myItineraries}/>} />
+        <Route exact path="/itineraryList" render={() => <ItineraryListContainer itineraries={itineraries}/>} />
+        <Route exact path="/recommendedItineraries" render={() => <RecItinerariesListContainer itineraries={itineraries}/>} />
+        <Route exact path="/profile" render={() => <ProfilePageContainer user={user} itineraries={itineraries} myItineraries={myItineraries}/>} />
+        <Route exact path="/itineraryDetails" render={() => <ItineraryDetailsContainer />} />
       </div>
     </Router>
   );

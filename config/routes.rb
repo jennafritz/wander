@@ -3,7 +3,8 @@ Rails.application.routes.draw do
   # resources :photos
   # resources :activities
   # resources :days
-  # resources :itineraries
+  resources :itineraries, only: [:index]
+  get "/my_itineraries", to: "itineraries#get_my_itineraries"
   # resources :user_itineraries
   resources :users, only: [:create]
   post "/register", to: "users#create"

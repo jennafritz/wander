@@ -1,17 +1,16 @@
-import RecItineraryPreviewContainer from './RecItineraryPreviewContainer'
+import RecItinerariesPreviewContainer from './RecItinerariesPreviewContainer'
 import MyItinerariesPreviewContainer from './MyItinerariesPreviewContainer'
 import Profile from '../Components/Profile'
 import NavBar from '../Components/NavBar'
 
-function ProfilePageContainer({user}) {
-    console.log("profile container", user)
+function ProfilePageContainer({user, itineraries, myItineraries}) {
     return (
         <div>
             <NavBar />
             <h1>Profile Page Container</h1>
             <Profile user={user}/>
-            <MyItinerariesPreviewContainer />
-            <RecItineraryPreviewContainer />
+            <MyItinerariesPreviewContainer myItineraries={myItineraries}/>
+            <RecItinerariesPreviewContainer itineraries={itineraries}/>
         </div>
     )
   }

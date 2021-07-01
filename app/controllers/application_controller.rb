@@ -1,9 +1,9 @@
 class ApplicationController < ActionController::API
+  before_action :authorized
   include ActionController::Cookies
 
   JWT_SECRET = ENV["JWT_SECRET"]
 
-  before_action :authorized
 
   def encode_token(payload)
     JWT.encode(payload, JWT_SECRET)
@@ -15,7 +15,7 @@ class ApplicationController < ActionController::API
 
   def decoded_token
     if auth_header
-      token = author_header.split(' ')[1]
+      token = auth_header.split(' ')[1]
       begin
         JWT.decode(token, JWT_SECRET)
       rescue JWT::DecodeError

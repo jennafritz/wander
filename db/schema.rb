@@ -32,10 +32,11 @@ ActiveRecord::Schema.define(version: 2021_06_29_203753) do
 
   create_table "itineraries", force: :cascade do |t|
     t.string "name"
+    t.string "destination"
     t.string "season"
     t.string "length"
     t.string "locale"
-    t.string "type"
+    t.string "classification"
     t.integer "budget"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -63,8 +64,9 @@ ActiveRecord::Schema.define(version: 2021_06_29_203753) do
     t.string "travel_season"
     t.string "travel_length"
     t.string "travel_locale"
-    t.string "travel_type"
+    t.string "travel_classification"
     t.integer "budget"
+    t.integer "credits"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
