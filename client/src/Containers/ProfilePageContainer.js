@@ -3,14 +3,14 @@ import MyItinerariesPreviewContainer from './MyItinerariesPreviewContainer'
 import Profile from '../Components/Profile'
 import NavBar from '../Components/NavBar'
 
-function ProfilePageContainer({user, itineraries, myItineraries}) {
+function ProfilePageContainer() {
     return (
         <div>
             <NavBar />
             <h1>Profile Page Container</h1>
-            <Profile user={user}/>
-            <MyItinerariesPreviewContainer myItineraries={myItineraries}/>
-            <RecItinerariesPreviewContainer itineraries={itineraries}/>
+            <Profile />
+            <MyItinerariesPreviewContainer />
+            <RecItinerariesPreviewContainer />
         </div>
     )
   }

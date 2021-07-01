@@ -2,15 +2,8 @@ class ItinerariesController < ApplicationController
 
     def index
         itineraries = Itinerary.all
-        render json: itineraries, include: ['users', 'days', 'days.activities', 'photos'], status: :ok
+        render json: itineraries, status: :ok
+        # include: ['users', 'days', 'days.activities', 'photos'],
     end
 
-    # def get_my_itineraries
-    #     byebug
-    #     itineraries = Itinerary.select do |itinerary|
-    #         itinerary.users.detect do |user|
-    #             user.id == params[:user_id]
-    #         end
-    #     end
-    # end
 end

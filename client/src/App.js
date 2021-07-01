@@ -11,15 +11,16 @@ import ProfilePageContainer from './Containers/ProfilePageContainer';
 import ItineraryDetailsContainer from './Containers/ItineraryDetailsContainer'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import {useState} from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllItineraries, fetchMyItineraries } from './reducers.js/itinerariesReducer';
 
 function App() {
 
+  const dispatch = useDispatch()
+
   const [user, setUser] = useState({})
   const [itineraries, setItineraries] = useState([])
   const [myItineraries, setMyItineraries] = useState([])
-
-  console.log(myItineraries)
 
 //  const getItineraries = (loggedInUser) => {
 //     fetch("http://localhost:3000/itineraries", {
@@ -41,55 +42,41 @@ function App() {
 //       })
 //   }
 
-  const handleLogin = (loginObj, history) => {
-    fetch("http://localhost:3000/login", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(loginObj)
-    })
-        .then(res => res.json())
-        .then(userInfo => {
-          if(userInfo.error){
-            alert(userInfo.error)
-          } else {
-            localStorage.token = userInfo.token
-            setUser(userInfo.user)
-            fetchAllItineraries()
-            fetchMyItineraries(userInfo.user.id)
-            if(userInfo.user.id && userInfo.user.travel_season){
-              history.push("/profile")
-            } else if (userInfo.user.id) {
-              history.push("/questionnaire")
-        }
-        }})
-  }
-
-  function handleRegister(registerObj) {
-    fetch("http://localhost:3000/register", {
-        method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify(registerObj)
-    })
-        .then(res => res.json())
-        .then(userObj => console.log(userObj))
-  }
+  
 
   return (
     <Router>
       <div>
         <Route exact path="/" render={() => <HomePageContainer />} />
-        <Route exact path="/login" render={(routerProps) => <LoginModalContainer routerProps={routerProps} handleLogin={handleLogin}/>} />
-        <Route exact path="/register" render={(routerProps) => <RegisterModalContainer routerProps={routerProps} handleRegister={handleRegister}/>} />
+        <Route exact path="/login" render={(routerProps) => <LoginModalContainer />} />
+        <Route exact path="/register" render={(routerProps) => <RegisterModalContainer />} />
         <Route exact path="/questionnaire" render={() => <ProfileSetupContainer />} />
         <Route exact path="/submitATrip" render={() => <SubmitATripForm />} />
-        <Route exact path="/myJourneys" render={() => <MyJourneysContainer myItineraries={myItineraries}/>} />
-        <Route exact path="/itineraryList" render={() => <ItineraryListContainer itineraries={itineraries}/>} />
-        <Route exact path="/recommendedItineraries" render={() => <RecItinerariesListContainer itineraries={itineraries}/>} />
-        <Route exact path="/profile" render={() => <ProfilePageContainer user={user} itineraries={itineraries} myItineraries={myItineraries}/>} />
+        <Route exact path="/myJourneys" render={() => <MyJourneysContainer />} />
+        <Route exact path="/itineraryList" render={() => <ItineraryListContainer />} />
+        <Route exact path="/recommendedItineraries" render={() => <RecItinerariesListContainer />} />
+        <Route exact path="/profile" render={() => <ProfilePageContainer />} />
         <Route exact path="/itineraryDetails" render={() => <ItineraryDetailsContainer />} />
       </div>
     </Router>
   );
+  
+  // return (
+  //   <Router>
+  //     <div>
+  //       <Route exact path="/" render={() => <HomePageContainer />} />
+  //       <Route exact path="/login" render={(routerProps) => <LoginModalContainer routerProps={routerProps} handleLogin={handleLogin}/>} />
+  //       <Route exact path="/register" render={(routerProps) => <RegisterModalContainer routerProps={routerProps} handleRegister={handleRegister}/>} />
+  //       <Route exact path="/questionnaire" render={() => <ProfileSetupContainer />} />
+  //       <Route exact path="/submitATrip" render={() => <SubmitATripForm />} />
+  //       <Route exact path="/myJourneys" render={() => <MyJourneysContainer myItineraries={myItineraries}/>} />
+  //       <Route exact path="/itineraryList" render={() => <ItineraryListContainer itineraries={itineraries}/>} />
+  //       <Route exact path="/recommendedItineraries" render={() => <RecItinerariesListContainer itineraries={itineraries}/>} />
+  //       <Route exact path="/profile" render={() => <ProfilePageContainer user={user} itineraries={itineraries} myItineraries={myItineraries}/>} />
+  //       <Route exact path="/itineraryDetails" render={() => <ItineraryDetailsContainer />} />
+  //     </div>
+  //   </Router>
+  // );
 }
 
 export default App;

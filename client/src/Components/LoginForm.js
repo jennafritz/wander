@@ -1,6 +1,15 @@
 import {useState} from 'react'
+import { fetchUser } from '../reducers.js/userReducer'
+import {useDispatch, useSelector} from 'react-redux'
+import {useHistory} from 'react-router-dom'
+import {fetchAllItineraries, fetchMyItineraries} from '../reducers.js/itinerariesReducer'
+import { fetchAllPhotos } from '../reducers.js/photosReducer'
 
-function LoginForm({handleLogin, history}) {
+function LoginForm() {
+
+    const dispatch = useDispatch()
+    const history = useHistory()
+    const user = useSelector(state => state.user.currentUser)
 
     const [formData, setFormData] = useState({
         username: "",
@@ -15,12 +24,31 @@ function LoginForm({handleLogin, history}) {
         })
     }
 
+    const handleLogin = (loginObj) => {
+        dispatch(fetchUser(loginObj)).then((response) => {
+            if (response.payload.user){
+                let loggedInUser = response.payload.user
+                localStorage.token = response.payload.token
+                dispatch(fetchAllItineraries())
+                dispatch(fetchMyItineraries(loggedInUser.id))
+                dispatch(fetchAllPhotos())
+                if(loggedInUser.id && loggedInUser.travel_season){
+                    history.push("/profile")
+                } else if(loggedInUser.id){
+                    history.push("/questionnaire")
+                }
+            } else {
+                alert(response.payload)
+            }
+        })
+    }
+
     return (
         <div>
             <h3>Login Form Component</h3>
             <form onSubmit={(event) => {
                 event.preventDefault()
-                handleLogin(formData, history)
+                handleLogin(formData)
                 }}>
                 <label htmlFor="username">Username</label>
                 <input 

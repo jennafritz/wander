@@ -1,4 +1,20 @@
+import {useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import { fetchItineraryDays } from '../reducers.js/daysReducer'
+import photosReducer from '../reducers.js/photosReducer'
+
 function ItineraryDetails({itinerary}) {
+
+
+    let dispatch = useDispatch()
+
+    let days = useSelector(state => state.days.itineraryDays)
+
+    useEffect(() => {
+        dispatch(fetchItineraryDays(itinerary.id))
+    }, [])
+
+
     return (
         <div>
             <h3>Itinerary Details Component</h3>
@@ -7,7 +23,8 @@ function ItineraryDetails({itinerary}) {
             <h3>{itinerary.length}</h3>
             <h3>{itinerary.locale}</h3>
             <h3>{itinerary.classification}</h3>
-            {itinerary.days.map(day => {
+            {days.length > 0 
+            ? days.map(day => {
                 return <ul>
                     Day {day.number}:
                     {day.activities.map(activity => {
@@ -15,7 +32,8 @@ function ItineraryDetails({itinerary}) {
                     })}
                 </ul>
             
-            })}
+            })
+            : null}
         </div>
     )
   }

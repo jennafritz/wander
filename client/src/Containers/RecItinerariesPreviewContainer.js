@@ -1,6 +1,10 @@
 import ItineraryThumbnailContainer from './ItineraryThumbnailContainer'
+import {useSelector} from 'react-redux'
 
-function RecItinerariesPreviewContainer({itineraries}) {
+function RecItinerariesPreviewContainer() {
+
+    const itineraries = useSelector(state => state.itineraries.allItineraries)    
+    
     return (
         <div>
             <h1>Recommended Itineraries Preview Container</h1>

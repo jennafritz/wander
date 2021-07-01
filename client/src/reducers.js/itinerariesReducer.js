@@ -1,9 +1,9 @@
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
 
-const initialState = [{
-    itineraries: [],
-    myItineraries: []
-}]
+const initialState = {
+    allItineraries: [],
+    myItineraries: [],
+}
 
 // Action Creators
 
@@ -16,11 +16,11 @@ export const fetchAllItineraries = createAsyncThunk("itineraries/fetchAllItinera
         }
       })
         .then(res => res.json())
-        .then(itinerariesArray => console.log("all itineraries:", itinerariesArray))
+        .then(itinerariesArray => itinerariesArray)
 })
 
 export const fetchMyItineraries = createAsyncThunk("itineraries/fetchMyItineraries", (loggedInUserId) => {
-    return fetch(`http://localhost:3000/users/${loggedInUserId}/itineraries`, {
+    return fetch(`http://localhost:3000/users/my_itineraries?userId=${loggedInUserId}`, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${localStorage.token}`,
@@ -28,7 +28,7 @@ export const fetchMyItineraries = createAsyncThunk("itineraries/fetchMyItinerari
         }
       })
         .then(res => res.json())
-        .then(itinerariesArray => console.log("my itineraries", itinerariesArray))
+        .then(myItinerariesArray => myItinerariesArray)
 })
 
 
@@ -43,16 +43,12 @@ const itinerariesSlice = createSlice({
     },
     extraReducers: {
         [fetchAllItineraries.fulfilled](state, action){
-            state.itineraries = action.payload
+            state.allItineraries = action.payload
+        },
+        [fetchMyItineraries.fulfilled](state, action){
+            state.myItineraries = action.payload
         }
     }
 })
-
-// function itineraryReducer(state = initialItinerariesState, action) {
-//     switch(action.type) {
-//         case "fetch-itineraries":
-//             return [...state, itineraries]
-//     }
-// }
 
 export default itinerariesSlice.reducer

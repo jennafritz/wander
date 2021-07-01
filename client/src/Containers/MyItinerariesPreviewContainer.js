@@ -1,6 +1,9 @@
 import ItineraryThumbnailContainer from './ItineraryThumbnailContainer'
+import {useSelector} from 'react-redux'
 
-function MyItinerariesPreviewContainer({myItineraries}) {
+function MyItinerariesPreviewContainer() {
+
+    const myItineraries = useSelector(state => state.itineraries.myItineraries)
 
     return (
         <div>

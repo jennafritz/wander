@@ -1,4 +1,8 @@
-function Profile({user}) {
+import {useSelector} from 'react-redux'
+
+function Profile() {
+
+    const user = useSelector(state => state.user.currentUser)
     
     let season
     let length
