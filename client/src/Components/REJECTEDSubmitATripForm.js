@@ -1,10 +1,8 @@
 import NavBar from "./NavBar";
 import {useState} from 'react'
-import ActivitiesFormTest from './ActivitiesFormTest'
+import SubmitATripFormTest from "./SubmitATripForm";
 
-function SubmitATripFormTest() {
-
-    // console.log(document.forms)
+function SubmitATripForm() {
 
     const [formData, setFormData] = useState({
         name: "",
@@ -13,46 +11,16 @@ function SubmitATripFormTest() {
         locale: "",
         classification: "",
         budget: "",
-        days: 2
+        days: []
     })
 
-    const [activitiesArray, setActivitiesArray] = useState([])
+    // const [dayInputList, setDayInputList] = useState([
+    //     {day: ""}
+    // ])
 
-    // console.log(activitiesArray)
-
-    const updateActivitiesArray = (arrayOfActivities) => {
-        let activities = [...activitiesArray]
-        let updatedActivities
-        arrayOfActivities.map(newActivity => {
-            let existsIndex = activities.findIndex(existingActivity => existingActivity.id === newActivity.id)
-            if(existsIndex >= 0){
-                activities.splice(existsIndex, 1, newActivity)
-                setActivitiesArray(activities)
-            } else {
-                updatedActivities = [...activities, newActivity]
-                setActivitiesArray(updatedActivities)
-            }
-        })
-
-        // let updatedActivitiesArray = 
-        // setActivitiesArray([...activitiesArray, arrayOfActivities])
-    }
-
-    const removeActivityFromParent = (activityId) => {
-        let activities = [...activitiesArray]
-        let existsIndex = activities.findIndex(existingActivity => existingActivity.id === activityId)
-        if(existsIndex >= 0){
-            activities.splice(existsIndex, 1)
-            setActivitiesArray(activities)
-        }
-    }
-
-    // const removeDuplicateActivities = () => {
-    //     activities = [...activitiesArray]
-    //     activities.map
-    // }
-
-    let daysArray = Array(parseInt(formData.days, 10)).fill(null)
+    const [activityInputList, setActivityInputList] = useState([
+        {activity: "", day: ""}
+    ])
 
     function handleChange(event) {
         const key = event.target.id
@@ -62,13 +30,35 @@ function SubmitATripFormTest() {
         })
     }
 
+    // const handleAddDay = () => {
+    //     setDayInputList([...dayInputList, {day: ""}])
+    // }
+
+    // const handleDayInputChange = (event, index) => {
+    //     const {name, value} = event.target
+    //     const list = [...dayInputList]
+    //     list[index][name] = value
+    //     setDayInputList(list)
+    // }
+    
+    const handleAddActivity = () => {
+        setActivityInputList([...activityInputList, {activity: ""}])
+    }
+
+    const handleActivityInputChange = (event, index) => {
+        const {name, value} = event.target
+        const list = [...activityInputList]
+        list[index][name] = value
+        setActivityInputList(list)
+    }
+
     return (
         <div>
             <NavBar />
             <h3>Submit a Trip Form Component</h3>
-            <form id="trip-form" onSubmit={(event) => {
+            <form onSubmit={(event) => {
                 event.preventDefault()
-                console.log("trip form submitted")
+                console.log(formData)
                 }}>
                 <label htmlFor="name">Name</label>
                 <input 
@@ -119,32 +109,50 @@ function SubmitATripFormTest() {
                 type="number"
                 id="days"
                 name="days"
-                min="1"
                 value={formData.days}
                 onChange={handleChange}
                 />
-                <br/>
-                
-                {daysArray.map((element, index) => {
-                    let dayNumber = index + 1
-                    return (
-                        <div>
-                            {`Day ${dayNumber}:`}
-                            <ActivitiesFormTest day={dayNumber} updateActivitiesArray={updateActivitiesArray} removeActivityFromParent={removeActivityFromParent}/>
-                        </div>
-                    )
-                    }
-                )}
-                
+
+                <label htmlFor="activities">Activities</label>
+                    {activityInputList.map((activity, index) => {
+                        return(
+                            <div>
+                                <label htmlFor="activity">Activity</label>
+                                <input  
+                                name="activity"
+                                value={activity.activity}
+                                onChange={(event) => handleActivityInputChange(event, index)}
+                                />
+                                <label htmlFor="day">Day</label>
+                                <input  
+                                name="day"
+                                type="number"
+                                value={activity.day}
+                                onChange={(event) => handleActivityInputChange(event, index)}
+                                min="1"
+                                max={`${formData.days}`}
+                                />
+                            </div>
+                        )   
+                    })}
+                    <button onClick={() => handleAddActivity()} >Add Activity</button>
+                                    
                 {/* add a day */}
                 {/* add an image */}
-                {/* <input type="submit" value="Submit"/> */}
+                <input type="submit" value="Submit"/>
             </form>
-                    <button type="submit" form="trip-form" onClick={(event) => {
-                        event.preventDefault()
-                        console.log("all submitted")}}>Submit</button>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <h1>TEST:</h1>
+                <SubmitATripFormTest />
+
+
         </div>
     )
   }
   
-  export default SubmitATripFormTest;
+  export default SubmitATripForm;

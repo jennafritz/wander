@@ -16,34 +16,6 @@ import { fetchAllItineraries, fetchMyItineraries } from './reducers.js/itinerari
 
 function App() {
 
-  const dispatch = useDispatch()
-
-  const [user, setUser] = useState({})
-  const [itineraries, setItineraries] = useState([])
-  const [myItineraries, setMyItineraries] = useState([])
-
-//  const getItineraries = (loggedInUser) => {
-//     fetch("http://localhost:3000/itineraries", {
-//       method: "GET",
-//       headers: {
-//         Authorization: `Bearer ${localStorage.token}`,
-//         "Content-Type": "application/json"
-//       }
-//     })
-//       .then(res => res.json())
-//       .then(itinerariesArray => {
-//         if(itinerariesArray.error){
-//           alert(itinerariesArray.error)
-//         } else {
-//           let myItinerariesArray = itinerariesArray.filter(itinerary => itinerary.users.find(userObj => userObj.id === loggedInUser.id))
-//           setItineraries(itinerariesArray)
-//           setMyItineraries(myItinerariesArray)
-//         }
-//       })
-//   }
-
-  
-
   return (
     <Router>
       <div>
@@ -53,8 +25,8 @@ function App() {
         <Route exact path="/questionnaire" render={() => <ProfileSetupContainer />} />
         <Route exact path="/submitATrip" render={() => <SubmitATripForm />} />
         <Route exact path="/myJourneys" render={() => <MyJourneysContainer />} />
-        <Route exact path="/itineraryList" render={() => <ItineraryListContainer />} />
-        <Route exact path="/recommendedItineraries" render={() => <RecItinerariesListContainer />} />
+        <Route exact path="/catalog" render={() => <ItineraryListContainer />} />
+        <Route exact path="/recommended" render={() => <RecItinerariesListContainer />} />
         <Route exact path="/profile" render={() => <ProfilePageContainer />} />
         <Route exact path="/itineraryDetails" render={() => <ItineraryDetailsContainer />} />
       </div>

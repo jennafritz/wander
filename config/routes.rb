@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :photos, only: [:index]
   get "/itinerary_photos", to: "photos#get_itinerary_photos"
   # resources :activities
-  # resources :days
+  resources :days, only: [:index]
   get "/itinerary_days", to: "days#get_itinerary_days"
   resources :itineraries, only: [:index]
   get "/users/my_itineraries", to: "users#get_my_itineraries"

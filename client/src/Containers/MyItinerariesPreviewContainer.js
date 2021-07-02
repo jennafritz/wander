@@ -8,7 +8,7 @@ function MyItinerariesPreviewContainer() {
     return (
         <div>
             <h1>My Itineraries Preview Container</h1>
-            {myItineraries.map(itinerary => <ItineraryThumbnailContainer parent="myItinerariesPreviewContainer" itinerary={itinerary} key={itinerary.id}/>)}
+            {myItineraries.map(itinerary => <ItineraryThumbnailContainer parent="myItinerariesPreviewContainer" itinerary={itinerary} key={itinerary.id} mine={false}/>)}
         </div>
     )
   }

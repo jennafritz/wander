@@ -1,8 +1,11 @@
 import NavBar from "./NavBar";
 import {useState} from 'react'
-import SubmitATripFormTest from "./SubmitATripFormTest";
+import ActivitiesForm from './ActivitiesForm'
+import ImagesForm from "./ImagesForm";
 
 function SubmitATripForm() {
+
+    // console.log(document.forms)
 
     const [formData, setFormData] = useState({
         name: "",
@@ -11,16 +14,62 @@ function SubmitATripForm() {
         locale: "",
         classification: "",
         budget: "",
-        days: []
+        days: 2
     })
 
-    // const [dayInputList, setDayInputList] = useState([
-    //     {day: ""}
-    // ])
+    const [activitiesArray, setActivitiesArray] = useState([])
 
-    const [activityInputList, setActivityInputList] = useState([
-        {activity: "", day: ""}
-    ])
+    const [imagesArray, setImagesArray] = useState([])
+
+    const updateActivitiesArray = (arrayOfActivities) => {
+        let activities = [...activitiesArray]
+        let updatedActivities
+        arrayOfActivities.map(newActivity => {
+            let existsIndex = activities.findIndex(existingActivity => existingActivity.id === newActivity.id)
+            if(existsIndex >= 0){
+                activities.splice(existsIndex, 1, newActivity)
+                setActivitiesArray(activities)
+            } else {
+                updatedActivities = [...activities, newActivity]
+                setActivitiesArray(updatedActivities)
+            }
+        })
+    }
+
+    const removeActivityFromParent = (activityId) => {
+        let activities = [...activitiesArray]
+        let existsIndex = activities.findIndex(existingActivity => existingActivity.id === activityId)
+        if(existsIndex >= 0){
+            activities.splice(existsIndex, 1)
+            setActivitiesArray(activities)
+        }
+    }
+
+    const updateImagesArray = (arrayOfImages) => {
+        let images = [...imagesArray]
+        let updatedImages
+        arrayOfImages.map(newImage => {
+            let existsIndex = images.findIndex(existingImage => existingImage.id === newImage.id)
+            if(existsIndex >= 0){
+                images.splice(existsIndex, 1, newImage)
+                setImagesArray(images)
+            } else {
+                updatedImages = [...images, newImage]
+                setImagesArray(updatedImages)
+            }
+        })
+    }
+
+    const removeImageFromParent = (imageId) => {
+        let images = [...imagesArray]
+        let existsIndex = images.findIndex(existingImage => existingImage.id === imageId)
+        if(existsIndex >= 0){
+            images.splice(existsIndex, 1)
+            setImagesArray(images)
+        }
+    }
+
+    let daysArray = Array(parseInt(formData.days, 10)).fill(null)
 
     function handleChange(event) {
         const key = event.target.id
@@ -30,35 +79,13 @@ function SubmitATripForm() {
         })
     }
 
-    // const handleAddDay = () => {
-    //     setDayInputList([...dayInputList, {day: ""}])
-    // }
-
-    // const handleDayInputChange = (event, index) => {
-    //     const {name, value} = event.target
-    //     const list = [...dayInputList]
-    //     list[index][name] = value
-    //     setDayInputList(list)
-    // }
-    
-    const handleAddActivity = () => {
-        setActivityInputList([...activityInputList, {activity: ""}])
-    }
-
-    const handleActivityInputChange = (event, index) => {
-        const {name, value} = event.target
-        const list = [...activityInputList]
-        list[index][name] = value
-        setActivityInputList(list)
-    }
-
     return (
         <div>
             <NavBar />
             <h3>Submit a Trip Form Component</h3>
-            <form onSubmit={(event) => {
+            <form id="trip-form" onSubmit={(event) => {
                 event.preventDefault()
-                console.log(formData)
+                console.log("trip form submitted")
                 }}>
                 <label htmlFor="name">Name</label>
                 <input 
@@ -109,48 +136,30 @@ function SubmitATripForm() {
                 type="number"
                 id="days"
                 name="days"
+                min="1"
                 value={formData.days}
                 onChange={handleChange}
                 />
+                <br/>
+                
+                {daysArray.map((element, index) => {
+                    let dayNumber = index + 1
+                    return (
+                        <div>
+                            {`Day ${dayNumber}:`}
+                            <ActivitiesForm day={dayNumber} updateActivitiesArray={updateActivitiesArray} removeActivityFromParent={removeActivityFromParent}/>
+                        </div>
+                    )
+                    }
+                )}
+                <ImagesForm updateImagesArray={updateImagesArray} removeImageFromParent={removeImageFromParent}/>
 
-                <label htmlFor="activities">Activities</label>
-                    {activityInputList.map((activity, index) => {
-                        return(
-                            <div>
-                                <label htmlFor="activity">Activity</label>
-                                <input  
-                                name="activity"
-                                value={activity.activity}
-                                onChange={(event) => handleActivityInputChange(event, index)}
-                                />
-                                <label htmlFor="day">Day</label>
-                                <input  
-                                name="day"
-                                type="number"
-                                value={activity.day}
-                                onChange={(event) => handleActivityInputChange(event, index)}
-                                min="1"
-                                max={`${formData.days}`}
-                                />
-                            </div>
-                        )   
-                    })}
-                    <button onClick={() => handleAddActivity()} >Add Activity</button>
-                                    
-                {/* add a day */}
                 {/* add an image */}
-                <input type="submit" value="Submit"/>
+                {/* <input type="submit" value="Submit"/> */}
             </form>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <br/>
-            <h1>TEST:</h1>
-                <SubmitATripFormTest />
-
-
+                    <button type="submit" form="trip-form" onClick={(event) => {
+                        event.preventDefault()
+                        console.log({itineraryDetails: formData, activitiesArray, imagesArray})}}>Submit</button>
         </div>
     )
   }

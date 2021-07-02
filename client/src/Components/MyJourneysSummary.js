@@ -1,9 +1,22 @@
-function MyJourneysSummary({myItineraries}) {
+import {useDispatch, useSelector} from 'react-redux'
+import {useEffect} from 'react'
+import { fetchAllDays } from '../reducers.js/daysReducer'
+
+function MyJourneysSummary() {
+
+    const myItineraries = useSelector(state => state.itineraries.myItineraries)
+    const days = useSelector(state => state.days.allDays)
+    const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(fetchAllDays())
+    }, [])
 
     let totalDaysTraveled = 0
 
     myItineraries.forEach(itinerary => {
-        let numDays = itinerary.days.length
+        let itineraryDaysArray = days.filter(day => day.itinerary_id === itinerary.id)
+        let numDays = itineraryDaysArray.length
         totalDaysTraveled += numDays
         return totalDaysTraveled
     })

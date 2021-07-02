@@ -1,7 +1,11 @@
 import NavBar from "../Components/NavBar";
 import ItineraryThumbnailContainer from './ItineraryThumbnailContainer'
+import {useSelector} from 'react-redux'
 
-function ItineraryListContainer({itineraries}) {
+function ItineraryListContainer() {
+
+    const itineraries = useSelector(state => state.itineraries.allItineraries)
+    
     return (
         <div>
             <NavBar />

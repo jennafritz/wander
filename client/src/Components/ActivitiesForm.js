@@ -1,10 +1,10 @@
 import NavBar from "./NavBar";
 import {useEffect, useState} from 'react'
 
-function ActivitiesFormTest({day, updateActivitiesArray, removeActivityFromParent}) {
+function ActivitiesForm({day, updateActivitiesArray, removeActivityFromParent}) {
 
     const [activityInputList, setActivityInputList] = useState([
-        {activity: "", day: day, order: "", id: ""}
+        // {activity: "", day: day, order: "", id: ""}
     ])
 
     const [arrayOfActivities, setArrayOfActivities] = useState(null)
@@ -70,24 +70,24 @@ function ActivitiesFormTest({day, updateActivitiesArray, removeActivityFromParen
                 {activityInputList.map((activity, index) => {
                     return(
                         <div>
-                            <label htmlFor="activity">Activity</label>
+                            <label htmlFor="activity">Activity {index+1}: </label>
                             <input  
                             name="activity"
                             value={activity.activity}
                             onChange={(event) => handleActivityInputChange(event, index)}
                             />
-                            <button onClick={() => {
+                            {/* <button onClick={() => {
                                 handleRemoveActivity(index)
                                 removeActivityFromParent(`${day} - ${index + 1}`)
-                            }}>Remove Activity</button>
+                            }}>Remove Activity</button> */}
                         </div>
                     )   
                 })}
-                <button onClick={() => handleAddActivity()} >Add Activity</button>
+                <button onClick={() => handleAddActivity()} >Add An Activity</button>
             {/* add a day */}
             {/* add an image */}
         </div>
     )
   }
   
-  export default ActivitiesFormTest;
+  export default ActivitiesForm;

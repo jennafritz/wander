@@ -17,13 +17,13 @@ function NavBar() {
             My Journeys
             </NavLink>
             <NavLink 
-            to="/itineraryList"
+            to="/catalog"
             exact
             >
             Itinerary Catalog
             </NavLink>
             <NavLink 
-            to="/recommendedItineraries"
+            to="/recommended"
             exact
             >
             Recommended Adventures

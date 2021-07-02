@@ -2,25 +2,33 @@ import {useHistory} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import {useEffect} from 'react'
 
-function ItineraryThumbnailContainer({itinerary, parent}) {
+function ItineraryThumbnailContainer({itinerary, parent, mine}) {
 
     let history = useHistory()
     const photos = useSelector(state => state.photos.allPhotos.filter(photo => photo.itinerary_id === itinerary.id))
-
-    useEffect(() => {
-        console.log("itinerary thumbnail useEffect")
-        console.log(photos)
-    }, [])
-
-
+    const myItineraries = useSelector(state => state.itineraries.myItineraries)
+    
     return (
         <div>
             <h1>Itinerary Thumbnail Container</h1>
             <h3>{itinerary.name}</h3>
             {photos.length > 0 ? <img src={photos[0].url} height="200px"/> : null}
             <button onClick={() => {
-                history.push(({pathname: "/itineraryDetails", state: {itinerary, photos}}))
+                let mine = myItineraries.find(myItinerary => myItinerary.id === itinerary.id)
+                if(mine){
+                    history.push(({pathname: "/itineraryDetails", state: {itinerary, photos}}))
+                } else {
+                    alert("To view the details of this itinerary, you must save it to your account which will reduce your itinerary credits. To proceed, click Save below, otherwise click Cancel.")
+                }
             }
+                // if(mine){
+                // history.push(({pathname: "/itineraryDetails", state: {itinerary, photos}}))
+                // } else if(mine === false){
+                //     alert("To view the details of this itinerary, you must save it to your account which will reduce your itinerary credits. To proceed, click Save below, otherwise click Cancel.")
+                // } else {
+                //     history.push(({pathname: "/itineraryDetails", state: {itinerary, photos}}))
+                // }
+            // }
             }>View Details</button>
         </div>
     )

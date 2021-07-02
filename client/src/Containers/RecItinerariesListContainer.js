@@ -10,7 +10,7 @@ function RecItinerariesListContainer() {
         <div>
             <NavBar />
             <h1>Recommended Itineraries List Container</h1>
-            {itineraries.map(itinerary => <ItineraryThumbnailContainer parent="RecItinerariesListContainer" itinerary={itinerary}/>)}
+            {itineraries.map(itinerary => <ItineraryThumbnailContainer parent="RecItinerariesListContainer" itinerary={itinerary} mine={false}/>)}
         </div>
     )
   }
