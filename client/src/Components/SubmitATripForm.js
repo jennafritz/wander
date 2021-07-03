@@ -88,6 +88,7 @@ function SubmitATripForm() {
     }
 
     // need to implement error message handling for photos and activities!
+    // also need to handle adding credits to user and thanking them before pushing them to another page (perhaps profile? maybe a modal that asks them if they want to submit again? or should there be a limit on submissions?)
     const handleFullSubmit = () => {
         dispatch(submitItineraryDetails(formData)).then(response => {
             if(response.error){
