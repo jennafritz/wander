@@ -2,6 +2,8 @@ import {useSelector} from 'react-redux'
 
 function Profile() {
 
+   
+
     const user = useSelector(state => state.user.currentUser)
     
     let season
@@ -33,6 +35,8 @@ function Profile() {
 
     return (
         <div>
+            {/* <img src="https://pro2-bar-s3-cdn-cf6.myportfolio.com/bf7ae5ff-6d2a-4548-9633-fabd9e835847/0f9a15f1-6acc-4a55-80e7-cde06e875279_rw_600.jpg?h=3473e9bf0301f64ca76e6328ed1a90c4" alt="Bucharest"/> */}
+
             <h3>Profile Component</h3>
             
             <img src={user.picture} alt="user profile"/>

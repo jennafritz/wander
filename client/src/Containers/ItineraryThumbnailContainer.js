@@ -11,7 +11,7 @@ function ItineraryThumbnailContainer({itinerary, parent, mine}) {
     return (
         <div>
             <h1>Itinerary Thumbnail Container</h1>
-            <h3>{itinerary.name}</h3>
+            <h3>{itinerary.name}</h3>{parent === "RecItinerariesListContainer" ? <h4>{itinerary.match}/5</h4> : null}
             {photos.length > 0 ? <img src={photos[0].url} height="200px"/> : null}
             <button onClick={() => {
                 let mine = myItineraries.find(myItinerary => myItinerary.id === itinerary.id)

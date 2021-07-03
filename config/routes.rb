@@ -8,7 +8,8 @@ Rails.application.routes.draw do
   resources :itineraries, only: [:index, :create]
   get "/users/my_itineraries", to: "users#get_my_itineraries"
   # resources :user_itineraries
-  resources :users, only: [:create]
+  resources :users, only: [:create, :update]
+  patch "/add_credits", to: "users#add_credits"
   post "/register", to: "users#create"
   post "/login", to: "users#login"
   # Routing logic: fallback requests for React Router.

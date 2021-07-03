@@ -18,11 +18,12 @@ function App() {
 
   const dispatch = useDispatch()
   let allItineraries = useSelector(state => state.itineraries.allItineraries)
+  let myItineraries = useSelector(state => state.itineraries.myItineraries)
   let user = useSelector(state => state.user.currentUser)
 
   useEffect(() => {
     dispatch(recommendItineraries(user))
-  }, [allItineraries])
+  }, [allItineraries, myItineraries])
 
   return (
     <Router>

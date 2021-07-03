@@ -1,5 +1,5 @@
 class ItinerarySerializer < ActiveModel::Serializer
-  attributes :id, :destination, :name, :season, :length, :locale, :classification, :budget
+  attributes :id, :destination, :name, :description, :season, :length, :locale, :classification, :budget
   # has_many :user_itineraries
   # has_many :users
   # has_many :days

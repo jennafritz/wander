@@ -104,7 +104,7 @@ const itinerariesSlice = createSlice({
                 matchNum += 1
                 unsavedItinerary = {...unsavedItinerary, match: matchNum}
               }
-              if(unsavedItinerary.budget && unsavedItinerary.budget === loggedInUser.travel_budget){
+              if(unsavedItinerary.budget && unsavedItinerary.budget === loggedInUser.budget){
                 matchNum += 1
                 unsavedItinerary = {...unsavedItinerary, match: matchNum}
               }
@@ -112,6 +112,9 @@ const itinerariesSlice = createSlice({
             })
 
             let recommended = matched.filter(matchedItinerary => matchedItinerary.match > 0)
+            recommended.sort((itineraryA, itineraryB) => {
+                return itineraryB.match - itineraryA.match
+            })
 
             state.recommendedItineraries = recommended
           }

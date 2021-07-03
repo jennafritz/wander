@@ -24,13 +24,13 @@ erika = User.create(username: "erika", password: "admin", picture: "https://i.pi
 
 # ITINERARIES
 puts "Seeding itineraries..."
-spring_in_vegas = Itinerary.create(name: "Spring in Las Vegas, Bachelorette-Style", destination: "Las Vegas", season: "Spring", length: 4, locale: "City", classification: "Adventure", budget: 3, creator_id: erika.id)
+spring_in_vegas = Itinerary.create(name: "Spring in Las Vegas, Bachelorette-Style", description: "Grab your girls and head to Sin City for a bride-to-be’s last “single” hurrah before the big day!", destination: "Las Vegas", season: "Spring", length: 4, locale: "City", classification: "Adventure", budget: 3, creator_id: erika.id)
 
-fall_in_romania = Itinerary.create(name: "Fall in Romania", destination: "Romania", season: "Fall", length: 7, locale: "Country", classification: "Adventure", budget: 2, creator_id: erika.id)
+fall_in_romania = Itinerary.create(name: "Fall in Romania", description: "Take a roadtrip through scenic, wild Romania, discovering the natural beauty, wildlife, picturesque towns, delicious food, and more.", destination: "Romania", season: "Fall", length: 7, locale: "Country", classification: "Adventure", budget: 2, creator_id: erika.id)
 
-winter_in_north_fork = Itinerary.create(name: "Winter in the North Fork, Winery Tour", destination: "Long Island, NY", season: "Winter", length: 3, locale: "Country", classification: "Culture", budget: 3, creator_id: erika.id)
+winter_in_north_fork = Itinerary.create(name: "Winter in the North Fork, Winery Tour", description: "Pack your weekender bag and head to the North Fork for a few days filled with good food, great wine, and even better company!", destination: "Long Island, NY", season: "Winter", length: 3, locale: "Country", classification: "Culture", budget: 3, creator_id: erika.id)
 
-summer_in_rome = Itinerary.create(name: "Summer in Rome", destination: "Rome", season: "Summer", length: 5, locale: "City", classification: "Culture", budget: 3, creator_id: jenna.id)
+summer_in_rome = Itinerary.create(name: "Summer in Rome", description: "Wear comfortable shoes and pack snacks and a water bottle, because you’re about to take a whirlwind tour through the beautiful, historic city of Rome!", destination: "Rome", season: "Summer", length: 5, locale: "City", classification: "Culture", budget: 3, creator_id: jenna.id)
 
 
 
@@ -200,15 +200,17 @@ Photo.create(url: "https://mandalaybay.mgmresorts.com/content/dam/MGM/mandalay-b
 Photo.create(url: "https://cdn2.civitatis.com/estados-unidos/las-vegas/galeria/zumanity.jpg", caption: "Zumanity", itinerary_id: spring_in_vegas.id)
 
 # Fall in Romania Photos
-Photo.create(url: "https://drive.google.com/file/d/1YJJ6wl_MYEHItgX31f1W-SdW245NU69B/preview", caption: "Bucharest", itinerary_id: fall_in_romania)
-Photo.create(url: "https://drive.google.com/file/d/1dDWvziPmio07LOh5GCi9G0mwbp5dbzw5/preview", caption: "Caru cu Bere (restaurant in Bucharest)", itinerary_id: fall_in_romania)
-Photo.create(url: "https://drive.google.com/file/d/1pZ1NivE0LKXc8GTzuRKrZcLprKF0bbgo/preview", caption: "Ialomitei Monastery and Cave", itinerary_id: fall_in_romania)
-Photo.create(url: "https://drive.google.com/file/d/1-PMVNUpvv1PMBULzRbQiexsbpJZRB2ir/preview", caption: "Peles Castle", itinerary_id: fall_in_romania)
-Photo.create(url: "https://drive.google.com/file/d/1glYToC-tVuPwYfTP-hqs-x9Babxw1daH/preview", caption: "Brasov", itinerary_id: fall_in_romania)
-Photo.create(url: "https://drive.google.com/file/d/1TjHojwogI-_faMorxao8MM0lxzUYDSNk/preview", caption: "Wildlife on the Transfaragasan", itinerary_id: fall_in_romania)
-Photo.create(url: "https://drive.google.com/file/d/1bj3FCfEo0p_AQcY7s4XXEm0Nk1ASOfP1/view?usp=sharing", caption: "Transfaragasan Road", itinerary_id: fall_in_romania)
-Photo.create(url: "https://drive.google.com/file/d/1bj3FCfEo0p_AQcY7s4XXEm0Nk1ASOfP1/preview", caption: "Painted Monastery", itinerary_id: fall_in_romania)
-Photo.create(url: "https://drive.google.com/file/d/1qUbsxcISW7NTY6IV-5YExbFgzcBBMqGc/preview", caption: "Merry Cemetery", itinerary_id: fall_in_romania)
+Photo.create(url: "https://www.worldtravelguide.net/wp-content/uploads/2017/03/shu-Romania-Transylvania-Peles-494393290-1440x823.jpg", caption: "Peles Castle", itinerary_id: fall_in_romania.id)
+
+# Photo.create(url: "https://drive.google.com/file/d/1YJJ6wl_MYEHItgX31f1W-SdW245NU69B/preview", caption: "Bucharest", itinerary_id: fall_in_romania.id)
+# Photo.create(url: "https://drive.google.com/file/d/1dDWvziPmio07LOh5GCi9G0mwbp5dbzw5/preview", caption: "Caru cu Bere (restaurant in Bucharest)", itinerary_id: fall_in_romania.id)
+# Photo.create(url: "https://drive.google.com/file/d/1pZ1NivE0LKXc8GTzuRKrZcLprKF0bbgo/preview", caption: "Ialomitei Monastery and Cave", itinerary_id: fall_in_romania.id)
+# Photo.create(url: "https://drive.google.com/file/d/1-PMVNUpvv1PMBULzRbQiexsbpJZRB2ir/preview", caption: "Peles Castle", itinerary_id: fall_in_romania.id)
+# Photo.create(url: "https://drive.google.com/file/d/1glYToC-tVuPwYfTP-hqs-x9Babxw1daH/preview", caption: "Brasov", itinerary_id: fall_in_romania.id)
+# Photo.create(url: "https://drive.google.com/file/d/1TjHojwogI-_faMorxao8MM0lxzUYDSNk/preview", caption: "Wildlife on the Transfaragasan", itinerary_id: fall_in_romania.id)
+# Photo.create(url: "https://drive.google.com/file/d/1bj3FCfEo0p_AQcY7s4XXEm0Nk1ASOfP1/view?usp=sharing", caption: "Transfaragasan Road", itinerary_id: fall_in_romania.id)
+# Photo.create(url: "https://drive.google.com/file/d/1bj3FCfEo0p_AQcY7s4XXEm0Nk1ASOfP1/preview", caption: "Painted Monastery", itinerary_id: fall_in_romania.id)
+# Photo.create(url: "https://drive.google.com/file/d/1qUbsxcISW7NTY6IV-5YExbFgzcBBMqGc/preview", caption: "Merry Cemetery", itinerary_id: fall_in_romania.id)
 
 # Winter in North Fork Photos
 Photo.create(url: "https://www.winetraveler.com/wp-content/uploads/2019/11/Paumanok-Vineyards-Visitor-Information-Winetraveler.jpg", caption: "Paumanok Vineyard", itinerary_id: winter_in_north_fork.id)
@@ -218,7 +220,8 @@ Photo.create(url: "https://images.trvl-media.com/hotels/22000000/21830000/218259
 Photo.create(url: "https://cdn.newsday.com/polopoly_fs/1.4357897.1529942246!/httpImage/image.JPG_gen/derivatives/display_960/image.JPG", caption: "All Star Bowling", itinerary_id: winter_in_north_fork.id)
 Photo.create(url: "https://i.pinimg.com/originals/ae/9b/8b/ae9b8bee97a092b5bf9a027815c784f5.png", caption: "Greenport, NY", itinerary_id: winter_in_north_fork.id)
 
-
+# Summer in Rome Photos
+Photo.create(url: "https://cdn.travelpulse.com/images/e5a9edf4-a957-df11-b491-006073e71405/404747c6-03c2-4924-bc0a-e62e7603089f/600x400.jpg", caption: "Colosseum", itinerary_id: summer_in_rome.id)
 
 # USER ITINERARIES
 puts "Seeding UserItineraries..."
@@ -229,7 +232,7 @@ UserItinerary.create(user_id: erika.id, itinerary_id: winter_in_north_fork.id)
 UserItinerary.create(user_id: erika.id, itinerary_id: summer_in_rome.id)
 
 # Jenna's
-UserItinerary.create(user_id: erika.id, itinerary_id: summer_in_rome.id)
+UserItinerary.create(user_id: jenna.id, itinerary_id: summer_in_rome.id)
 
 
 

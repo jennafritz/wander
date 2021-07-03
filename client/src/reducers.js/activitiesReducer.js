@@ -36,7 +36,7 @@ const activitiesSlice = createSlice({
     },
     extraReducers: {
         [submitItineraryActivities.fulfilled](state, action){
-            return action.payload
+          return action.payload
         },
         [submitItineraryActivities.rejected](state, action){
             return action

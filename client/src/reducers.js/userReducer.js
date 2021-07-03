@@ -31,7 +31,27 @@ export const registerUser = createAsyncThunk("user/registerUser", (registerObj,t
     })
         .then(res => res.json())
         .then(userInfo => {
-            debugger
+            if(userInfo.error){
+                return thunkAPI.rejectWithValue(userInfo.error)
+            } else {
+                return userInfo
+            }
+        })
+})
+
+export const addCreditToUser = createAsyncThunk("user/addCreditToUser", (userObj, thunkAPI) => {
+    return fetch(`http://localhost:3000/add_credits?userId=${userObj.id}`, {
+        method: "PATCH",
+        headers: {
+            Authorization: `Bearer ${localStorage.token}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            credits: userObj.credits + 1
+        })
+    })
+        .then(res => res.json())
+        .then(userInfo => {
             if(userInfo.error){
                 return thunkAPI.rejectWithValue(userInfo.error)
             } else {
@@ -53,20 +73,16 @@ const userSlice = createSlice({
         [fetchUser.fulfilled](state, action){
             state.currentUser = action.payload.user
             state.token = action.payload.token
-
-            // debugger
-            // if(action.payload.user){
-            //     state.currentUser = action.payload.user
-            //     state.token = action.payload.token
-            // } else {
-            //     return action.payload
-            // }
         },
         [fetchUser.rejected](state, action){
             return action
         },
         [registerUser.fulfilled](state, action){
             return action.payload
+        },
+        [addCreditToUser.fulfilled](state, action){
+            debugger
+            state.currentUser = action.payload
         }
     }
 })

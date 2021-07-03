@@ -22,6 +22,16 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
         end
     end
 
+    def add_credits
+        byebug
+        user = User.find(params[:userId])
+        user.update!(credits: params[:credits])
+        byebug
+        render json: user, status: :ok
+    rescue ActiveRecord::RecordInvalid => invalid
+        render json: {error: invalid.record.errors.full_messages}, status: :unprocessable_entity
+    end
+
     def get_my_itineraries
         user = User.find(params[:userId])
         itineraries = user.itineraries

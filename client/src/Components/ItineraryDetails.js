@@ -19,6 +19,7 @@ function ItineraryDetails({itinerary}) {
         <div>
             <h3>Itinerary Details Component</h3>
             <h3>{itinerary.name}</h3>
+            <h4>{itinerary.description}</h4>
             <h3>{itinerary.destination}</h3>
             <h3>{itinerary.length}</h3>
             <h3>{itinerary.locale}</h3>

@@ -7,14 +7,19 @@ import {submitItineraryDetails} from '../reducers.js/itinerariesReducer'
 import {submitItineraryDays} from '../reducers.js/daysReducer'
 import {submitItineraryPhotos} from '../reducers.js/photosReducer'
 import {submitItineraryActivities} from '../reducers.js/activitiesReducer'
+import {useHistory} from 'react-router-dom'
+import {addCreditToUser} from '../reducers.js/userReducer'
 
 function SubmitATripForm() {
 
+    const history = useHistory()
     const dispatch = useDispatch()
-    const userId = useSelector(state => state.user.currentUser.id)
+    const user = useSelector(state => state.user.currentUser)
+    const userId = user.id
 
     const [formData, setFormData] = useState({
         name: "",
+        description: "",
         destination: "",
         season: "Spring",
         length: 2,
@@ -89,31 +94,132 @@ function SubmitATripForm() {
 
     // need to implement error message handling for photos and activities!
     // also need to handle adding credits to user and thanking them before pushing them to another page (perhaps profile? maybe a modal that asks them if they want to submit again? or should there be a limit on submissions?)
-    const handleFullSubmit = () => {
-        dispatch(submitItineraryDetails(formData)).then(response => {
+
+    const handleFullSubmitAsyncTest = async () => {
+        let numDays = Array(formData.length).fill(null)
+        // debugger
+        let itinerary = await dispatch(submitItineraryDetails(formData)).then(response => {
+            // debugger
             if(response.error){
                 alert(response.payload)
+                return response.payload
             } else {
-                let itinerary = response.payload
-                let numDays = Array(formData.length).fill(null)
-                let daysArray = numDays.map((day, index) => {
-                    return {"name": `${itinerary.name} Day ${index + 1}`, "number": index + 1, "itinerary_id": itinerary.id}
-                })
-                dispatch(submitItineraryPhotos({itineraryId: itinerary.id, photosArray: imagesArray}))
-                dispatch(submitItineraryDays(daysArray)).then(response => {
-                    if(response.error){
-                        alert(response.payload)
-                    } else {
-                        let arrayOfNewDays = response.payload
-                        arrayOfNewDays.forEach(day => {
-                            let dayActivities = activitiesArray.filter(activity => activity.day === day.number)
-                            dispatch(submitItineraryActivities({dayId: day.id, activitiesArray: dayActivities}))
-                        })
-                    }
-                })
-            }        
+                // debugger
+                return response.payload
+            }
         })
+        // debugger
+        let daysArray = numDays.map((day, index) => {
+            // debugger
+            return {"name": `${itinerary.name} Day ${index + 1}`, "number": index + 1, "itinerary_id": itinerary.id}
+        })
+        // debugger
+        let photos = await dispatch(submitItineraryPhotos({itineraryId: itinerary.id, photosArray: imagesArray})).then(response => {
+            // debugger
+            if(response.error){
+                alert(response.payload)
+                return response.payload
+            } else {
+                // debugger
+                return response.payload
+            }
+        })
+        // debugger
+        let days = await dispatch(submitItineraryDays(daysArray)).then(response => {
+            // debugger
+            if(response.error){
+                alert(response.payload)
+                return response.payload
+            } else {
+                // debugger
+                return response.payload
+            }
+        })
+        // debugger
+
+        let activities = await Promise.all(days.map(async day => {
+            // debugger
+            let dayActivities = activitiesArray.filter(activity => activity.day === day.number)
+            let newActivities = await dispatch(submitItineraryActivities({dayId: day.id, activitiesArray: dayActivities})).then(response => {
+                if(response.error){
+                    alert(response.payload)
+                    return response
+                } else {
+                    return response.payload
+                }
+            })
+            return newActivities
+        }))
+        // debugger
+        
+        // need some way to only run this if everything above went through properly.
+        // issue is mainly with activities bc cannot do .then and have different return for error/success
+        if(activities[0][0] && activities[0][0].id){
+            dispatch(addCreditToUser(user))
+            alert("Thank you for contributing to Wander! An itinerary credit has been added to your account - Happy Wandering!")
+            history.push("/profile")
+        }
+        return {itinerary: itinerary, photos: photos, days: days, activities: activities}
     }
+
+
+
+
+    // const handleFullSubmit = async () => {
+    //     let createdPhotos = []
+    //     let createdDays = []
+    //     let createdActivities = []
+    //     await dispatch(submitItineraryDetails(formData)).then(response => {
+    //         debugger
+    //         if(response.error){
+    //             alert(response.payload)
+    //             return response.payload
+    //         } else {
+    //             let itinerary = response.payload
+    //             let numDays = Array(formData.length).fill(null)
+    //             let daysArray = numDays.map((day, index) => {
+    //                 return {"name": `${itinerary.name} Day ${index + 1}`, "number": index + 1, "itinerary_id": itinerary.id}
+    //             })
+    //             dispatch(submitItineraryPhotos({itineraryId: itinerary.id, photosArray: imagesArray})).then(response => {
+    //                 debugger
+    //                 if(response.error){
+    //                     alert(response.payload)
+    //                     return response.payload
+    //                 } else {
+    //                     createdPhotos = response.payload
+    //                     debugger
+    //                     dispatch(submitItineraryDays(daysArray)).then(response => {
+    //                         debugger
+    //                         if(response.error){
+    //                             alert(response.payload)
+    //                             return response.payload
+    //                         } else {
+    //                             let arrayOfNewDays = response.payload
+    //                             createdDays = arrayOfNewDays
+    //                             debugger
+    //                             arrayOfNewDays.forEach(day => {
+    //                                 let dayActivities = activitiesArray.filter(activity => activity.day === day.number)
+    //                                 dispatch(submitItineraryActivities({dayId: day.id, activitiesArray: dayActivities})).then(response => {
+    //                                     debugger
+    //                                     if(response.error){
+    //                                         alert(response.payload)
+    //                                         return response.payload
+    //                                     } else {
+    //                                         createdActivities = [...createdActivities, ...response.payload]
+    //                                         debugger
+    //                                         return response.payload
+    //                                     }
+    //                                 })
+    //                             })
+    //                         }
+    //                     })
+    //                 }
+    //             })
+                
+    //         }        
+    //     })
+    // }
+    
 
     return (
         <div>
@@ -121,7 +227,7 @@ function SubmitATripForm() {
             <h3>Submit a Trip Form Component</h3>
             <form id="trip-form" onSubmit={(event) => {
                 event.preventDefault()
-                handleFullSubmit()
+                handleFullSubmitAsyncTest()
                 console.log("trip form submitted")
                 }}>
                 <label htmlFor="name">Name</label>
@@ -131,6 +237,14 @@ function SubmitATripForm() {
                 id="name"
                 name="name"
                 value={formData.name}
+                onChange={handleChange}
+                />
+                <label htmlFor="description">Description</label>
+                <textarea 
+                required
+                id="description"
+                name="description"
+                value={formData.description}
                 onChange={handleChange}
                 />
                 <label htmlFor="destination">Destination</label>

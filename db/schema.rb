@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2021_06_29_203753) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
+    t.string "info_url"
     t.integer "day_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -32,6 +33,7 @@ ActiveRecord::Schema.define(version: 2021_06_29_203753) do
 
   create_table "itineraries", force: :cascade do |t|
     t.string "name"
+    t.string "description"
     t.string "destination"
     t.string "season"
     t.integer "length"
