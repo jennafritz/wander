@@ -60,6 +60,25 @@ export const addCreditToUser = createAsyncThunk("user/addCreditToUser", (userObj
         })
 })
 
+export const setUpProfile = createAsyncThunk("user/setUpProfile", (userInfoObj, thunkAPI) => {
+    debugger
+    return fetch(`http://localhost:3000/users/:${userInfoObj.userId}`, {
+        method: "PATCH",
+        headers: {
+            Authorization: `Bearer ${localStorage.token}`,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(userInfoObj)
+    })
+        .then(res => res.json())
+        .then(updatedUser => {
+            if(updatedUser.error){
+                return thunkAPI.rejectWithValue(updatedUser.error)
+            } else {
+                return updatedUser
+            }
+        })
+})
 
 // Reducer
 
@@ -81,6 +100,10 @@ const userSlice = createSlice({
             return action.payload
         },
         [addCreditToUser.fulfilled](state, action){
+            debugger
+            state.currentUser = action.payload
+        },
+        [setUpProfile.fulfilled](state, action){
             debugger
             state.currentUser = action.payload
         }

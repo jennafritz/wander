@@ -23,7 +23,6 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
     end
 
     def add_credits
-        byebug
         user = User.find(params[:userId])
         user.update!(credits: params[:credits])
         byebug
@@ -38,10 +37,19 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
         render json: itineraries, status: :accepted
     end
 
+    def update
+        user = User.find(params[:userId])
+        user.update!(user_params)
+        byebug
+        render json: user, status: :accepted
+    rescue ActiveRecord::RecordInvalid => invalid
+        render json: {error: invalid.record.errors.full_messages}, status: :unprocessable_entity
+    end
+
     private
 
     def user_params
-        params.permit(:username, :password) 
+        params.permit(:username, :password, :travel_season, :travel_length, :travel_locale, :travel_classification, :budget, :picture) 
     end
 
     def not_found
