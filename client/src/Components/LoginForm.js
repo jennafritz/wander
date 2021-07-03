@@ -26,8 +26,9 @@ function LoginForm() {
 
     const handleLogin = (loginObj) => {
         dispatch(fetchUser(loginObj)).then((response) => {
-            debugger
-            if (response.payload.user){
+            if(response.error){
+                alert(response.payload)
+            } else {
                 let loggedInUser = response.payload.user
                 localStorage.token = response.payload.token
                 dispatch(fetchAllItineraries()).then(() => dispatch(fetchMyItineraries(loggedInUser.id))).then(() => dispatch(recommendItineraries(loggedInUser)))
@@ -37,9 +38,21 @@ function LoginForm() {
                 } else if(loggedInUser.id){
                     history.push("/questionnaire")
                 }
-            } else {
-                alert(response.payload)
             }
+
+            // if (response.payload.user){
+            //     let loggedInUser = response.payload.user
+            //     localStorage.token = response.payload.token
+            //     dispatch(fetchAllItineraries()).then(() => dispatch(fetchMyItineraries(loggedInUser.id))).then(() => dispatch(recommendItineraries(loggedInUser)))
+            //     dispatch(fetchAllPhotos())
+            //     if(loggedInUser.id && loggedInUser.travel_season){
+            //         history.push("/profile")
+            //     } else if(loggedInUser.id){
+            //         history.push("/questionnaire")
+            //     }
+            // } else {
+            //     alert(response.payload)
+            // }
         })
     }
 
