@@ -200,15 +200,15 @@ Photo.create(url: "https://mandalaybay.mgmresorts.com/content/dam/MGM/mandalay-b
 Photo.create(url: "https://cdn2.civitatis.com/estados-unidos/las-vegas/galeria/zumanity.jpg", caption: "Zumanity", itinerary_id: spring_in_vegas.id)
 
 # Fall in Romania Photos
-Photo.create(url: "https://drive.google.com/file/d/1YJJ6wl_MYEHItgX31f1W-SdW245NU69B/view?usp=sharing", caption: "Bucharest", itinerary_id: fall_in_romania)
-Photo.create(url: "https://drive.google.com/file/d/1dDWvziPmio07LOh5GCi9G0mwbp5dbzw5/view?usp=sharing", caption: "Caru cu Bere (restaurant in Bucharest)", itinerary_id: fall_in_romania)
-Photo.create(url: "https://drive.google.com/file/d/1pZ1NivE0LKXc8GTzuRKrZcLprKF0bbgo/view?usp=sharing", caption: "Ialomitei Monastery and Cave", itinerary_id: fall_in_romania)
-Photo.create(url: "https://drive.google.com/file/d/1-PMVNUpvv1PMBULzRbQiexsbpJZRB2ir/view?usp=sharing", caption: "Peles Castle", itinerary_id: fall_in_romania)
-Photo.create(url: "https://drive.google.com/file/d/1glYToC-tVuPwYfTP-hqs-x9Babxw1daH/view?usp=sharing", caption: "Brasov", itinerary_id: fall_in_romania)
-Photo.create(url: "https://drive.google.com/file/d/1TjHojwogI-_faMorxao8MM0lxzUYDSNk/view?usp=sharing", caption: "Wildlife on the Transfaragasan", itinerary_id: fall_in_romania)
+Photo.create(url: "https://drive.google.com/file/d/1YJJ6wl_MYEHItgX31f1W-SdW245NU69B/preview", caption: "Bucharest", itinerary_id: fall_in_romania)
+Photo.create(url: "https://drive.google.com/file/d/1dDWvziPmio07LOh5GCi9G0mwbp5dbzw5/preview", caption: "Caru cu Bere (restaurant in Bucharest)", itinerary_id: fall_in_romania)
+Photo.create(url: "https://drive.google.com/file/d/1pZ1NivE0LKXc8GTzuRKrZcLprKF0bbgo/preview", caption: "Ialomitei Monastery and Cave", itinerary_id: fall_in_romania)
+Photo.create(url: "https://drive.google.com/file/d/1-PMVNUpvv1PMBULzRbQiexsbpJZRB2ir/preview", caption: "Peles Castle", itinerary_id: fall_in_romania)
+Photo.create(url: "https://drive.google.com/file/d/1glYToC-tVuPwYfTP-hqs-x9Babxw1daH/preview", caption: "Brasov", itinerary_id: fall_in_romania)
+Photo.create(url: "https://drive.google.com/file/d/1TjHojwogI-_faMorxao8MM0lxzUYDSNk/preview", caption: "Wildlife on the Transfaragasan", itinerary_id: fall_in_romania)
 Photo.create(url: "https://drive.google.com/file/d/1bj3FCfEo0p_AQcY7s4XXEm0Nk1ASOfP1/view?usp=sharing", caption: "Transfaragasan Road", itinerary_id: fall_in_romania)
-Photo.create(url: "https://drive.google.com/file/d/1Swlvc9KNLvgje9PomOPfK6xbEGSTlI3h/view?usp=sharing", caption: "Painted Monastery", itinerary_id: fall_in_romania)
-Photo.create(url: "https://drive.google.com/file/d/1qUbsxcISW7NTY6IV-5YExbFgzcBBMqGc/view?usp=sharing", caption: "Merry Cemetery", itinerary_id: fall_in_romania)
+Photo.create(url: "https://drive.google.com/file/d/1bj3FCfEo0p_AQcY7s4XXEm0Nk1ASOfP1/preview", caption: "Painted Monastery", itinerary_id: fall_in_romania)
+Photo.create(url: "https://drive.google.com/file/d/1qUbsxcISW7NTY6IV-5YExbFgzcBBMqGc/preview", caption: "Merry Cemetery", itinerary_id: fall_in_romania)
 
 # Winter in North Fork Photos
 Photo.create(url: "https://www.winetraveler.com/wp-content/uploads/2019/11/Paumanok-Vineyards-Visitor-Information-Winetraveler.jpg", caption: "Paumanok Vineyard", itinerary_id: winter_in_north_fork.id)
@@ -222,8 +222,14 @@ Photo.create(url: "https://i.pinimg.com/originals/ae/9b/8b/ae9b8bee97a092b5bf9a0
 
 # USER ITINERARIES
 puts "Seeding UserItineraries..."
+# Erika's
 UserItinerary.create(user_id: erika.id, itinerary_id: spring_in_vegas.id)
 UserItinerary.create(user_id: erika.id, itinerary_id: fall_in_romania.id)
+UserItinerary.create(user_id: erika.id, itinerary_id: winter_in_north_fork.id)
+UserItinerary.create(user_id: erika.id, itinerary_id: summer_in_rome.id)
+
+# Jenna's
+UserItinerary.create(user_id: erika.id, itinerary_id: summer_in_rome.id)
 
 
 
