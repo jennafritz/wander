@@ -55,14 +55,13 @@ export const submitItineraryDays = createAsyncThunk("days/submitItineraryDays", 
         body: JSON.stringify(arrayOfDays)
       })
         .then(res => res.json())
-        .then(newlyCreatedDays => newlyCreatedDays)
-        //     {
-        //     if(newlyCreatedDays.error){
-        //       return thunkAPI.rejectWithValue(newlyCreatedDays.error)
-        //     } else {
-        //       return newlyCreatedDays
-        //     }
-        //   })
+        .then(newlyCreatedDays => {
+            if(newlyCreatedDays.error){
+              return thunkAPI.rejectWithValue(newlyCreatedDays.error)
+            } else {
+              return newlyCreatedDays
+            }
+          })
   })
 
 
@@ -83,9 +82,11 @@ const photosSlice = createSlice({
         },
         [submitItineraryDays.fulfilled](state, action){
             state.allDays = [...state.allDays, ...action.payload]
+        },
+        [submitItineraryDays.rejected](state, action){
+            return action
         }
     }
 })
 
 export default photosSlice.reducer
-

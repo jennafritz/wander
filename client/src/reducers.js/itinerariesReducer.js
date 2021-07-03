@@ -56,14 +56,13 @@ export const submitItineraryDetails = createAsyncThunk("itineraries/submitItiner
       body: JSON.stringify(itineraryObj)
     })
       .then(res => res.json())
-      .then(newlyCreatedItinerary => newlyCreatedItinerary)
-      //   {
-      //   if(newlyCreatedItinerary.error){
-      //     return thunkAPI.rejectWithValue(newlyCreatedItinerary.error)
-      //   } else {
-      //     return newlyCreatedItinerary
-      //   }
-      // })
+      .then(newlyCreatedItinerary => {
+        if(newlyCreatedItinerary.error){
+          return thunkAPI.rejectWithValue(newlyCreatedItinerary.error)
+        } else {
+          return newlyCreatedItinerary
+        }
+      })
 })
 
 
@@ -128,6 +127,9 @@ const itinerariesSlice = createSlice({
         },
         [submitItineraryDetails.fulfilled](state, action){
           state.allItineraries.push({...action.payload, match: 0})
+        },
+        [submitItineraryDetails.rejected](state, action){
+          return action
         }
     }
 })

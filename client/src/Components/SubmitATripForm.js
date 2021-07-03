@@ -87,21 +87,30 @@ function SubmitATripForm() {
         })
     }
 
+    // need to implement error message handling for photos and activities!
     const handleFullSubmit = () => {
         dispatch(submitItineraryDetails(formData)).then(response => {
-            let itinerary = response.payload
-            let numDays = Array(formData.length).fill(null)
-            let daysArray = numDays.map((day, index) => {
-                return {"name": `${itinerary.name} Day ${index + 1}`, "number": index + 1, "itinerary_id": itinerary.id}
-            })
-            dispatch(submitItineraryPhotos({itineraryId: itinerary.id, photosArray: imagesArray}))
-            dispatch(submitItineraryDays(daysArray)).then(response => {
-                let arrayOfNewDays = response.payload
-                arrayOfNewDays.forEach(day => {
-                    let dayActivities = activitiesArray.filter(activity => activity.day === day.number)
-                    dispatch(submitItineraryActivities({dayId: day.id, activitiesArray: dayActivities}))
+            if(response.error){
+                alert(response.payload)
+            } else {
+                let itinerary = response.payload
+                let numDays = Array(formData.length).fill(null)
+                let daysArray = numDays.map((day, index) => {
+                    return {"name": `${itinerary.name} Day ${index + 1}`, "number": index + 1, "itinerary_id": itinerary.id}
                 })
-            })
+                dispatch(submitItineraryPhotos({itineraryId: itinerary.id, photosArray: imagesArray}))
+                dispatch(submitItineraryDays(daysArray)).then(response => {
+                    if(response.error){
+                        alert(response.payload)
+                    } else {
+                        let arrayOfNewDays = response.payload
+                        arrayOfNewDays.forEach(day => {
+                            let dayActivities = activitiesArray.filter(activity => activity.day === day.number)
+                            dispatch(submitItineraryActivities({dayId: day.id, activitiesArray: dayActivities}))
+                        })
+                    }
+                })
+            }        
         })
     }
 

@@ -55,14 +55,13 @@ export const submitItineraryPhotos = createAsyncThunk("photos/submitItineraryPho
         body: JSON.stringify(arrayOfPhotos)
       })
         .then(res => res.json())
-        .then(newlyCreatedPhotos => newlyCreatedPhotos)
-        //     {
-        //     if(newlyCreatedPhotos.error){
-        //       return thunkAPI.rejectWithValue(newlyCreatedPhotos.error)
-        //     } else {
-        //       return newlyCreatedPhotos
-        //     }
-        //   })
+        .then(newlyCreatedPhotos => {
+            if(newlyCreatedPhotos.error){
+              return thunkAPI.rejectWithValue(newlyCreatedPhotos.error)
+            } else {
+              return newlyCreatedPhotos
+            }
+          })
   })
 
 
@@ -83,6 +82,9 @@ const photosSlice = createSlice({
         },
         [submitItineraryPhotos.fulfilled](state, action){
             state.allPhotos = [...state.allPhotos, ...action.payload]
+        },
+        [submitItineraryPhotos.rejected](state, action){
+            return action
         }
     }
 })

@@ -16,14 +16,13 @@ export const submitItineraryActivities = createAsyncThunk("activities/submitItin
         body: JSON.stringify(activitiesInfoObj)
       })
         .then(res => res.json())
-        .then(newlyCreatedActivities => newlyCreatedActivities)
-        //     {
-        //     if(newlyCreatedActivities.error){
-        //       return thunkAPI.rejectWithValue(newlyCreatedActivities.error)
-        //     } else {
-        //       return newlyCreatedActivities
-        //     }
-        //   })
+        .then(newlyCreatedActivities => {
+            if(newlyCreatedActivities.error){
+              return thunkAPI.rejectWithValue(newlyCreatedActivities.error)
+            } else {
+              return newlyCreatedActivities
+            }
+          })
   })
 
 
@@ -38,6 +37,9 @@ const activitiesSlice = createSlice({
     extraReducers: {
         [submitItineraryActivities.fulfilled](state, action){
             return action.payload
+        },
+        [submitItineraryActivities.rejected](state, action){
+            return action
         }
     }
 })
