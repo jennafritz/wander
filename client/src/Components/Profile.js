@@ -37,6 +37,8 @@ function Profile() {
             
             <img src={user.picture} alt="user profile"/>
             <h2>{user.username}</h2>
+            <h3>Credits: {user.credits}</h3>
+            <h3>Travel Interests</h3>
             <h4>{season}</h4>
             <h4>{user.travel_length}</h4>
             <h4>{locale}</h4>

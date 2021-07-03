@@ -34,10 +34,11 @@ ActiveRecord::Schema.define(version: 2021_06_29_203753) do
     t.string "name"
     t.string "destination"
     t.string "season"
-    t.string "length"
+    t.integer "length"
     t.string "locale"
     t.string "classification"
     t.integer "budget"
+    t.integer "creator_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -62,7 +63,7 @@ ActiveRecord::Schema.define(version: 2021_06_29_203753) do
     t.string "password_digest"
     t.string "picture"
     t.string "travel_season"
-    t.string "travel_length"
+    t.integer "travel_length"
     t.string "travel_locale"
     t.string "travel_classification"
     t.integer "budget"

@@ -4,10 +4,11 @@ class CreateItineraries < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :destination
       t.string :season
-      t.string :length
+      t.integer :length
       t.string :locale
       t.string :classification
       t.integer :budget
+      t.integer :creator_id
 
       t.timestamps
     end

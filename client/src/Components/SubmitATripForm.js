@@ -2,19 +2,27 @@ import NavBar from "./NavBar";
 import {useState} from 'react'
 import ActivitiesForm from './ActivitiesForm'
 import ImagesForm from "./ImagesForm";
+import {useDispatch, useSelector} from 'react-redux'
+import {submitItineraryDetails} from '../reducers.js/itinerariesReducer'
+import {submitItineraryDays} from '../reducers.js/daysReducer'
+import {submitItineraryPhotos} from '../reducers.js/photosReducer'
+import {submitItineraryActivities} from '../reducers.js/activitiesReducer'
 
 function SubmitATripForm() {
 
-    // console.log(document.forms)
+    const dispatch = useDispatch()
+    const userId = useSelector(state => state.user.currentUser.id)
 
     const [formData, setFormData] = useState({
         name: "",
         destination: "",
-        season: "",
-        locale: "",
-        classification: "",
-        budget: "",
-        days: 2
+        season: "Spring",
+        length: 2,
+        locale: "City",
+        classification: "Adventure",
+        budget: 1,
+        creator_id: userId,
+        range: 0
     })
 
     const [activitiesArray, setActivitiesArray] = useState([])
@@ -69,7 +77,7 @@ function SubmitATripForm() {
         }
     }
 
-    let daysArray = Array(parseInt(formData.days, 10)).fill(null)
+    let lengthArray = Array(parseInt(formData.length, 10)).fill(null)
 
     function handleChange(event) {
         const key = event.target.id
@@ -79,16 +87,36 @@ function SubmitATripForm() {
         })
     }
 
+    const handleFullSubmit = () => {
+        dispatch(submitItineraryDetails(formData)).then(response => {
+            let itinerary = response.payload
+            let numDays = Array(formData.length).fill(null)
+            let daysArray = numDays.map((day, index) => {
+                return {"name": `${itinerary.name} Day ${index + 1}`, "number": index + 1, "itinerary_id": itinerary.id}
+            })
+            dispatch(submitItineraryPhotos({itineraryId: itinerary.id, photosArray: imagesArray}))
+            dispatch(submitItineraryDays(daysArray)).then(response => {
+                let arrayOfNewDays = response.payload
+                arrayOfNewDays.forEach(day => {
+                    let dayActivities = activitiesArray.filter(activity => activity.day === day.number)
+                    dispatch(submitItineraryActivities({dayId: day.id, activitiesArray: dayActivities}))
+                })
+            })
+        })
+    }
+
     return (
         <div>
             <NavBar />
             <h3>Submit a Trip Form Component</h3>
             <form id="trip-form" onSubmit={(event) => {
                 event.preventDefault()
+                handleFullSubmit()
                 console.log("trip form submitted")
                 }}>
                 <label htmlFor="name">Name</label>
                 <input 
+                required
                 type="text"
                 id="name"
                 name="name"
@@ -97,6 +125,7 @@ function SubmitATripForm() {
                 />
                 <label htmlFor="destination">Destination</label>
                 <input 
+                required
                 type="text"
                 id="destination"
                 name="destination"
@@ -104,45 +133,54 @@ function SubmitATripForm() {
                 onChange={handleChange}
                 />
                 <label htmlFor="season">Season</label>
-                <select name="season" id="season" onChange={handleChange}>
-                    <option selected disabled>Select Season</option>
+                <select required name="season" id="season" defaultValue="Spring" onChange={handleChange}>
                     <option value="Spring">Spring</option>
                     <option value="Summer">Summer</option>
                     <option value="Fall">Fall</option>
                     <option value="Winter">Winter</option>
                 </select>
                  <label htmlFor="locale">Locale</label>
-                 <select name="locale" id="locale" onChange={handleChange}>
-                    <option selected disabled>Select Locale</option>
+                 <select required name="locale" id="locale" defaultValue="City" onChange={handleChange}>
                     <option value="City">City</option>
                     <option value="Country">Country</option>
                 </select>
                  <label htmlFor="classification">Classification</label>
-                 <select name="classification" id="classification" onChange={handleChange}>
-                    <option selected disabled>Select Classification</option>
+                 <select required name="classification" id="classification" defaultValue="Adventure" onChange={handleChange}>
                     <option value="Adventure">Adventure</option>
                     <option value="Culture">Culture</option>
                 </select>
                  <label htmlFor="budget">Budget</label>
-                 <select name="budget" id="budget" onChange={handleChange}>
-                    <option selected disabled>Select Budget</option>
-                    <option value="1">$$$$</option>
-                    <option value="2">$$$</option>
-                    <option value="3">$$</option>
-                    <option value="4">$</option>
+                 <select required name="budget" id="budget" defaultValue="1" onChange={handleChange}>
+                    <option value="1">$</option>
+                    <option value="2">$$</option>
+                    <option value="3">$$$</option>
+                    <option value="4">$$$$</option>
                 </select>
-                <label htmlFor="days">Days</label>
+                {/* <label htmlFor="length">length</label>
                 <input 
+                required
+                placeholder={2}
                 type="number"
-                id="days"
-                name="days"
+                id="length"
+                name="length"
                 min="1"
-                value={formData.days}
+                value={formData.length}
                 onChange={handleChange}
-                />
+                /> */}
+                <label htmlFor="length">Length: {formData.length} Days</label>
+                <input 
+                required
+                type="range"
+                id="length"
+                name="length"
+                min="2"
+                max="31"
+                value={formData.length}
+                onChange={handleChange} />
                 <br/>
                 
-                {daysArray.map((element, index) => {
+                {lengthArray.length > 0
+                ? lengthArray.map((element, index) => {
                     let dayNumber = index + 1
                     return (
                         <div>
@@ -151,15 +189,10 @@ function SubmitATripForm() {
                         </div>
                     )
                     }
-                )}
+                ) : null}
                 <ImagesForm updateImagesArray={updateImagesArray} removeImageFromParent={removeImageFromParent}/>
-
-                {/* add an image */}
-                {/* <input type="submit" value="Submit"/> */}
+                <input type="submit" value="Submit"/>
             </form>
-                    <button type="submit" form="trip-form" onClick={(event) => {
-                        event.preventDefault()
-                        console.log({itineraryDetails: formData, activitiesArray, imagesArray})}}>Submit</button>
         </div>
     )
   }

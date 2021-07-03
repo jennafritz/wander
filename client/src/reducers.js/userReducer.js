@@ -14,13 +14,14 @@ export const fetchUser = createAsyncThunk("user/fetchUser", (loginObj,thunkAPI) 
         body: JSON.stringify(loginObj)
     })
         .then(res => res.json())
-        .then(userInfo => {
-            if(userInfo.error){
-                return thunkAPI.rejectWithValue(userInfo.error)
-            } else {
-                return userInfo
-            }
-        })
+        .then(userInfo => userInfo)
+            // {
+        //     if(userInfo.error){
+        //         return thunkAPI.rejectWithValue(userInfo.error)
+        //     } else {
+        //         return userInfo
+        //     }
+        // })
 })
 
 export const registerUser = createAsyncThunk("user/registerUser", (registerObj,thunkAPI) => {
@@ -51,20 +52,19 @@ const userSlice = createSlice({
     },
     extraReducers: {
         [fetchUser.fulfilled](state, action){
-            if(action.payload.user){
-                state.currentUser = action.payload.user
-                state.token = action.payload.token
-            } else {
-                return action.payload
-            }
-        },
-        [registerUser.fulfilled](state, action){
-            return action.payload
+            debugger
             // if(action.payload.user){
-            //     return action.payload
+            //     state.currentUser = action.payload.user
+            //     state.token = action.payload.token
             // } else {
             //     return action.payload
             // }
+        },
+        [fetchUser.rejected](state, action){
+            debugger
+        },
+        [registerUser.fulfilled](state, action){
+            return action.payload
         }
     }
 })

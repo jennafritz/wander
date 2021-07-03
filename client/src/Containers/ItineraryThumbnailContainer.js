@@ -21,14 +21,6 @@ function ItineraryThumbnailContainer({itinerary, parent, mine}) {
                     alert("To view the details of this itinerary, you must save it to your account which will reduce your itinerary credits. To proceed, click Save below, otherwise click Cancel.")
                 }
             }
-                // if(mine){
-                // history.push(({pathname: "/itineraryDetails", state: {itinerary, photos}}))
-                // } else if(mine === false){
-                //     alert("To view the details of this itinerary, you must save it to your account which will reduce your itinerary credits. To proceed, click Save below, otherwise click Cancel.")
-                // } else {
-                //     history.push(({pathname: "/itineraryDetails", state: {itinerary, photos}}))
-                // }
-            // }
             }>View Details</button>
         </div>
     )

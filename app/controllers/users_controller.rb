@@ -26,18 +26,12 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
         user = User.find(params[:userId])
         itineraries = user.itineraries
         render json: itineraries, status: :accepted
-        # itineraries = Itinerary.select do |itinerary|
-        #     itinerary.users.detect do |user|
-        #         user.id == params[:user_id]
-        #     end
-        # end
     end
 
     private
 
     def user_params
         params.permit(:username, :password) 
-            # :picture, :travel_season, :travel_length, :travel_locale, :travel_type, :budget)
     end
 
     def not_found

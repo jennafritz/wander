@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
   
-  resources :photos, only: [:index]
+  resources :photos, only: [:index, :create]
   get "/itinerary_photos", to: "photos#get_itinerary_photos"
-  # resources :activities
-  resources :days, only: [:index]
+  resources :activities, only: [:create]
+  resources :days, only: [:index, :create]
   get "/itinerary_days", to: "days#get_itinerary_days"
-  resources :itineraries, only: [:index]
+  resources :itineraries, only: [:index, :create]
   get "/users/my_itineraries", to: "users#get_my_itineraries"
   # resources :user_itineraries
   resources :users, only: [:create]

@@ -1,16 +1,21 @@
 import NavBar from '../Components/NavBar'
 import ItineraryThumbnailContainer from './ItineraryThumbnailContainer'
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
+import {recommendItineraries} from '../reducers.js/itinerariesReducer'
+import {useEffect} from 'react'
 
 function RecItinerariesListContainer() {
 
-    const itineraries = useSelector(state => state.itineraries.allItineraries)   
+    const dispatch = useDispatch()
+    const recommendedItineraries = useSelector(state => state.itineraries.recommendedItineraries)
+    // const myItineraries = useSelector(state => state.itineraries.myItineraries)
+    // const user = useSelector(state => state.user.currentUser)
 
     return (
         <div>
             <NavBar />
             <h1>Recommended Itineraries List Container</h1>
-            {itineraries.map(itinerary => <ItineraryThumbnailContainer parent="RecItinerariesListContainer" itinerary={itinerary} mine={false}/>)}
+            {recommendedItineraries.map(itinerary => <ItineraryThumbnailContainer parent="RecItinerariesListContainer" itinerary={itinerary} mine={false}/>)}
         </div>
     )
   }

@@ -1,4 +1,5 @@
 import {configureStore} from '@reduxjs/toolkit'
+import activitiesReducer from './reducers.js/activitiesReducer'
 import daysReducer from './reducers.js/daysReducer'
 import itinerariesReducer from './reducers.js/itinerariesReducer'
 import photosReducer from './reducers.js/photosReducer'
@@ -9,7 +10,8 @@ const store = configureStore({
         itineraries: itinerariesReducer,
         user: userReducer,
         photos: photosReducer,
-        days: daysReducer
+        days: daysReducer,
+        activities: activitiesReducer
     }
 })
 

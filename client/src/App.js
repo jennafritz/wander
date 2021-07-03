@@ -10,11 +10,19 @@ import RecItinerariesListContainer from './Containers/RecItinerariesListContaine
 import ProfilePageContainer from './Containers/ProfilePageContainer';
 import ItineraryDetailsContainer from './Containers/ItineraryDetailsContainer'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchAllItineraries, fetchMyItineraries } from './reducers.js/itinerariesReducer';
+import { fetchAllItineraries, fetchMyItineraries, recommendItineraries } from './reducers.js/itinerariesReducer';
 
 function App() {
+
+  const dispatch = useDispatch()
+  let allItineraries = useSelector(state => state.itineraries.allItineraries)
+  let user = useSelector(state => state.user.currentUser)
+
+  useEffect(() => {
+    dispatch(recommendItineraries(user))
+  }, [allItineraries])
 
   return (
     <Router>

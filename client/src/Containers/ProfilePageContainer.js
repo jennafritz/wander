@@ -4,6 +4,7 @@ import Profile from '../Components/Profile'
 import NavBar from '../Components/NavBar'
 
 function ProfilePageContainer() {
+
     return (
         <div>
             <NavBar />

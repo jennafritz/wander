@@ -40,12 +40,14 @@ function ImagesForm({day, updateImagesArray, removeImageFromParent}) {
                             <br/>
                             <label htmlFor="imageUrl">URL</label>
                             <input  
+                            required
                             name="imageUrl"
                             value={image.imageUrl}
                             onChange={(event) => handleImageInputChange(event, index)}
                             />
                             <label htmlFor="caption">Caption</label>
                             <input  
+                            required
                             name="caption"
                             value={image.caption}
                             onChange={(event) => handleImageInputChange(event, index)}

@@ -7,7 +7,7 @@ const initialState = {
 
 // Action Creators
 
-export const fetchAllPhotos = createAsyncThunk("photos/fetchAllPhotos", () => {
+export const fetchAllPhotos = createAsyncThunk("photos/fetchAllPhotos", (unused, thunkAPI) => {
     return fetch(`http://localhost:3000/photos`, {
         method: "GET",
         headers: {
@@ -17,9 +17,16 @@ export const fetchAllPhotos = createAsyncThunk("photos/fetchAllPhotos", () => {
     })
       .then(res => res.json())
       .then(photosArray => photosArray)
+    //     {
+    //     if(photosArray.error){
+    //       return thunkAPI.rejectWithValue(photosArray.error)
+    //     } else {
+    //       return photosArray
+    //     }
+    //   })
 })
 
-export const fetchItineraryPhotos = createAsyncThunk("photos/fetchItineraryPhotos", (itineraryId) => {
+export const fetchItineraryPhotos = createAsyncThunk("photos/fetchItineraryPhotos", (itineraryId, thunkAPI) => {
     return fetch(`http://localhost:3000/itinerary_photos?itineraryId=${itineraryId}`, {
         method: "GET",
         headers: {
@@ -29,7 +36,34 @@ export const fetchItineraryPhotos = createAsyncThunk("photos/fetchItineraryPhoto
     })
       .then(res => res.json())
       .then(photosArray => photosArray)
+    //     {
+    //     if(photosArray.error){
+    //       return thunkAPI.rejectWithValue(photosArray.error)
+    //     } else {
+    //       return photosArray
+    //     }
+    //   })
 })
+
+export const submitItineraryPhotos = createAsyncThunk("photos/submitItineraryPhotos", (arrayOfPhotos, thunkAPI) => {
+    return fetch("http://localhost:3000/photos", {
+        method: "POST",
+        headers: {
+          Authorization: `Bearer ${localStorage.token}`,
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify(arrayOfPhotos)
+      })
+        .then(res => res.json())
+        .then(newlyCreatedPhotos => newlyCreatedPhotos)
+        //     {
+        //     if(newlyCreatedPhotos.error){
+        //       return thunkAPI.rejectWithValue(newlyCreatedPhotos.error)
+        //     } else {
+        //       return newlyCreatedPhotos
+        //     }
+        //   })
+  })
 
 
 // Reducer
@@ -46,6 +80,9 @@ const photosSlice = createSlice({
         },
         [fetchItineraryPhotos.fulfilled](state, action){
             state.itineraryPhotos = action.payload
+        },
+        [submitItineraryPhotos.fulfilled](state, action){
+            state.allPhotos = [...state.allPhotos, ...action.payload]
         }
     }
 })

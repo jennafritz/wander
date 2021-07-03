@@ -15,13 +15,13 @@ UserItinerary.destroy_all
 User.destroy_all
 
 puts "Seeding Users..."
-jenna = User.create(username: "jenna", password: "admin", picture: "https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png", travel_season: "Fall", travel_length: "1 week", travel_locale: "City", travel_classification: "Culture", budget: 3, credits: 5)
+jenna = User.create(username: "jenna", password: "admin", picture: "https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png", travel_season: "Fall", travel_length: 7, travel_locale: "City", travel_classification: "Culture", budget: 3, credits: 5)
 
-erika = User.create(username: "erika", password: "admin", picture: "https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png", travel_season: "Spring", travel_length: "2 weeks", travel_locale: "Country", travel_classification: "Culture", budget: 2, credits: 5)
+erika = User.create(username: "erika", password: "admin", picture: "https://i.pinimg.com/originals/0c/3b/3a/0c3b3adb1a7530892e55ef36d3be6cb8.png", travel_season: "Spring", travel_length: 14, travel_locale: "Country", travel_classification: "Culture", budget: 2, credits: 5)
 
 puts "Seeding itineraries..."
-spring_in_vegas = Itinerary.create(name: "Spring in Las Vegas, Bachelorette-Style", destination: "Las Vegas", season: "Spring", length: "4 Days", locale: "City", classification: "Adventure", budget: 3)
-fall_in_romania = Itinerary.create(name: "Fall in Romania", destination: "Romania", season: "Fall", length: "7 Days", locale: "Country", classification: "Adventure", budget: 2)
+spring_in_vegas = Itinerary.create(name: "Spring in Las Vegas, Bachelorette-Style", destination: "Las Vegas", season: "Spring", length: 4, locale: "City", classification: "Adventure", budget: 3, creator_id: erika.id)
+fall_in_romania = Itinerary.create(name: "Fall in Romania", destination: "Romania", season: "Fall", length: 7, locale: "Country", classification: "Adventure", budget: 2, creator_id: erika.id)
 
 puts "Seeding Days..."
 spring_in_vegas_day_1 = Day.create(name: "Spring in Vegas Day 1", number: 1, itinerary_id: spring_in_vegas.id)
@@ -110,6 +110,8 @@ Photo.create(url: "https://www.fodors.com/wp-content/uploads/2019/10/ThingstoKno
 Photo.create(url: "https://media-cdn.tripadvisor.com/media/photo-s/0e/26/7e/d6/bamboo-pool-at-the-cosmopolita.jpg", caption: "Poolside Cabanas at the Cosmopolitan", itinerary_id: spring_in_vegas.id)
 Photo.create(url: "https://mandalaybay.mgmresorts.com/content/dam/MGM/mandalay-bay/nightlife/light/lifestyle/mandalay-bay-nightlife-light-nightclub-dance-floor.tif", caption: "Light Nightclub", itinerary_id: spring_in_vegas.id)
 Photo.create(url: "https://cdn2.civitatis.com/estados-unidos/las-vegas/galeria/zumanity.jpg", caption: "Zumanity", itinerary_id: spring_in_vegas.id)
+
+Photo.create(url: "https://www.worldtravelguide.net/wp-content/uploads/2017/03/shu-Romania-Transylvania-Peles-494393290-1440x823.jpg", caption: "Peles Palace", itinerary_id: fall_in_romania)
 
 puts "Seeding UserItineraries..."
 UserItinerary.create(user_id: erika.id, itinerary_id: spring_in_vegas.id)

@@ -2,7 +2,7 @@ import {useState} from 'react'
 import { fetchUser } from '../reducers.js/userReducer'
 import {useDispatch, useSelector} from 'react-redux'
 import {useHistory} from 'react-router-dom'
-import {fetchAllItineraries, fetchMyItineraries} from '../reducers.js/itinerariesReducer'
+import {fetchAllItineraries, fetchMyItineraries, recommendItineraries} from '../reducers.js/itinerariesReducer'
 import { fetchAllPhotos } from '../reducers.js/photosReducer'
 
 function LoginForm() {
@@ -26,11 +26,11 @@ function LoginForm() {
 
     const handleLogin = (loginObj) => {
         dispatch(fetchUser(loginObj)).then((response) => {
+            debugger
             if (response.payload.user){
                 let loggedInUser = response.payload.user
                 localStorage.token = response.payload.token
-                dispatch(fetchAllItineraries())
-                dispatch(fetchMyItineraries(loggedInUser.id))
+                dispatch(fetchAllItineraries()).then(() => dispatch(fetchMyItineraries(loggedInUser.id))).then(() => dispatch(recommendItineraries(loggedInUser)))
                 dispatch(fetchAllPhotos())
                 if(loggedInUser.id && loggedInUser.travel_season){
                     history.push("/profile")

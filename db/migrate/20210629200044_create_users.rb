@@ -5,7 +5,7 @@ class CreateUsers < ActiveRecord::Migration[6.1]
       t.string :password_digest
       t.string :picture
       t.string :travel_season
-      t.string :travel_length
+      t.integer :travel_length
       t.string :travel_locale
       t.string :travel_classification
       t.integer :budget

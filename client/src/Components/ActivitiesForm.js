@@ -39,8 +39,8 @@ function ActivitiesForm({day, updateActivitiesArray, removeActivityFromParent}) 
         const {name, value} = event.target
         const list = [...activityInputList]
         list[index][name] = value
-        list[index].order = index + 1
-        list[index].id = `${day} - ${index + 1}`
+        list[index].order = index
+        list[index].id = `${day} - ${index}`
         setActivityInputList(list)
         // let updatedActivity = list[index]
         // let activities = [...activityInputList]
@@ -71,7 +71,8 @@ function ActivitiesForm({day, updateActivitiesArray, removeActivityFromParent}) 
                     return(
                         <div>
                             <label htmlFor="activity">Activity {index+1}: </label>
-                            <input  
+                            <input
+                            required  
                             name="activity"
                             value={activity.activity}
                             onChange={(event) => handleActivityInputChange(event, index)}
