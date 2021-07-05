@@ -34,11 +34,18 @@ function Questionnaire() {
             <h3>Questionnaire Component</h3>
             <form onSubmit={(event) => {
                 event.preventDefault()
-                dispatch(setUpProfile({userId: user.id, ...formData})) 
+                dispatch(setUpProfile({userId: user.id, ...formData})).then(response => {
+                    if(response.error){
+                        alert(response.payload)
+                    } else {
+                        history.push("/profile")
+                    }
+                })
                 }}>
                 <div>
                     <label>Ideal Travel Season:</label><br />
                     <input 
+                    required
                     type="radio"
                     name="travel_season"
                     id="Spring"
@@ -49,6 +56,7 @@ function Questionnaire() {
                     <label htmlFor="Spring">Spring</label><br/>
 
                     <input 
+                    required
                     type="radio"
                     name="travel_season"
                     id="Summer"
@@ -59,6 +67,7 @@ function Questionnaire() {
                     <label htmlFor="Summer">Summer</label><br/>
 
                     <input 
+                    required
                     type="radio"
                     name="travel_season"
                     id="Fall"
@@ -69,6 +78,7 @@ function Questionnaire() {
                     <label htmlFor="Fall">Fall</label><br/>
 
                     <input 
+                    required
                     type="radio"
                     name="travel_season"
                     id="Winter"
@@ -80,15 +90,18 @@ function Questionnaire() {
                 </div>
                 <label>Ideal Length of Travel (in Days)</label><br/>
                 <input 
+                required
                 type="number"
                 id="travel_length"
                 name="travel_length"
+                min="2"
                 value={formData.travel_length}
                 onChange={handleChange}
                 />
                 <div>
                     <label>Ideal Travel Locale:</label><br />
                     <input 
+                    required
                     type="radio"
                     name="travel_locale"
                     id="City"
@@ -99,6 +112,7 @@ function Questionnaire() {
                     <label htmlFor="City">City</label><br/>
 
                     <input 
+                    required
                     type="radio"
                     name="travel_locale"
                     id="Country"
@@ -111,6 +125,7 @@ function Questionnaire() {
                 <div>
                     <label>Ideal Type of Travel:</label><br />
                     <input 
+                    required
                     type="radio"
                     name="travel_classification"
                     value="Adventure"
@@ -121,6 +136,7 @@ function Questionnaire() {
                     <label htmlFor="Adventure">Adventure</label><br/>
 
                     <input 
+                    required
                     type="radio"
                     name="travel_classification"
                     value="Culture"
@@ -133,6 +149,7 @@ function Questionnaire() {
                 <div>
                     <label>Typical Travel Budget:</label><br />
                     <input 
+                    required
                     type="radio"
                     name="budget"
                     id="1"
@@ -143,6 +160,7 @@ function Questionnaire() {
                     <label htmlFor="1">$</label><br/>
 
                     <input 
+                    required
                     type="radio"
                     name="budget"
                     id="2"
@@ -153,6 +171,7 @@ function Questionnaire() {
                     <label htmlFor="2">$$</label><br/>
 
                     <input 
+                    required
                     type="radio"
                     name="budget"
                     id="3"
@@ -163,6 +182,7 @@ function Questionnaire() {
                     <label htmlFor="3">$$$</label><br/>
 
                     <input 
+                    required
                     type="radio"
                     name="budget"
                     id="4"

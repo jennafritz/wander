@@ -1,8 +1,9 @@
 import {useSelector} from 'react-redux'
+import { useHistory } from 'react-router'
 
 function Profile() {
 
-   
+    const history = useHistory()
 
     const user = useSelector(state => state.user.currentUser)
     
@@ -33,20 +34,50 @@ function Profile() {
         classification = "Experiencing New Adventures"
     }
 
+    // if(user.travel_length >= 7){
+    //     let days = user.travel_length % 7
+    //     let weeks = (user.travel_length - days)/7
+    //     if(days > 0){
+    //         if(weeks > 1){
+    //             length = `${weeks} Weeks & ${days} Days`
+    //         } else {
+    //             length = `${weeks} Week & ${days} Days`
+    //         }
+    //     } else {
+    //         if(weeks > 1){
+    //             length = `${weeks} Weeks`
+    //         } else {
+    //             length = `${weeks} Week`
+    //         }
+    //     }
+    // } else {
+    //     length = `${user.travel_length} Days`
+    // }
+
+    if(user.travel_length <= 3){
+        length = "Weekend Getaways"
+    } else if(user.travel_length > 3 && user.travel_length <= 7){
+        length = "Refreshing Journeys"
+    } else if(user.travel_length > 7){
+        length = "Extended Adventures"
+    }
+
     return (
         <div>
             {/* <img src="https://pro2-bar-s3-cdn-cf6.myportfolio.com/bf7ae5ff-6d2a-4548-9633-fabd9e835847/0f9a15f1-6acc-4a55-80e7-cde06e875279_rw_600.jpg?h=3473e9bf0301f64ca76e6328ed1a90c4" alt="Bucharest"/> */}
 
             <h3>Profile Component</h3>
             
-            <img src={user.picture} alt="user profile"/>
+            <img src={user.picture} alt="user profile" width="500px"/>
+            <button onClick={() => history.push("/avatar")}>Change Avatar</button>
             <h2>{user.username}</h2>
             <h3>Credits: {user.credits}</h3>
-            <h3>Travel Interests</h3>
+            <h3>Travel Interests:</h3>
             <h4>{season}</h4>
-            <h4>{user.travel_length}</h4>
+            <h4>{length}</h4>
             <h4>{locale}</h4>
             <h4>{classification}</h4>
+            <button onClick={() => history.push("/questionnaire")}>Edit Profile</button>
         </div>
     )
   }

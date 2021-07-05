@@ -40,7 +40,6 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
     def update
         user = User.find(params[:userId])
         user.update!(user_params)
-        byebug
         render json: user, status: :accepted
     rescue ActiveRecord::RecordInvalid => invalid
         render json: {error: invalid.record.errors.full_messages}, status: :unprocessable_entity

@@ -12,6 +12,7 @@ import ItineraryDetailsContainer from './Containers/ItineraryDetailsContainer'
 import {BrowserRouter as Router, Route} from 'react-router-dom'
 import {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
+import AvatarForm from './Components/AvatarForm';
 import { fetchAllItineraries, fetchMyItineraries, recommendItineraries } from './reducers.js/itinerariesReducer';
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
         <Route exact path="/login" render={(routerProps) => <LoginModalContainer />} />
         <Route exact path="/register" render={(routerProps) => <RegisterModalContainer />} />
         <Route exact path="/questionnaire" render={() => <ProfileSetupContainer />} />
+        <Route exact path="/avatar" render={() => <AvatarForm />} />
         <Route exact path="/submitATrip" render={() => <SubmitATripForm />} />
         <Route exact path="/myJourneys" render={() => <MyJourneysContainer />} />
         <Route exact path="/catalog" render={() => <ItineraryListContainer />} />
