@@ -25,7 +25,14 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
     def add_credits
         user = User.find(params[:userId])
         user.update!(credits: params[:credits])
-        byebug
+        render json: user, status: :ok
+    rescue ActiveRecord::RecordInvalid => invalid
+        render json: {error: invalid.record.errors.full_messages}, status: :unprocessable_entity
+    end
+
+    def remove_credits
+        user = User.find(params[:userId])
+        user.update!(credits: params[:credits])
         render json: user, status: :ok
     rescue ActiveRecord::RecordInvalid => invalid
         render json: {error: invalid.record.errors.full_messages}, status: :unprocessable_entity

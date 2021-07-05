@@ -43,6 +43,17 @@ function ItineraryListContainer() {
         setFilteredItineraries(filteredItineraries)
     }
 
+    const clearFilters = () => {
+        setFilteredItineraries(itineraries)
+        setCriteria({
+            season: null,
+            length: null,
+            locale: null,
+            classification: null,
+            budget: null
+        })
+    }
+
     return (
         <div>
             <NavBar />
@@ -230,6 +241,7 @@ function ItineraryListContainer() {
                     <input type="submit" value="Submit" />
                 </div>
             </form>
+            <button onClick={() => clearFilters()}>Clear Filters</button>
 
 
             {filteredItineraries.length > 0

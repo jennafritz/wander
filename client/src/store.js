@@ -3,6 +3,7 @@ import activitiesReducer from './reducers.js/activitiesReducer'
 import daysReducer from './reducers.js/daysReducer'
 import itinerariesReducer from './reducers.js/itinerariesReducer'
 import photosReducer from './reducers.js/photosReducer'
+import userItinerariesReducer from './reducers.js/userItinerariesReducer'
 import userReducer from './reducers.js/userReducer'
 
 const store = configureStore({
@@ -11,7 +12,8 @@ const store = configureStore({
         user: userReducer,
         photos: photosReducer,
         days: daysReducer,
-        activities: activitiesReducer
+        activities: activitiesReducer,
+        userItineraries: userItinerariesReducer
     }
 })
 

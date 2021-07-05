@@ -7,9 +7,10 @@ Rails.application.routes.draw do
   get "/itinerary_days", to: "days#get_itinerary_days"
   resources :itineraries, only: [:index, :create]
   get "/users/my_itineraries", to: "users#get_my_itineraries"
-  # resources :user_itineraries
+  resources :user_itineraries, only: [:create]
   resources :users, only: [:create, :update]
   patch "/add_credits", to: "users#add_credits"
+  patch "/remove_credits", to: "users#remove_credits"
   post "/register", to: "users#create"
   post "/login", to: "users#login"
   # Routing logic: fallback requests for React Router.
