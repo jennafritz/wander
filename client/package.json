@@ -4,7 +4,6 @@
   "private": true,
   "proxy": "http://localhost:3000",
   "dependencies": {
-    "@googlemaps/js-api-loader": "^1.12.1",
     "@reduxjs/toolkit": "^1.6.0",
     "@testing-library/jest-dom": "^5.13.0",
     "@testing-library/react": "^11.2.7",
