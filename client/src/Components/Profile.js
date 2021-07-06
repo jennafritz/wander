@@ -1,5 +1,6 @@
 import {useSelector} from 'react-redux'
 import { useHistory } from 'react-router'
+import MapTest from './MapTest'
 
 function Profile() {
 
@@ -78,6 +79,10 @@ function Profile() {
             <h4>{locale}</h4>
             <h4>{classification}</h4>
             <button onClick={() => history.push("/questionnaire")}>Edit Profile</button>
+
+            {/* <div id="map"> */}
+                <MapTest />
+            {/* </div> */}
         </div>
     )
   }
