@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 2021_06_29_203753) do
 
   create_table "activities", force: :cascade do |t|
     t.string "name"
+    t.integer "number"
     t.string "info_url"
     t.integer "day_id"
     t.datetime "created_at", precision: 6, null: false
@@ -35,6 +36,8 @@ ActiveRecord::Schema.define(version: 2021_06_29_203753) do
     t.string "name"
     t.string "description"
     t.string "destination"
+    t.decimal "latitude"
+    t.decimal "longitude"
     t.string "season"
     t.integer "length"
     t.string "locale"
@@ -64,12 +67,15 @@ ActiveRecord::Schema.define(version: 2021_06_29_203753) do
     t.string "username"
     t.string "password_digest"
     t.string "picture"
+    t.decimal "latitude"
+    t.decimal "longitude"
     t.string "travel_season"
     t.integer "travel_length"
     t.string "travel_locale"
     t.string "travel_classification"
     t.integer "budget"
     t.integer "credits"
+    t.boolean "premium"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

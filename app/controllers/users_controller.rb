@@ -47,6 +47,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
     def update
         user = User.find(params[:userId])
         user.update!(user_params)
+        # byebug
         render json: user, status: :accepted
     rescue ActiveRecord::RecordInvalid => invalid
         render json: {error: invalid.record.errors.full_messages}, status: :unprocessable_entity
@@ -55,7 +56,7 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
     private
 
     def user_params
-        params.permit(:username, :password, :travel_season, :travel_length, :travel_locale, :travel_classification, :budget, :picture) 
+        params.permit(:username, :password, :latitude, :longitude, :travel_season, :travel_length, :travel_locale, :travel_classification, :budget, :picture, :premium) 
     end
 
     def not_found

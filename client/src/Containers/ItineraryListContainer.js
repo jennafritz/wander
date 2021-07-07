@@ -57,9 +57,11 @@ function ItineraryListContainer() {
     return (
         <div>
             <NavBar />
-            <h1>Itinerary List Container</h1>
-
-            
+            <br />
+            {/* <h1>Itinerary List Container</h1> */}
+            <h1>Wander Itinerary Catalog</h1>
+            <br />
+            <h3>Filter Itineraries</h3>
             <form onSubmit={(event) => {
                 event.preventDefault()
                 filterItineraries()
@@ -243,7 +245,8 @@ function ItineraryListContainer() {
             </form>
             <button onClick={() => clearFilters()}>Clear Filters</button>
 
-
+            <br />
+            <br />
             {filteredItineraries.length > 0
             ? filteredItineraries.map(itinerary => <ItineraryThumbnailContainer parent="ItineraryListContainer" itinerary={itinerary} key={itinerary.id}/>)
             : <h3>We're sorry, it looks like no itineraries match your search criteria. Our catalog is continuously being updated, though, so please try this search again soon.</h3>}

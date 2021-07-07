@@ -23,7 +23,7 @@ function MyJourneysSummary() {
 
     return (
         <div>
-            <h3>My Journeys Summary Component</h3>
+            {/* <h3>My Journeys Summary Component</h3> */}
             <h5>Trips Taken: {myItineraries.length}</h5>
             <h5>Days Traveled: {totalDaysTraveled}</h5>
         </div>

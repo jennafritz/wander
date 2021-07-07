@@ -31,7 +31,8 @@ function Questionnaire() {
 
     return (
         <div>
-            <h3>Questionnaire Component</h3>
+            {/* <h3>Questionnaire Component</h3> */}
+            {user.travel_season ? <h1>Edit Your Profile</h1> : <h1>Set Up Your Profile</h1>}
             <form onSubmit={(event) => {
                 event.preventDefault()
                 dispatch(setUpProfile({userId: user.id, ...formData})).then(response => {

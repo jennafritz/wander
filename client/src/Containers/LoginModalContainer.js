@@ -3,7 +3,8 @@ import LoginForm from "../Components/LoginForm";
 function LoginModalContainer({handleLogin, routerProps}) {
     return (
         <div>
-            <h1>Login Modal Container</h1>
+            {/* <h1>Login Modal Container</h1> */}
+            <h1> Please Log In</h1>
             <LoginForm {...routerProps} handleLogin={handleLogin}/>
         </div>
     )

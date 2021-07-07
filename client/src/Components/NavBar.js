@@ -3,7 +3,7 @@ import {NavLink} from 'react-router-dom'
 function NavBar() {
     return (
         <div>
-            <h3>NavBar Component</h3>
+            {/* <h3>NavBar Component</h3> */}
             <NavLink 
             to="/profile"
             exact

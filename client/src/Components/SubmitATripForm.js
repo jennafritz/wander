@@ -224,7 +224,10 @@ function SubmitATripForm() {
     return (
         <div>
             <NavBar />
-            <h3>Submit a Trip Form Component</h3>
+            <br />
+            {/* <h3>Submit a Trip Form Component</h3> */}
+            <h1>Submit a Trip to the Wander Catalog</h1>
+            <br />
             <form id="trip-form" onSubmit={(event) => {
                 event.preventDefault()
                 handleFullSubmitAsyncTest()

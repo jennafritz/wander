@@ -7,7 +7,8 @@ function RecItinerariesPreviewContainer() {
     
     return (
         <div>
-            <h1>Recommended Itineraries Preview Container</h1>
+            {/* <h1>Recommended Itineraries Preview Container</h1> */}
+            <h1>Recommended Trips</h1>
             {recommendedItineraries.map(itinerary => <ItineraryThumbnailContainer parent="RecItinerariesPreviewContainer" itinerary={itinerary} key={itinerary.id} mine={false}/>)}           
         </div>
     )

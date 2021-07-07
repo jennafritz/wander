@@ -4,6 +4,8 @@ class CreateItineraries < ActiveRecord::Migration[6.1]
       t.string :name
       t.string :description
       t.string :destination
+      t.decimal :latitude
+      t.decimal :longitude
       t.string :season
       t.integer :length
       t.string :locale

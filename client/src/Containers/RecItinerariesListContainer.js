@@ -14,7 +14,10 @@ function RecItinerariesListContainer() {
     return (
         <div>
             <NavBar />
-            <h1>Recommended Itineraries List Container</h1>
+            <br />
+            {/* <h1>Recommended Itineraries List Container</h1> */}
+            <h1>Adventures Recommended For You</h1>
+            <br />
             {recommendedItineraries.map(itinerary => <ItineraryThumbnailContainer parent="RecItinerariesListContainer" itinerary={itinerary} mine={false}/>)}
         </div>
     )

@@ -7,15 +7,14 @@ function ItineraryDetailsContainer() {
     let history = useHistory()
     let location = useLocation()
 
-    console.log(location)
-
     let itinerary = location.state.itinerary
     let photos = location.state.photos
+    let mine = location.state.mine
 
     return (
         <div>
-            <h1>Itinerary Details Container</h1>
-            <ItineraryDetails itinerary={itinerary}/>
+            {/* <h1>Itinerary Details Container</h1> */}
+            <ItineraryDetails itinerary={itinerary} mine={mine}/>
             <ItineraryPhotoGallery photos={photos}/>
             <button onClick={() => history.goBack()}>Go Back</button>
 

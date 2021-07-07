@@ -8,9 +8,14 @@ function ProfilePageContainer() {
     return (
         <div>
             <NavBar />
-            <h1>Profile Page Container</h1>
+            <br/>
+            {/* <h1>Profile Page Container</h1> */}
             <Profile />
+            <br />
+            <br />
             <MyItinerariesPreviewContainer />
+            <br />
+            <br />
             <RecItinerariesPreviewContainer />
         </div>
     )

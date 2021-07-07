@@ -21,7 +21,7 @@ function AvatarForm() {
 
     return (
         <div>
-            <h3>Avatar Form Component</h3>
+            {/* <h3>Avatar Form Component</h3> */}
 
             <img 
             style={picture === "http://images.summitmedia-digital.com/cosmo/images/2019/11/30/palawan-1575079999.png" ? {border: "2px solid red"} : null} 
@@ -91,13 +91,14 @@ function AvatarForm() {
                     }
                 })
                 }}>
-                <label>Choose Your Own Photo:</label><br/>
+                <label>Or Choose Your Own Photo:</label><br/>
                 <input 
                 type="text"
                 id="picture"
                 name="picture"
                 onChange={handleCustomPhoto}
                 />
+                <br />
             <input type="submit" value="Submit" />
             </form>
         </div>

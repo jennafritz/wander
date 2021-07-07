@@ -44,7 +44,7 @@ function RegisterForm({handleRegister}) {
 
     return (
         <div>
-            <h3>Register Form Component</h3>
+            {/* <h3>Register Form Component</h3> */}
             <form onSubmit={(event) => {
                 event.preventDefault()
                 handleRegister(formData)
