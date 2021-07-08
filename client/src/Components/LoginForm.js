@@ -4,6 +4,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 import {fetchAllItineraries, fetchMyItineraries, recommendItineraries} from '../reducers.js/itinerariesReducer'
 import { fetchAllPhotos } from '../reducers.js/photosReducer'
+import Form from 'react-bootstrap/Form'
 
 function LoginForm() {
 
@@ -57,28 +58,30 @@ function LoginForm() {
     }
 
     return (
-        <div>
+        <div style={{width: "30vw"}}>
             {/* <h3>Login Form Component</h3> */}
-            <form onSubmit={(event) => {
+            <Form onSubmit={(event) => {
                 event.preventDefault()
                 handleLogin(formData)
                 }}>
-                <label htmlFor="username">Username</label>
-                <input 
-                type="text"
-                id="username"
-                value={formData.username}
-                onChange={handleChange}
-                />
-                <label htmlFor="password">Password</label>
-                <input 
-                type="password"
-                id="password"
-                value={formData.password}
-                onChange={handleChange}
-                />
-                <input type="submit" value="Log In"/>
-            </form>
+                <Form.Group>
+                    <Form.Label htmlFor="username">Username</Form.Label>
+                    <Form.Control 
+                    type="text"
+                    id="username"
+                    value={formData.username}
+                    onChange={handleChange}
+                    />
+                </Form.Group>
+                    <Form.Label htmlFor="password">Password</Form.Label>
+                    <Form.Control 
+                    type="password"
+                    id="password"
+                    value={formData.password}
+                    onChange={handleChange}
+                    />
+                <Form.Control style={{width: "10vw"}}type="submit" value="Log In"/>
+            </Form>
         </div>
     )
   }

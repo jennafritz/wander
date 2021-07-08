@@ -2,6 +2,10 @@ import {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 import { setUpProfile } from '../reducers.js/userReducer'
+import { useAutocomplete } from "@ubilabs/google-maps-react-hooks";
+import { useRef } from "react";
+import { useGoogleMap } from "@ubilabs/google-maps-react-hooks";
+import { recommendItineraries } from '../reducers.js/itinerariesReducer';
 
 function Questionnaire() {
 
@@ -9,12 +13,18 @@ function Questionnaire() {
     const history = useHistory()
     const user = useSelector(state => state.user.currentUser)
 
+    const inputRef = useRef(null)
+    const [inputValue, setInputValue] = useState('')
+    const {map} = useGoogleMap()
+
     const [formData, setFormData] = useState({
-        travel_season: "",
-        travel_length: "",
-        travel_locale: "",
-        travel_classification: "",
-        budget: ""
+        travel_season: user.travel_season,
+        travel_length: user.travel_length,
+        travel_locale: user.travel_locale,
+        travel_classification: user.travel_classification,
+        budget: String(user.budget),
+        latitude: "",
+        longitude: ""
     })
 
     function handleChange(event) {
@@ -23,6 +33,36 @@ function Questionnaire() {
             ...formData,
             [key]: event.target.value
         })
+    }
+
+    const onPlaceChanged = (place) => {
+        if (place) {
+            setInputValue(place.formatted_address || place.name)
+            setFormData({
+                ...formData,
+                latitude: place.geometry.location.lat(),
+                longitude: place.geometry.location.lng()
+            })
+        }
+        // console.log(place.geometry.location.lat())
+        // console.log(place.geometry.location.lng())
+        // console.log(place.formatted_address)
+        inputRef.current && inputRef.current.focus()
+    }
+
+    useAutocomplete({
+        inputField: inputRef && inputRef.current,
+        // options: "", 
+        // {
+        //     fields: ['formatted_address', 'geometry', 'name', 'place_id', 'url']
+        // },
+        map,
+        onPlaceChanged
+      });
+
+    // Their input change
+    const handleInputChange = (event) => {
+        setInputValue(event.target.value)
     }
 
     // const handleSetUpProfile = () => {
@@ -36,14 +76,25 @@ function Questionnaire() {
             <form onSubmit={(event) => {
                 event.preventDefault()
                 dispatch(setUpProfile({userId: user.id, ...formData})).then(response => {
+                    debugger
                     if(response.error){
                         alert(response.payload)
                     } else {
+                        dispatch(recommendItineraries(response.payload))
                         history.push("/profile")
                     }
                 })
                 }}>
                 <div>
+                    <label htmlFor="location">Your Location</label><br/>
+                    <input
+                    required
+                    id="location"
+                    name="location"
+                    ref={inputRef}
+                    value={inputValue}
+                    onChange={handleInputChange}
+                    /><br />
                     <label>Ideal Travel Season:</label><br />
                     <input 
                     required

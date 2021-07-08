@@ -24,13 +24,13 @@ erika = User.create(username: "erika", password: "admin", picture: "https://imag
 
 # ITINERARIES
 puts "Seeding itineraries..."
-spring_in_vegas = Itinerary.create(name: "Spring in Las Vegas, Bachelorette-Style", description: "Grab your girls and head to Sin City for a bride-to-be’s last “single” hurrah before the big day!", destination: "Las Vegas", latitude: 36.17925305657712, longitude: -115.21620882843669, season: "Spring", length: 4, locale: "City", classification: "Adventure", budget: 3, creator_id: erika.id)
+spring_in_vegas = Itinerary.create(name: "Spring in Las Vegas, Bachelorette-Style", description: "Grab your girls and head to Sin City for a bride-to-be’s last “single” hurrah before the big day!", destination: "Las Vegas, NV", latitude: 36.17925305657712, longitude: -115.21620882843669, season: "Spring", length: 4, locale: "City", classification: "Adventure", budget: 3, creator_id: erika.id)
 
 fall_in_romania = Itinerary.create(name: "Fall in Romania", description: "Take a roadtrip through scenic, wild Romania, discovering the natural beauty, wildlife, picturesque towns, delicious food, and more.", destination: "Romania", latitude: 45.835819690528425, longitude: 24.886283519854103, season: "Fall", length: 7, locale: "Country", classification: "Adventure", budget: 2, creator_id: erika.id)
 
 winter_in_north_fork = Itinerary.create(name: "Winter in the North Fork, Winery Tour", description: "Pack your weekender bag and head to the North Fork for a few days filled with good food, great wine, and even better company!", destination: "Long Island, NY", latitude: 40.84244279187335, longitude: -73.12775341714618, season: "Winter", length: 3, locale: "Country", classification: "Culture", budget: 3, creator_id: erika.id)
 
-summer_in_rome = Itinerary.create(name: "Summer in Rome", description: "Wear comfortable shoes and pack snacks and a water bottle, because you’re about to take a whirlwind tour through the beautiful, historic city of Rome! Pro tip: Pick up a Roma Pass to book some free and/or discounted activities", destination: "Rome", latitude: 41.90272717712334, longitude: 12.495686573695641, season: "Summer", length: 5, locale: "City", classification: "Culture", budget: 3, creator_id: jenna.id)
+summer_in_rome = Itinerary.create(name: "Summer in Rome", description: "Wear comfortable shoes and pack snacks and a water bottle, because you’re about to take a whirlwind tour through the beautiful, historic city of Rome! Pro tip: Pick up a Roma Pass to book some free and/or discounted activities", destination: "Rome, Italy", latitude: 41.90272717712334, longitude: 12.495686573695641, season: "Summer", length: 5, locale: "City", classification: "Culture", budget: 3, creator_id: jenna.id)
 
 summer_in_boston = Itinerary.create(name: "Summer in Boston", description: "Take a trip to Boston, one of the oldest cities in America, for an activity-filled weekend with something for everyone!", destination: "Boston, MA", latitude: 42.35944883944112, longitude: -71.06079053334052, season: "Summer", length: 4, locale: "City", classification: "Culture", budget: 2, creator_id: erika.id)
 

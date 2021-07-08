@@ -14,6 +14,12 @@ import {useEffect, useState} from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import AvatarForm from './Components/AvatarForm';
 import { fetchAllItineraries, fetchMyItineraries, recommendItineraries } from './reducers.js/itinerariesReducer';
+import React, {useCallback, forwardRef} from 'react';
+import {GoogleMapProvider} from '@ubilabs/google-maps-react-hooks'
+
+const MapCanvas = React.forwardRef((props, ref) => (
+  <div ref={ref} />
+))
 
 function App() {
 
@@ -26,8 +32,21 @@ function App() {
     dispatch(recommendItineraries(user))
   }, [allItineraries, myItineraries])
 
+  const [mapContainer, setMapContainer] = useState(null)
+  const mapRef = useCallback(node => {
+    node && setMapContainer(node)
+  })
+
   return (
     <Router>
+      <GoogleMapProvider
+      googleMapsAPIKey={process.env.REACT_APP_MAPS_API_KEY}
+      libraries={['places']}
+      mapContainer={mapContainer}
+      onLoad={map => {
+        map.setZoom(4)
+      }}
+      >
       <div>
         <Route exact path="/" render={() => <HomePageContainer />} />
         <Route exact path="/login" render={(routerProps) => <LoginModalContainer />} />
@@ -41,6 +60,10 @@ function App() {
         <Route exact path="/profile" render={() => <ProfilePageContainer />} />
         <Route exact path="/itineraryDetails" render={() => <ItineraryDetailsContainer />} />
       </div>
+      <React.StrictMode>
+        <MapCanvas ref={mapRef} />
+      </React.StrictMode>
+      </GoogleMapProvider>
     </Router>
   );
   

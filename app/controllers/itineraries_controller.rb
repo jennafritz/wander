@@ -16,7 +16,7 @@ class ItinerariesController < ApplicationController
     private
 
     def itinerary_params
-        params.permit(:name, :destination, :description, :season, :length, :locale, :classification, :budget, :creator_id)
+        params.permit(:name, :destination, :latitude, :longitude, :description, :season, :length, :locale, :classification, :budget, :creator_id)
     end
 
 end

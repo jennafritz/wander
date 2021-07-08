@@ -24,7 +24,7 @@ function ActivitiesForm({day, updateActivitiesArray, removeActivityFromParent}) 
     // }
     
     const handleAddActivity = () => {
-        setActivityInputList([...activityInputList, {activity: "", day: day, order: "", id: ""}])
+        setActivityInputList([...activityInputList, {activity: "", day: day, order: "", id: "", info_url: ""}])
     }
 
     const handleRemoveActivity = (index) => {
@@ -75,6 +75,12 @@ function ActivitiesForm({day, updateActivitiesArray, removeActivityFromParent}) 
                             required  
                             name="activity"
                             value={activity.activity}
+                            onChange={(event) => handleActivityInputChange(event, index)}
+                            />
+                            <label htmlFor="activity">Info Link (optional): </label>
+                            <input
+                            name="info_url"
+                            value={activity.info_url}
                             onChange={(event) => handleActivityInputChange(event, index)}
                             />
                             {/* <button onClick={() => {

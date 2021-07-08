@@ -9,6 +9,9 @@ import {submitItineraryPhotos} from '../reducers.js/photosReducer'
 import {submitItineraryActivities} from '../reducers.js/activitiesReducer'
 import {useHistory} from 'react-router-dom'
 import {addCreditToUser} from '../reducers.js/userReducer'
+import { useAutocomplete } from "@ubilabs/google-maps-react-hooks";
+import { useRef } from "react";
+import { useGoogleMap } from "@ubilabs/google-maps-react-hooks";
 
 function SubmitATripForm() {
 
@@ -17,22 +20,69 @@ function SubmitATripForm() {
     const user = useSelector(state => state.user.currentUser)
     const userId = user.id
 
+    const inputRef = useRef(null)
+    // const [inputValue, setInputValue] = useState('')
+    const {map} = useGoogleMap()
+
     const [formData, setFormData] = useState({
         name: "",
         description: "",
         destination: "",
+        latitude: "",
+        longitude: "",
         season: "Spring",
         length: 2,
         locale: "City",
         classification: "Adventure",
         budget: 1,
         creator_id: userId,
-        range: 0
     })
 
     const [activitiesArray, setActivitiesArray] = useState([])
 
     const [imagesArray, setImagesArray] = useState([])
+
+    // My handle change
+    function handleChange(event) {
+        const key = event.target.id
+        setFormData({
+            ...formData,
+            [key]: event.target.value
+        })
+    }
+
+    const onPlaceChanged = (place) => {
+        if (place) {
+            // setInputValue(place.formatted_address || place.name)
+            setFormData({
+                ...formData,
+                destination: place.formatted_address || place.name,
+                latitude: place.geometry.location.lat(),
+                longitude: place.geometry.location.lng()
+            })
+        }
+        // console.log(place.geometry.location.lat())
+        // console.log(place.geometry.location.lng())
+        // console.log(place.formatted_address)
+        inputRef.current && inputRef.current.focus()
+    }
+
+    console.log(inputRef.current)
+
+    useAutocomplete({
+        inputField: inputRef && inputRef.current,
+        // options: "", 
+        // {
+        //     fields: ['formatted_address', 'geometry', 'name', 'place_id', 'url']
+        // },
+        map,
+        onPlaceChanged
+      });
+
+    // Their input change
+    // const handleInputChange = (event) => {
+    //     setInputValue(event.target.value)
+    // }
 
     const updateActivitiesArray = (arrayOfActivities) => {
         let activities = [...activitiesArray]
@@ -84,13 +134,7 @@ function SubmitATripForm() {
 
     let lengthArray = Array(parseInt(formData.length, 10)).fill(null)
 
-    function handleChange(event) {
-        const key = event.target.id
-        setFormData({
-            ...formData,
-            [key]: event.target.value
-        })
-    }
+
 
     // need to implement error message handling for photos and activities!
     // also need to handle adding credits to user and thanking them before pushing them to another page (perhaps profile? maybe a modal that asks them if they want to submit again? or should there be a limit on submissions?)
@@ -162,8 +206,19 @@ function SubmitATripForm() {
         return {itinerary: itinerary, photos: photos, days: days, activities: activities}
     }
 
+    const tripValid = () => {
+        let numDays = Array(formData.length).fill(null)
+        let activitiesPerDay = numDays.map((day, index) => (
+            activitiesArray.filter(activity => activity.day === (index + 1))
+        ))
+        if(activitiesPerDay.every(day => (day.length >= 2))){
+            return true
+        } else {
+            return false
+        }
+    }
 
-
+    console.log(tripValid())
 
     // const handleFullSubmit = async () => {
     //     let createdPhotos = []
@@ -229,10 +284,20 @@ function SubmitATripForm() {
             <h1>Submit a Trip to the Wander Catalog</h1>
             <br />
             <form id="trip-form" onSubmit={(event) => {
+                
                 event.preventDefault()
                 handleFullSubmitAsyncTest()
                 console.log("trip form submitted")
                 }}>
+                <label htmlFor="destination">Destination</label>
+                <input
+                required
+                id="destination"
+                name="destination"
+                ref={inputRef}
+                value={formData.destination}
+                onChange={handleChange}
+                />
                 <label htmlFor="name">Name</label>
                 <input 
                 required
@@ -250,15 +315,14 @@ function SubmitATripForm() {
                 value={formData.description}
                 onChange={handleChange}
                 />
-                <label htmlFor="destination">Destination</label>
-                <input 
+                {/* <input 
                 required
                 type="text"
                 id="destination"
                 name="destination"
                 value={formData.destination}
                 onChange={handleChange}
-                />
+                /> */}
                 <label htmlFor="season">Season</label>
                 <select required name="season" id="season" defaultValue="Spring" onChange={handleChange}>
                     <option value="Spring">Spring</option>

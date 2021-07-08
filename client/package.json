@@ -40,5 +40,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "@ubilabs/google-maps-react-hooks": "^1.4.9"
   }
 }

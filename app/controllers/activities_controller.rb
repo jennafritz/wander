@@ -3,7 +3,7 @@ class ActivitiesController < ApplicationController
     def create
         createdActivities = []
         params[:activitiesArray].each do |activity|
-            newActivity = Activity.create!(name: activity[:activity], day_id: params[:dayId])
+            newActivity = Activity.create!(name: activity[:activity], day_id: params[:dayId], number: activity[:order] + 1)
             createdActivities[activity[:order]] = newActivity
         end
         render json: createdActivities, status: :created

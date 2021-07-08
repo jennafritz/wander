@@ -5,7 +5,7 @@ skip_before_action :authorized, only: [:create, :login]
 rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
     def create
-        @user = User.create!(username: params[:username], password: params[:password], credits: 5)
+        @user = User.create!(username: params[:username], password: params[:password], credits: 5, premium: false, picture: "https://image.freepik.com/free-photo/scenic-view-sunrise-mountains-carpathian-ukraine_146671-19541.jpg")
         token = encode_token(user_id: @user.id)
         render json: {user: UserSerializer.new(@user), token: token}, status: :created
     rescue ActiveRecord::RecordInvalid => invalid
@@ -47,7 +47,6 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
     def update
         user = User.find(params[:userId])
         user.update!(user_params)
-        # byebug
         render json: user, status: :accepted
     rescue ActiveRecord::RecordInvalid => invalid
         render json: {error: invalid.record.errors.full_messages}, status: :unprocessable_entity
