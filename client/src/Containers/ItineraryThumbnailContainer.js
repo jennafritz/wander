@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux'
 import {useEffect, useState} from 'react'
 import SaveItineraryModal from '../Components/SaveItineraryModal'
 import Heart from '../heart_icon.png'
+import Card from 'react-bootstrap/Card'
 
 function ItineraryThumbnailContainer({itinerary, parent}) {
 
@@ -15,13 +16,16 @@ function ItineraryThumbnailContainer({itinerary, parent}) {
     
     let mine = myItineraries.find(myItinerary => myItinerary.id === itinerary.id)
     return (
-        <div>
+        <Card id="itineraryCard" className={parent === "ItineraryListContainer" || parent === "RecItinerariesListContainer" ? "cardPadding" : null}>
             {/* <h1>Itinerary Thumbnail Container</h1> */}
-            <h3>{itinerary.name}</h3>
-            {parent === "RecItinerariesListContainer" ? <h4>{itinerary.match}/5</h4> : null}
-            {photos.length > 0 ? <img src={photos[0].url} height="200px"/> : null}<br/>
-            {parent === "ItineraryListContainer" && mine ? <img src={Heart} width="30px" /> : null}
-            <button onClick={() => {
+            {photos.length > 0 ? <Card.Img id="itineraryCardImg" src={photos[0].url} height="200px"/> : null}<br/>
+            <Card.Title>{itinerary.name}</Card.Title>
+            <Card.Body id="itineraryCardBody">
+                {parent === "RecItinerariesListContainer" ? <h6>Match: {itinerary.match}/5</h6> : null}
+                {parent === "ItineraryListContainer" && mine ? <img src={Heart} width="30px" /> : null}
+            </Card.Body>
+            <Card.Footer id="itineraryCardFooter">
+            <button id="viewDetailsButton" className="defaultButton" onClick={() => {
                 if(user.premium){
                     history.push(({pathname: "/itineraryDetails", state: {itinerary, photos, mine}}))
                 } else {
@@ -33,8 +37,9 @@ function ItineraryThumbnailContainer({itinerary, parent}) {
                 }
             }
             }>View Details</button>
+            </Card.Footer>
             <SaveItineraryModal itinerary={itinerary} photos={photos} show={modalShow} onHide={() => setModalShow(false)} />
-        </div>
+        </Card>
     )
   }
   

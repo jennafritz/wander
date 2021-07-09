@@ -5,6 +5,7 @@ import {useHistory} from 'react-router-dom'
 import {fetchAllItineraries, fetchMyItineraries, recommendItineraries} from '../reducers.js/itinerariesReducer'
 import { fetchAllPhotos } from '../reducers.js/photosReducer'
 import Form from 'react-bootstrap/Form'
+import Container from 'react-bootstrap/esm/Container'
 
 function LoginForm() {
 
@@ -58,13 +59,13 @@ function LoginForm() {
     }
 
     return (
-        <div style={{width: "30vw"}}>
+        <Container className="formContainer">
             {/* <h3>Login Form Component</h3> */}
-            <Form onSubmit={(event) => {
+            <Form className="formElement" onSubmit={(event) => {
                 event.preventDefault()
                 handleLogin(formData)
                 }}>
-                <Form.Group>
+                <Form.Group className="setWidth">
                     <Form.Label htmlFor="username">Username</Form.Label>
                     <Form.Control 
                     type="text"
@@ -73,6 +74,7 @@ function LoginForm() {
                     onChange={handleChange}
                     />
                 </Form.Group>
+                <Form.Group className="setWidth">
                     <Form.Label htmlFor="password">Password</Form.Label>
                     <Form.Control 
                     type="password"
@@ -80,9 +82,10 @@ function LoginForm() {
                     value={formData.password}
                     onChange={handleChange}
                     />
-                <Form.Control style={{width: "10vw"}}type="submit" value="Log In"/>
+                </Form.Group>
+                <Form.Control className="formSubmit" type="submit" value="Log In"/>
             </Form>
-        </div>
+        </Container>
     )
   }
   

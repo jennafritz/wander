@@ -15,7 +15,7 @@ function Questionnaire() {
 
     const inputRef = useRef(null)
     const [inputValue, setInputValue] = useState('')
-    const {map} = useGoogleMap()
+    // const {map} = useGoogleMap()
 
     const [formData, setFormData] = useState({
         travel_season: user.travel_season,
@@ -50,15 +50,15 @@ function Questionnaire() {
         inputRef.current && inputRef.current.focus()
     }
 
-    useAutocomplete({
-        inputField: inputRef && inputRef.current,
-        // options: "", 
-        // {
-        //     fields: ['formatted_address', 'geometry', 'name', 'place_id', 'url']
-        // },
-        map,
-        onPlaceChanged
-      });
+    // useAutocomplete({
+    //     inputField: inputRef && inputRef.current,
+    //     // options: "", 
+    //     // {
+    //     //     fields: ['formatted_address', 'geometry', 'name', 'place_id', 'url']
+    //     // },
+    //     map,
+    //     onPlaceChanged
+    //   });
 
     // Their input change
     const handleInputChange = (event) => {

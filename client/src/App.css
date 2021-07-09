@@ -1,11 +1,305 @@
 .fullBackgroundImage{
   background-image: url("./Wander.jpg");
   background-repeat: no-repeat;
-  background-size: 100vw;
+  background-position: center bottom;
+  background-size: cover;
+  background-attachment: fixed;
   height: 100vh;
+  overflow: auto;
+}
+
+.spaceAround{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-content: space-around;
+}
+
+#navBarBrand{
+  font-family: 'Sacramento', cursive;
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: midnightblue;
+}
+
+.montserrat{
+  font-family: 'Montserrat', sans-serif;
 }
 
 #homepageContainer{
-  font-family: 'Sacramento', sans-serif;
-  font-size: 80%;
+  font-family: 'Sacramento', cursive;
+  font-size: 12rem;
+  color: darkslateblue;
+  text-shadow: .25rem .25rem rgb(72, 61, 139, 0.3)
 }
+
+#offsetTitle{
+  margin-left: -8rem;
+}
+
+.verticalCenter{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.defaultButton{
+  background-color: rgb(72, 61, 139) ;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  padding-top: 0.375rem;
+  padding-right: 0.75rem;
+  padding-bottom: 0.375rem;
+  padding-left: 0.75rem;
+  margin: 1rem;
+  color: gainsboro;
+  border: none;
+  border-radius: 0.5rem;
+  width: 8rem;
+  /* border-color: rebeccapurple; */
+  /* box-shadow: 0.3vh 0.3vh rgb(72, 61, 139, 0.6) */
+}
+
+.container.formParentContainer{
+  background-color: rgb(220, 220, 220, 0.4);
+  text-align: center;
+  border: 1px solid midnightblue;
+  /* height: auto;
+  width: auto; */
+  height: 80%;
+  width: 40%;
+  justify-content: space-evenly;
+  padding-left: 2%;
+  padding-right: 2%;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  color: midnightblue;
+}
+
+.formContainer.container form.formElement{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  font-size: 1.25rem;
+  justify-content: space-evenly;
+}
+
+.form-group.setWidth{
+  width: 150%;
+  padding-bottom: 5%;
+}
+
+.formContainer{
+  padding: 1rem;
+  width: 100%;
+}
+
+.formHeaderText{
+  font-size: 1.75rem;
+  margin: 0.5rem;
+}
+
+.form-control.formSubmit{
+  background-color: rgb(72, 61, 139) ;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  margin: 1rem;
+  color: gainsboro;
+  border: none;
+  border-radius: 0.5rem;
+  text-align: center;
+  width: 8rem;
+  /* border-color: rebeccapurple; */
+  /* box-shadow: 0.3vh 0.3vh rgb(72, 61, 139, 0.6) */
+}
+
+.backgroundColor{
+  background-color: lavender;
+  background-size: cover;
+  overflow: auto;
+  height: 100vh;
+}
+
+.navbar-nav.navBarSettings{
+  font-size: 1.25rem;
+  justify-content: space-between;
+  width: 100%;
+  align-items: center;
+}
+
+.container.spaceBetween{
+  justify-content: space-between;
+}
+
+#logoutButton{
+  font-size: 1rem;
+  width: 6rem;
+}
+
+#navbarContainer{
+  justify-content: space-between;
+}
+
+.col-auto.flexColumnColumn{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#avatarButton{
+  font-size: 1rem;
+  width: 10rem;
+}
+
+#questionnaireButton{
+  font-size: 0.75rem;
+  width: 8rem;
+}
+
+#premiumButton{
+  font-size: 0.75rem;
+  width: 10rem;
+}
+
+#viewDetailsButton{
+  font-size: 1rem;
+  width: 8rem;
+}
+
+#filterButton{
+  font-size: 1.25rem;
+  width: 6rem;
+}
+
+#clearFiltersButton{
+  font-size: 1rem;
+  width: 8rem;
+}
+
+#filterSubmit{
+  font-size: 1rem;
+  width: 8rem;
+  margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.col.flexColumnColumn{
+  /* display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between; */
+}
+
+#profileInfoContainer{
+  height: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  border: 1px solid rgb(72, 61, 139);
+  border-radius: 2em;
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
+
+#profileContainer{
+  width: 100%;
+  padding-right: 8rem;
+  padding-left: 8rem;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+#itineraryCard{
+  text-align: center;
+  background-color: lavender;
+  border: none;
+  max-width: 25vw;
+}
+
+#itineraryCardBody{
+  padding-top: 0px;
+  padding-bottom: 0px;
+  padding-left: 0px;
+  padding-right: 0px;
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-end;
+  justify-content: center;
+}
+
+#itineraryCardFooter{
+  padding: 0px;
+  background-color: lavender;
+  border: none;
+}
+
+#itineraryCardImg{
+  object-fit: cover;
+}
+
+div.container-fluid.containerWidth{
+  width: 100%;
+  padding-right: 8rem;
+  padding-left: 8rem;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+.card.cardPadding{
+  padding: 1rem;
+}
+
+#filterModal{
+  margin-right: 0px;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  max-width: 20vw;
+}
+
+#filterModal .modal-content{
+  background-color: lavender;
+  min-height: 100vh;
+}
+
+#filterModalBody.modal-body{
+  display: flex;
+  justify-content: center;
+}
+
+#filterModal label.form-label{
+  font-weight: bold;
+}
+
+#filterModal form div.container{
+  padding-bottom: 1rem;
+}
+
+#itineraryListContainer{
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+#recItineraryListContainer{
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+/* 
+input[type=range]::-webkit-slider-runnable-track{
+  background: darkslateblue;
+  border-radius: 2rem;
+  cursor: pointer;
+  height: 0.5rem;
+  align-self: center;
+}
+
+input[type=range]::-webkit-slider-thumb{
+  height: 4rem;
+  background: darkslateblue;
+}
+
+input[type=range]{
+  height: 2rem;
+} */

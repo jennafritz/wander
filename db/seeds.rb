@@ -388,8 +388,8 @@ Photo.create(url: "https://media.tacdn.com/media/attractions-splice-spp-674x446/
 Photo.create(url: "https://images.musement.com/cover/0002/08/villa-borghese-jpg_header-107934.jpeg", caption: "Villa Borghese", itinerary_id: summer_in_rome.id)
 
 # Summer in Boston Photos
-Photo.create(url: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/133655984.jpg?k=c265ae44ed8d363c1c11929c847d37266fead9a17506c5f6e3da4cc7240f9521&o=&hp=1", caption: "AC Hotel Boston", itinerary_id: summer_in_boston.id)
 Photo.create(url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/Public_Garden%2C_Boston.jpg", caption: "Boston Public Garden", itinerary_id: summer_in_boston.id)
+Photo.create(url: "https://cf.bstatic.com/xdata/images/hotel/max1024x768/133655984.jpg?k=c265ae44ed8d363c1c11929c847d37266fead9a17506c5f6e3da4cc7240f9521&o=&hp=1", caption: "AC Hotel Boston", itinerary_id: summer_in_boston.id)
 Photo.create(url: "https://wgbh.brightspotcdn.com/dims4/default/a218d5f/2147483647/strip/true/crop/2000x1091+0+96/resize/990x540!/quality/70/?url=https%3A%2F%2Fwgbh.brightspotcdn.com%2F6f%2Fd2%2Fb58261484eff9a6084950464f80c%2Fap-041130016839.jpg", caption: "Isabella Stewart Gardner Museum", itinerary_id: summer_in_boston.id)
 Photo.create(url: "https://news.northeastern.edu/wp-content/uploads/2021/05/20200809_BW_TOR_1400.jpg", caption: "Fenway Park", itinerary_id: summer_in_boston.id)
 Photo.create(url: "https://www.discovernorthamerica.co.uk/wp-content/uploads/2018/04/New-England-Aquarium-Whale-Watching-Cruise-by-Boston-Harbor-Cruises.jpg", caption: "Whale Watch", itinerary_id: summer_in_boston.id)
@@ -421,8 +421,8 @@ Photo.create(url: "https://www.newport-discovery-guide.com/images/ocean-drive-13
 
 
 # Spring in Philadelphia Photos
-Photo.create(url: "https://www.monaco-philadelphia.com/images/1700-960/living-room-140-c6a2836c.jpg", caption: "Kimpton Monaco", itinerary_id: spring_in_philadelphia.id)
 Photo.create(url: "https://assets.philamuseum.org/public/2019-01/visit_mainbuilding2x.jpg", caption: "Philadelphia Museum of Art", itinerary_id: spring_in_philadelphia.id)
+Photo.create(url: "https://www.monaco-philadelphia.com/images/1700-960/living-room-140-c6a2836c.jpg", caption: "Kimpton Monaco", itinerary_id: spring_in_philadelphia.id)
 Photo.create(url: "https://www.tripsavvy.com/thmb/TQJxD1nzkEPIGS62zN3r8iMkUNI=/400x0/filters:no_upscale():max_bytes(150000):strip_icc()/GettyImages-1062250032-110de1d7c76d4f49804555d75dffbfa1.jpg", caption: "Elfreth's Alley", itinerary_id: spring_in_philadelphia.id)
 Photo.create(url: "https://www.nps.gov/inde/learn/kidsyouth/images/Libery-Bell-960x480.jpg", caption: "Liberty Bell", itinerary_id: spring_in_philadelphia.id)
 Photo.create(url: "https://cdn.vox-cdn.com/thumbor/-2tufcPIFMqH0gWNeT2T1AvxyZQ=/0x0:4500x3003/1200x800/filters:focal(1890x1142:2610x1862)/cdn.vox-cdn.com/uploads/chorus_image/image/52071145/shutterstock_519573883.0.jpeg", caption: "Reading Terminal Market", itinerary_id: spring_in_philadelphia.id)

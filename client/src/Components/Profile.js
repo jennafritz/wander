@@ -1,6 +1,10 @@
 import {useDispatch, useSelector} from 'react-redux'
 import { useHistory } from 'react-router'
 import { setUpProfile } from '../reducers.js/userReducer'
+import Container from 'react-bootstrap/Container'
+import Image from 'react-bootstrap/Image'
+import Col from 'react-bootstrap/Col'
+import Row from 'react-bootstrap/Row'
 
 function Profile() {
 
@@ -65,26 +69,56 @@ function Profile() {
     }
 
     return (
-        <div>
-            {/* <img src="https://pro2-bar-s3-cdn-cf6.myportfolio.com/bf7ae5ff-6d2a-4548-9633-fabd9e835847/0f9a15f1-6acc-4a55-80e7-cde06e875279_rw_600.jpg?h=3473e9bf0301f64ca76e6328ed1a90c4" alt="Bucharest"/> */}
-
-            {/* <h3>Profile Component</h3> */}
-            <h1>My Profile</h1>
-            <img src={user.picture} alt="user profile" width="500px"/>
-            <button onClick={() => history.push("/avatar")}>Change Avatar</button>
-            <h2>{user.username}</h2>
-            {user.premium === false ? <h3>Credits: {user.credits}</h3> : null}
-            <h3>Travel Interests:</h3>
-            <h4>{season}</h4>
-            <h4>{length}</h4>
-            <h4>{locale}</h4>
-            <h4>{classification}</h4>
-            <button onClick={() => history.push("/questionnaire")}>Edit Profile</button>
-            {user.premium === false ? <button onClick={() => {
-                dispatch(setUpProfile({userId: user.id, premium: true}))
-                // NEED A MODAL HERE ABOUT PRICING AND PERKS
-            }}>Upgrade to Premium</button> : null}
-        </div>
+        <Container fluid id="profileContainer">
+            <Row>
+                <Col xs="auto" className="flexColumnColumn">
+                    <Image src={user.picture} alt="user profile" width="250rem" height="250rem" roundedCircle />
+                    <button className="defaultButton" id="avatarButton" onClick={() => history.push("/avatar")}>Change Avatar</button>
+                </Col>
+                <Col className="flexColumnColumn">
+                    <Container id="profileInfoContainer" fluid >
+                        <Row style={{alignItems: 'center'}}>
+                            <Col style={{textAlign: 'left', marginBottom: '1.5rem', paddingTop: '1rem'}}>
+                            <h1>{user.username}</h1>
+                            </Col>
+                            <Col style={{textAlign: 'right'}}>
+                            {user.premium === false ? <h3>Credits: {user.credits}</h3> : null}
+                            </Col>
+                        </Row>
+                        <Row>
+                        <h4>Travel Interests:</h4>
+                        </Row>
+                        <Row >   
+                            <Col></Col>                          
+                            <Col as="h5">{season}</Col>
+                            <Col></Col>
+                            <Col as="h5">{length}</Col>
+                        </Row>
+                        <Row>
+                            <Col as="h5">{locale}</Col>
+                            <Col></Col>
+                            <Col as="h5">{classification}</Col>
+                            <Col></Col>
+                        </Row>
+                        <Row style={{alignItems: 'center'}}>
+                            <Col style={{textAlign: 'left'}}>
+                                {user.premium === false ? <button id="premiumButton" className="defaultButton" onClick={() => {
+                                dispatch(setUpProfile({userId: user.id, premium: true}))
+                                // NEED A MODAL HERE ABOUT PRICING AND PERKS
+                                }}>Upgrade to Premium</button> : null}
+                            </Col>
+                            <Col style={{textAlign: 'right'}}>
+                                    <button className="defaultButton" id="questionnaireButton" onClick={() => history.push("/questionnaire")}>Change Travel Settings</button>
+                            </Col>
+                            
+                        </Row>
+                    </Container>
+                </Col>
+            </Row>
+            <Row>
+              
+            </Row>
+        </Container>
     )
   }
   

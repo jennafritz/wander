@@ -1,6 +1,8 @@
 import {useState} from 'react'
 import { registerUser } from '../reducers.js/userReducer'
 import {useDispatch, useSelector} from 'react-redux'
+import Form from 'react-bootstrap/Form'
+import Container from 'react-bootstrap/esm/Container'
 
 function RegisterForm({handleRegister}) {
 
@@ -43,29 +45,33 @@ function RegisterForm({handleRegister}) {
     //   }
 
     return (
-        <div>
+        <Container className="formContainer">
             {/* <h3>Register Form Component</h3> */}
-            <form onSubmit={(event) => {
+            <Form className="formElement" onSubmit={(event) => {
                 event.preventDefault()
                 handleRegister(formData)
             }}>
-                <label htmlFor="username">Username</label>
-                <input 
+                <Form.Group className="setWidth">
+                <Form.Label htmlFor="username">Username</Form.Label>
+                <Form.Control 
                 type="text"
                 id="username"
                 value={formData.username}
                 onChange={handleChange}
                 />
-                <label htmlFor="password">Password</label>
-                <input 
+                </Form.Group>
+                <Form.Group className="setWidth">
+                <Form.Label htmlFor="password">Password</Form.Label>
+                <Form.Control 
                 type="password"
                 id="password"
                 value={formData.password}
                 onChange={handleChange}
                 />
-                <input type="submit" value="Register"/>
-            </form>
-        </div>
+                </Form.Group>
+                <Form.Control className="formSubmit" type="submit" value="Register"/>
+            </Form>
+        </Container>
     )
   }
   

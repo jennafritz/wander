@@ -1,4 +1,4 @@
-import NavBar from "./NavBar";
+import NavBar from "./NavBarComponent";
 import {useState} from 'react'
 import ActivitiesForm from './ActivitiesForm'
 import ImagesForm from "./ImagesForm";
@@ -22,7 +22,7 @@ function SubmitATripForm() {
 
     const inputRef = useRef(null)
     // const [inputValue, setInputValue] = useState('')
-    const {map} = useGoogleMap()
+    // const {map} = useGoogleMap()
 
     const [formData, setFormData] = useState({
         name: "",
@@ -69,15 +69,15 @@ function SubmitATripForm() {
 
     console.log(inputRef.current)
 
-    useAutocomplete({
-        inputField: inputRef && inputRef.current,
-        // options: "", 
-        // {
-        //     fields: ['formatted_address', 'geometry', 'name', 'place_id', 'url']
-        // },
-        map,
-        onPlaceChanged
-      });
+    // useAutocomplete({
+    //     inputField: inputRef && inputRef.current,
+    //     // options: "", 
+    //     // {
+    //     //     fields: ['formatted_address', 'geometry', 'name', 'place_id', 'url']
+    //     // },
+    //     map,
+    //     onPlaceChanged
+    //   });
 
     // Their input change
     // const handleInputChange = (event) => {

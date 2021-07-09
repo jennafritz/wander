@@ -1,8 +1,11 @@
-import NavBar from '../Components/NavBar'
+import NavBar from '../Components/NavBarComponent'
 import ItineraryThumbnailContainer from './ItineraryThumbnailContainer'
 import {useDispatch, useSelector} from 'react-redux'
 import {recommendItineraries} from '../reducers.js/itinerariesReducer'
 import {useEffect} from 'react'
+import Container from 'react-bootstrap/Container'
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 function RecItinerariesListContainer() {
 
@@ -12,14 +15,17 @@ function RecItinerariesListContainer() {
     // const user = useSelector(state => state.user.currentUser)
 
     return (
-        <div>
+        <Container fluid className="backgroundColor">
             <NavBar />
-            <br />
-            {/* <h1>Recommended Itineraries List Container</h1> */}
-            <h1>Adventures Recommended For You</h1>
-            <br />
-            {recommendedItineraries.map(itinerary => <ItineraryThumbnailContainer parent="RecItinerariesListContainer" itinerary={itinerary} mine={false}/>)}
-        </div>
+            <Container fluid id="recItineraryListContainer" className="containerWidth">
+                <Row>
+                    <Col as="h1">Adventures Recommended For You</Col>
+                </Row>
+                <Row md={4}>
+                    {recommendedItineraries.map(itinerary => <ItineraryThumbnailContainer parent="RecItinerariesListContainer" itinerary={itinerary} mine={false}/>)}
+                </Row>
+            </Container>
+        </Container>
     )
   }
   

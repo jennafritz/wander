@@ -1,23 +1,19 @@
 import RecItinerariesPreviewContainer from './RecItinerariesPreviewContainer'
 import MyItinerariesPreviewContainer from './MyItinerariesPreviewContainer'
 import Profile from '../Components/Profile'
-import NavBar from '../Components/NavBar'
+import NavBar from '../Components/NavBarComponent'
+import Container from 'react-bootstrap/esm/Container'
 
 function ProfilePageContainer() {
 
     return (
-        <div>
+        <Container fluid className="backgroundColor">
             <NavBar />
-            <br/>
             {/* <h1>Profile Page Container</h1> */}
             <Profile />
-            <br />
-            <br />
             <MyItinerariesPreviewContainer />
-            <br />
-            <br />
             <RecItinerariesPreviewContainer />
-        </div>
+        </Container>
     )
   }
   

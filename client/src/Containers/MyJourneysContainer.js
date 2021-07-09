@@ -1,6 +1,6 @@
 import MyJourneysSummary from '../Components/MyJourneysSummary'
 import MyJourneysListContainer from './MyJourneysListContainer'
-import NavBar from '../Components/NavBar'
+import NavBar from '../Components/NavBarComponent'
 
 function MyJourneysContainer({myItineraries}) {
     return (
