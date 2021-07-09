@@ -12,6 +12,10 @@ import {addCreditToUser} from '../reducers.js/userReducer'
 import { useAutocomplete } from "@ubilabs/google-maps-react-hooks";
 import { useRef } from "react";
 import { useGoogleMap } from "@ubilabs/google-maps-react-hooks";
+import Form from 'react-bootstrap/Form'
+import Container from 'react-bootstrap/esm/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 function SubmitATripForm() {
 
@@ -44,7 +48,7 @@ function SubmitATripForm() {
 
     // My handle change
     function handleChange(event) {
-        const key = event.target.id
+        const key = event.target.name
         setFormData({
             ...formData,
             [key]: event.target.value
@@ -66,8 +70,6 @@ function SubmitATripForm() {
         // console.log(place.formatted_address)
         inputRef.current && inputRef.current.focus()
     }
-
-    console.log(inputRef.current)
 
     // useAutocomplete({
     //     inputField: inputRef && inputRef.current,
@@ -218,8 +220,6 @@ function SubmitATripForm() {
         }
     }
 
-    console.log(tripValid())
-
     // const handleFullSubmit = async () => {
     //     let createdPhotos = []
     //     let createdDays = []
@@ -274,117 +274,286 @@ function SubmitATripForm() {
     //         }        
     //     })
     // }
-    
 
     return (
-        <div>
+        <Container fluid className="backgroundColor">
             <NavBar />
-            <br />
-            {/* <h3>Submit a Trip Form Component</h3> */}
-            <h1>Submit a Trip to the Wander Catalog</h1>
-            <br />
-            <form id="trip-form" onSubmit={(event) => {
-                
-                event.preventDefault()
-                handleFullSubmitAsyncTest()
-                console.log("trip form submitted")
-                }}>
-                <label htmlFor="destination">Destination</label>
-                <input
-                required
-                id="destination"
-                name="destination"
-                ref={inputRef}
-                value={formData.destination}
-                onChange={handleChange}
-                />
-                <label htmlFor="name">Name</label>
-                <input 
-                required
-                type="text"
-                id="name"
-                name="name"
-                value={formData.name}
-                onChange={handleChange}
-                />
-                <label htmlFor="description">Description</label>
-                <textarea 
-                required
-                id="description"
-                name="description"
-                value={formData.description}
-                onChange={handleChange}
-                />
-                {/* <input 
-                required
-                type="text"
-                id="destination"
-                name="destination"
-                value={formData.destination}
-                onChange={handleChange}
-                /> */}
-                <label htmlFor="season">Season</label>
-                <select required name="season" id="season" defaultValue="Spring" onChange={handleChange}>
-                    <option value="Spring">Spring</option>
-                    <option value="Summer">Summer</option>
-                    <option value="Fall">Fall</option>
-                    <option value="Winter">Winter</option>
-                </select>
-                 <label htmlFor="locale">Locale</label>
-                 <select required name="locale" id="locale" defaultValue="City" onChange={handleChange}>
-                    <option value="City">City</option>
-                    <option value="Country">Country</option>
-                </select>
-                 <label htmlFor="classification">Classification</label>
-                 <select required name="classification" id="classification" defaultValue="Adventure" onChange={handleChange}>
-                    <option value="Adventure">Adventure</option>
-                    <option value="Culture">Culture</option>
-                </select>
-                 <label htmlFor="budget">Budget</label>
-                 <select required name="budget" id="budget" defaultValue="1" onChange={handleChange}>
-                    <option value="1">$</option>
-                    <option value="2">$$</option>
-                    <option value="3">$$$</option>
-                    <option value="4">$$$$</option>
-                </select>
-                {/* <label htmlFor="length">length</label>
-                <input 
-                required
-                placeholder={2}
-                type="number"
-                id="length"
-                name="length"
-                min="1"
-                value={formData.length}
-                onChange={handleChange}
-                /> */}
-                <label htmlFor="length">Length: {formData.length} Days</label>
-                <input 
-                required
-                type="range"
-                id="length"
-                name="length"
-                min="2"
-                max="31"
-                value={formData.length}
-                onChange={handleChange} />
-                <br/>
-                
-                {lengthArray.length > 0
-                ? lengthArray.map((element, index) => {
-                    let dayNumber = index + 1
-                    return (
-                        <div>
-                            {`Day ${dayNumber}:`}
-                            <ActivitiesForm day={dayNumber} updateActivitiesArray={updateActivitiesArray} removeActivityFromParent={removeActivityFromParent}/>
-                        </div>
-                    )
-                    }
-                ) : null}
-                <ImagesForm updateImagesArray={updateImagesArray} removeImageFromParent={removeImageFromParent}/>
-                <input type="submit" value="Submit"/>
-            </form>
-        </div>
+            <Container id="submitTripFormContainer">
+                {/* <h3>Submit a Trip Form Component</h3> */}
+                <Row>
+                    <Col as="h1">Submit a Trip to the Wander Catalog</Col>
+                </Row>
+                <Container >
+                    <Form id="trip-form" onSubmit={(event) => {
+                        // IF TRIP IS VALID HERE
+                        event.preventDefault()
+                        handleFullSubmitAsyncTest()
+                        console.log("trip form submitted")
+                        }}>
+                        <Row>
+                            <Col>
+                                <Form.Label htmlFor="destination">Destination</Form.Label>
+                                <Form.Control
+                                required
+                                id="destination"
+                                name="destination"
+                                ref={inputRef}
+                                value={formData.destination}
+                                onChange={handleChange}
+                                />
+                            </Col>
+                            <Col>
+                                <Form.Label htmlFor="name">Name</Form.Label>
+                                <Form.Control 
+                                required
+                                type="text"
+                                id="name"
+                                name="name"
+                                value={formData.name}
+                                onChange={handleChange}
+                                />
+                            </Col>
+                        </Row>
+                        <Row>
+                            <Col>
+                                <Form.Label htmlFor="description">Description</Form.Label>
+                                <Form.Control
+                                as="textarea"
+                                required
+                                id="description"
+                                name="description"
+                                value={formData.description}
+                                onChange={handleChange}
+                                />
+                            </Col>
+                        </Row>
+                        <Row id="submitFormRadioRow">
+                            <Col>
+                                <Form.Label htmlFor="season">Season</Form.Label>
+                                <Form.Group>
+                                    <Form.Check 
+                                    type="radio"
+                                    name="season"
+                                    id="Spring"
+                                    value="Spring"
+                                    checked={formData.season === "Spring"}
+                                    onChange={handleChange}
+                                    label="Spring"
+                                    />
+                                </Form.Group>
+
+                                <Form.Group>
+                                    <Form.Check 
+                                    type="radio"
+                                    name="season"
+                                    id="Summer"
+                                    value="Summer"
+                                    checked={formData.season === "Summer"}
+                                    onChange={handleChange}
+                                    label="Summer"
+                                    />
+                                </Form.Group>
+
+                                <Form.Group>
+                                    <Form.Check 
+                                    type="radio"
+                                    name="season"
+                                    id="Fall"
+                                    value="Fall"
+                                    checked={formData.season === "Fall"}
+                                    onChange={handleChange}
+                                    label="Fall"
+                                    />
+                                </Form.Group>
+
+                                <Form.Group>
+                                    <Form.Check 
+                                    type="radio"
+                                    name="season"
+                                    id="Winter"
+                                    value="Winter"
+                                    checked={formData.season === "Winter"}
+                                    onChange={handleChange}
+                                    label="Winter"
+                                    />
+                                </Form.Group>
+                            </Col>
+                        {/* <Form.Control as="select" required name="season" id="season" defaultValue="Spring" onChange={handleChange}>
+                            <option value="Spring">Spring</option>
+                            <option value="Summer">Summer</option>
+                            <option value="Fall">Fall</option>
+                            <option value="Winter">Winter</option>
+                        </Form.Control> */}
+                            <Col>
+                                <Form.Label htmlFor="locale">Locale</Form.Label>
+                                <Form.Group>
+                                    <Form.Check 
+                                    type="radio"
+                                    name="locale"
+                                    id="City"
+                                    value="City"
+                                    checked={formData.locale === "City"}
+                                    onChange={handleChange}
+                                    label="City"
+                                    />
+                                </Form.Group>
+
+                                <Form.Group>
+                                    <Form.Check 
+                                    type="radio"
+                                    name="locale"
+                                    id="Country"
+                                    value="Country"
+                                    checked={formData.locale === "Country"}
+                                    onChange={handleChange}
+                                    label="Country"
+                                    />
+                                </Form.Group>
+                            </Col>
+                        {/* <select required name="locale" id="locale" defaultValue="City" onChange={handleChange}>
+                            <option value="City">City</option>
+                            <option value="Country">Country</option>
+                        </select> */}
+                            <Col>
+                                <Form.Label htmlFor="classification">Classification</Form.Label>
+                                <Form.Group>
+                                    <Form.Check 
+                                    type="radio"
+                                    name="classification"
+                                    value="Adventure"
+                                    id="Adventure"
+                                    checked={formData.classification === "Adventure"}
+                                    onChange={handleChange}
+                                    label="Adventure"
+                                    />
+                                </Form.Group>
+
+                                <Form.Group>
+                                    <Form.Check 
+                                    type="radio"
+                                    name="classification"
+                                    value="Culture"
+                                    id="Culture"
+                                    checked={formData.classification === "Culture"}
+                                    onChange={handleChange}
+                                    label="Culture"
+                                    />
+                                </Form.Group>
+                            </Col>
+                        {/* <select required name="classification" id="classification" defaultValue="Adventure" onChange={handleChange}>
+                            <option value="Adventure">Adventure</option>
+                            <option value="Culture">Culture</option>
+                        </select> */}
+                            <Col>
+                                <Form.Label htmlFor="budget">Budget</Form.Label>
+                                <Form.Group>
+                                    <Form.Check 
+                                    type="radio"
+                                    name="budget"
+                                    id="1"
+                                    value="1"
+                                    checked={String(formData.budget) === "1"}
+                                    onChange={handleChange}
+                                    label="$"
+                                    />
+                                </Form.Group>
+
+                                <Form.Group>
+                                    <Form.Check 
+                                    type="radio"
+                                    name="budget"
+                                    id="2"
+                                    value="2"
+                                    checked={String(formData.budget) === "2"}
+                                    onChange={handleChange}
+                                    label="$$"
+                                    />
+                                </Form.Group>
+
+                                <Form.Group>
+                                    <Form.Check 
+                                    type="radio"
+                                    name="budget"
+                                    id="3"
+                                    value="3"
+                                    checked={String(formData.budget) === "3"}
+                                    onChange={handleChange}
+                                    label="$$$"
+                                    />
+                                </Form.Group>
+
+                                <Form.Group>
+                                    <Form.Check 
+                                    type="radio"
+                                    name="budget"
+                                    id="4"
+                                    value="4"
+                                    checked={String(formData.budget) === "4"}
+                                    onChange={handleChange}
+                                    label="$$$$"
+                                    />
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        {/* <select required name="budget" id="budget" defaultValue="1" onChange={handleChange}>
+                            <option value="1">$</option>
+                            <option value="2">$$</option>
+                            <option value="3">$$$</option>
+                            <option value="4">$$$$</option>
+                        </select> */}
+                        {/* <Form.Label htmlFor="length">length</Form.Label>
+                        <input 
+                        required
+                        placeholder={2}
+                        type="number"
+                        id="length"
+                        name="length"
+                        min="1"
+                        value={formData.length}
+                        onChange={handleChange}
+                        /> */}
+                        <Row id="submitFormRangeRow">
+                            <Col>
+                                <Form.Group>
+                                    <Form.Label htmlFor="length">Length: {formData.length} Days</Form.Label>
+                                    <Form.Control 
+                                    required
+                                    type="range"
+                                    id="length"
+                                    name="length"
+                                    min="2"
+                                    max="31"
+                                    value={formData.length}
+                                    onChange={handleChange} />
+                                </Form.Group>
+                            </Col>
+                        </Row>
+                        <Row className="innerFormWidth">
+                            {lengthArray.length > 0
+                            ? lengthArray.map((element, index) => {
+                                let dayNumber = index + 1
+                                return (
+                                    <Container fluid id="activitiesForm">
+                                        <Form.Label>{`Day ${dayNumber} Activities:`}</Form.Label>
+                                        <ActivitiesForm day={dayNumber} updateActivitiesArray={updateActivitiesArray} removeActivityFromParent={removeActivityFromParent}/>
+                                    </Container>
+                                )
+                                }
+                            ) : null}
+                        </Row>
+                        <Row className="innerFormWidth">
+                            <Container fluid>
+                                <Form.Label>Itinerary Images:</Form.Label>
+                                <ImagesForm updateImagesArray={updateImagesArray} removeImageFromParent={removeImageFromParent}/>
+                            </Container>
+                        </Row>
+                        <Row style={{justifyContent: 'center'}}>
+                            <Form.Control className="formSubmit" type="submit" value="Submit"/>
+                        </Row>
+                    </Form>
+                </Container>
+            </Container>
+        </Container>
     )
   }
   

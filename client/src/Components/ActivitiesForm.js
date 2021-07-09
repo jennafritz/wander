@@ -1,5 +1,9 @@
 import NavBar from "./NavBarComponent";
 import {useEffect, useState} from 'react'
+import Form from 'react-bootstrap/Form'
+import Container from 'react-bootstrap/esm/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 function ActivitiesForm({day, updateActivitiesArray, removeActivityFromParent}) {
 
@@ -65,35 +69,38 @@ function ActivitiesForm({day, updateActivitiesArray, removeActivityFromParent}) 
     }
 
     return (
-        <div >
-            <label htmlFor="activities">Activities</label>
-                {activityInputList.map((activity, index) => {
-                    return(
-                        <div>
-                            <label htmlFor="activity">Activity {index+1}: </label>
-                            <input
-                            required  
-                            name="activity"
-                            value={activity.activity}
-                            onChange={(event) => handleActivityInputChange(event, index)}
-                            />
-                            <label htmlFor="activity">Info Link (optional): </label>
-                            <input
-                            name="info_url"
-                            value={activity.info_url}
-                            onChange={(event) => handleActivityInputChange(event, index)}
-                            />
+        <Container fluid>
+            {activityInputList.map((activity, index) => {
+                return(
+                    <Container >
+                        <Row>
+                            <Col>
+                                <Form.Label htmlFor="activity">Activity {index+1}: </Form.Label>
+                                <Form.Control
+                                required  
+                                name="activity"
+                                value={activity.activity}
+                                onChange={(event) => handleActivityInputChange(event, index)}
+                                />
+                            </Col>
+                            <Col>
+                                <Form.Label htmlFor="activity">Info Link (optional): </Form.Label>
+                                <Form.Control
+                                name="info_url"
+                                value={activity.info_url}
+                                onChange={(event) => handleActivityInputChange(event, index)}
+                                />
+                            </Col>
                             {/* <button onClick={() => {
                                 handleRemoveActivity(index)
                                 removeActivityFromParent(`${day} - ${index + 1}`)
                             }}>Remove Activity</button> */}
-                        </div>
-                    )   
-                })}
-                <button onClick={() => handleAddActivity()} >Add An Activity</button>
-            {/* add a day */}
-            {/* add an image */}
-        </div>
+                        </Row>
+                    </Container>
+                )   
+            })}
+                <button id="addActivityButton" className="defaultButton" onClick={() => handleAddActivity()} >Add An Activity</button>
+        </Container>
     )
   }
   

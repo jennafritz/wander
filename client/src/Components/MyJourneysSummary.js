@@ -2,6 +2,9 @@ import {useDispatch, useSelector} from 'react-redux'
 import {useEffect} from 'react'
 import { fetchAllDays } from '../reducers.js/daysReducer'
 import MapOfMyJourneys from './MapOfMyJourneys'
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
 
 function MyJourneysSummary() {
 
@@ -23,12 +26,22 @@ function MyJourneysSummary() {
     })
 
     return (
-        <div>
-            {/* <h3>My Journeys Summary Component</h3> */}
-            <h5>Trips Taken: {myItineraries.length}</h5>
-            <h5>Days Traveled: {totalDaysTraveled}</h5>
-            {/* <MapOfMyJourneys /> */}
-        </div>
+        <Container fluid id="myJourneysSummaryContainer">
+            <Row>
+                <Col as="h2">Travel Summary</Col>
+            </Row>
+            <Row>
+                <Col>
+                    {/* <MapOfMyJourneys /> */}
+                </Col>
+                <Col style={{justifyContent: 'space-evenly'}} className="verticalCenter">
+                    <h5>Trips Taken: {myItineraries.length}</h5>
+                    <h5>Days Traveled: {totalDaysTraveled}</h5>
+                    <span><img src="http://maps.google.com/mapfiles/ms/icons/blue-dot.png"/>= Me</span>
+                    <span><img src="http://maps.google.com/mapfiles/ms/icons/purple-dot.png"/>= Destination</span>
+                </Col>
+            </Row>
+        </Container>
     )
   }
   

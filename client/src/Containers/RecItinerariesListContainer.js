@@ -21,9 +21,11 @@ function RecItinerariesListContainer() {
                 <Row>
                     <Col as="h1">Adventures Recommended For You</Col>
                 </Row>
+            <Container fluid id="recItineraryListThumbnailContainer">
                 <Row md={4}>
                     {recommendedItineraries.map(itinerary => <ItineraryThumbnailContainer parent="RecItinerariesListContainer" itinerary={itinerary} mine={false}/>)}
                 </Row>
+            </Container>
             </Container>
         </Container>
     )

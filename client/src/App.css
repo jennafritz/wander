@@ -1,3 +1,7 @@
+html body{
+  font-family: 'Montserrat', sans-serif;
+}
+
 .fullBackgroundImage{
   background-image: url("./Wander.jpg");
   background-repeat: no-repeat;
@@ -171,6 +175,8 @@
 #filterButton{
   font-size: 1.25rem;
   width: 6rem;
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
 
 #clearFiltersButton{
@@ -183,6 +189,21 @@
   width: 8rem;
   margin-top: 0px;
   margin-bottom: 0px;
+}
+
+#addActivityButton{
+  font-size: 1rem;
+  width: 10rem;
+}
+
+#addImageButton{
+  font-size: 1rem;
+  width: 12rem;
+}
+
+#saveItineraryButton{
+  font-size: 1.25rem;
+  width: 16rem;
 }
 
 .col.flexColumnColumn{
@@ -282,9 +303,134 @@ div.container-fluid.containerWidth{
   margin-bottom: 4rem;
 }
 
+#itineraryListThumbnailContainer{
+  margin-top: 2rem;
+  width: 100%;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
 #recItineraryListContainer{
   margin-top: 4rem;
   margin-bottom: 4rem;
+}
+
+#recItineraryListThumbnailContainer{
+  margin-top: 2rem;
+  width: 100%;
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+#myJourneysListContainer{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+#myJourneysSummaryContainer{
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+#submitFormRadioRow{
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#submitFormRangeRow{
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 3rem;
+  margin-bottom: 3rem;
+}
+
+#submitTripFormContainer{
+  width: 100%;
+  padding-right: 8rem;
+  padding-left: 8rem;
+  margin-top: 4rem;
+  margin-bottom: 4rem;
+}
+
+#submitTripFormContainer .row{
+  margin-top: 2rem;
+}
+
+#activitiesForm{
+  margin-bottom: 3rem;
+}
+
+#submitTripFormContainer .form-label{
+  font-weight: bold;
+  /* color: midnightblue; */
+}
+
+form#trip-form div.innerFormWidth.row{
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#itineraryDetailHeader{
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+#itineraryName{
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#itineraryDescription{
+  width: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#dayListRow{
+  flex-direction: column;
+}
+
+#activityListRow{
+  flex-direction: column;
+  padding-left: 2rem;
+}
+
+#photoGalleryCarousel .carousel-caption{
+  position: relative;
+  left: auto;
+  right: auto;
+  /* color: midnightblue; */
+  
+}
+
+#carouselImageCaption{
+  width: auto;
+  color: black;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#carouselImage{
+  margin-left: auto;
+  margin-right: auto;
+  width: auto;
+  /* max-width: 50vw; */
+  object-fit: cover;
+}
+
+#photoGalleryCarousel{
+  width: 60vw;
+  overflow: hidden;
 }
 /* 
 input[type=range]::-webkit-slider-runnable-track{

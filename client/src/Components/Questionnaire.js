@@ -22,7 +22,7 @@ function Questionnaire() {
         travel_length: user.travel_length,
         travel_locale: user.travel_locale,
         travel_classification: user.travel_classification,
-        budget: String(user.budget),
+        budget: user.budget,
         latitude: "",
         longitude: ""
     })
@@ -206,7 +206,7 @@ function Questionnaire() {
                     name="budget"
                     id="1"
                     value="1"
-                    checked={formData.budget === "1"}
+                    checked={String(formData.budget) === "1"}
                     onChange={handleChange}
                     />
                     <label htmlFor="1">$</label><br/>
@@ -217,7 +217,7 @@ function Questionnaire() {
                     name="budget"
                     id="2"
                     value="2"
-                    checked={formData.budget === "2"}
+                    checked={String(formData.budget) === "2"}
                     onChange={handleChange}
                     />
                     <label htmlFor="2">$$</label><br/>
@@ -228,7 +228,7 @@ function Questionnaire() {
                     name="budget"
                     id="3"
                     value="3"
-                    checked={formData.budget === "3"}
+                    checked={String(formData.budget) === "3"}
                     onChange={handleChange}
                     />
                     <label htmlFor="3">$$$</label><br/>
@@ -239,7 +239,7 @@ function Questionnaire() {
                     name="budget"
                     id="4"
                     value="4"
-                    checked={formData.budget === "4"}
+                    checked={String(formData.budget) === "4"}
                     onChange={handleChange}
                     />
                     <label htmlFor="4">$$$$</label><br />

@@ -16,7 +16,7 @@ function ItineraryThumbnailContainer({itinerary, parent}) {
     
     let mine = myItineraries.find(myItinerary => myItinerary.id === itinerary.id)
     return (
-        <Card id="itineraryCard" className={parent === "ItineraryListContainer" || parent === "RecItinerariesListContainer" ? "cardPadding" : null}>
+        <Card id="itineraryCard" className={parent === "ItineraryListContainer" || parent === "RecItinerariesListContainer" || parent === "MyJourneysListContainer" ? "cardPadding" : null}>
             {/* <h1>Itinerary Thumbnail Container</h1> */}
             {photos.length > 0 ? <Card.Img id="itineraryCardImg" src={photos[0].url} height="200px"/> : null}<br/>
             <Card.Title>{itinerary.name}</Card.Title>
