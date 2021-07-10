@@ -364,7 +364,7 @@ Photo.create(url: "http://www.uvisitromania.com/_upload/obiective/fullsize/12208
 Photo.create(url: "https://nomanbefore.com/wp-content/uploads/2016/09/PelesCastle-11-e1476847341607.jpg", caption: "Peles Castle", itinerary_id: fall_in_romania.id)
 Photo.create(url: "https://lp-cms-production.imgix.net/2019-06/67a671f261d363136a282f23b98d7253-piata-sfatului.jpg", caption: "Brasov", itinerary_id: fall_in_romania.id)
 # Photo.create(url: "https://drive.google.com/file/d/1TjHojwogI-_faMorxao8MM0lxzUYDSNk/preview", caption: "Wildlife on the Transfaragasan", itinerary_id: fall_in_romania.id)
-Photo.create(url: "https://lh3.googleusercontent.com/proxy/Jjga4NsQokLImrTfEyk8lMqF99sm8cnfYEQ-xeK9xvNp97LFICdS5axHvZqXy51-4DqfsD44tcJuwi4-9w9L5UWWfVxLyy-64OAXx5_lZ1o0k5TSXXJB-tRbkHKZUNDsI9MIVuS_0v6nn-Qgv618-nzG", caption: "Transfaragasan Road", itinerary_id: fall_in_romania.id)
+Photo.create(url: "https://s.inyourpocket.com/img/text/romania/bucharest/transfagarasan.jpeg", caption: "Transfaragasan Road", itinerary_id: fall_in_romania.id)
 Photo.create(url: "https://upload.wikimedia.org/wikipedia/commons/f/f8/Manastirea_Moldovita%2C_vedere_laterala.jpg", caption: "Painted Monastery", itinerary_id: fall_in_romania.id)
 Photo.create(url: "https://storage.googleapis.com/afs-prod/media/media:58f2bd78fc934063b641e280f5d62035/3000.jpeg", caption: "Merry Cemetery", itinerary_id: fall_in_romania.id)
 Photo.create(url: "https://assets.atlasobscura.com/media/W1siZiIsInVwbG9hZHMvcGxhY2VfaW1hZ2VzL2RhNjgyNTUzLWYyOWUtNDEyNy1hYTY5LWNjOWJlNjVjODk1ZTM5NTM0OTQxYWIzMDIwMjU2Nl9TdGF0dWlhX0NoaXB1bF9sdWlfRGVjZWJhbF8tX0NhemFuZWxlX0R1bmHMhnJpaSxfUm9tYcyCbmlhLmpwZyJdLFsicCIsImNvbnZlcnQiLCIiXSxbInAiLCJjb252ZXJ0IiwiLXF1YWxpdHkgODEgLWF1dG8tb3JpZW50Il0sWyJwIiwidGh1bWIiLCI3ODB4NTIwIyJdXQ/Statuia_Chipul_lui_Decebal_-_Cazanele_Duna%CC%86rii%2C_Roma%CC%82nia.jpg", caption: "Decebalus", itinerary_id: fall_in_romania.id)
@@ -406,7 +406,7 @@ Photo.create(url: "https://offloadmedia.feverup.com/secretldn.com/wp-content/upl
 Photo.create(url: "https://www.tripsavvy.com/thmb/K7RuP8jI7X3uuZ09U69gpRKYOqM=/4447x3335/smart/filters:no_upscale()/WestminsterAbbey-2-410f8042a62c419e9ebd935ed6750b00.jpg", caption: "Westminster Abbey", itinerary_id: summer_in_london.id)
 Photo.create(url: "https://hrp.imgix.net/https%3A%2F%2Fhistoricroyalpalaces.picturepark.com%2FGo%2FNYihuqcf%2FV%2F2478%2F29?auto=format&s=eee26bfb3ba368ef6a98b06f0eeb1c24", caption: "Banqueting House", itinerary_id: summer_in_london.id)
 Photo.create(url: "https://www.history.com/.image/ar_4:3%2Cc_fill%2Ccs_srgb%2Cfl_progressive%2Cq_auto:good%2Cw_1200/MTU3ODc3NjU2NzQ4NTAwMjk3/this-day-in-history-05311859---big-ben-in-london.jpg", caption: "Big Ben", itinerary_id: summer_in_london.id)
-Photo.create(url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBBmBj7d3ek1eXmRjGe9TBP2zeA9I0c4lUfhCqIpQY_OeTDu25OYytZRQFw2RiuhB4cio&usqp=CAU", caption: "London Eye", itinerary_id: summer_in_london.id)
+Photo.create(url: "https://sumfinity.com/wp-content/uploads/2014/06/London-Eye-View.jpg", caption: "London Eye", itinerary_id: summer_in_london.id)
 Photo.create(url: "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/britains-queen-elizabeth-ii-leaves-buckingham-palace-in-news-photo-1624550959.jpg?crop=1xw:0.95359xh;center,top&resize=1200:*", caption: "Buckingham Palace", itinerary_id: summer_in_london.id)
 Photo.create(url: "https://www.harrods.com/BWStaticContent/50000/50000/3667f922-78b6-467d-a28b-66203d375fe1_t-homepage-store-closure-retouched.jpg", caption: "Harrod's", itinerary_id: summer_in_london.id)
 

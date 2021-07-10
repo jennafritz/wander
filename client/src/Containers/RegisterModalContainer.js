@@ -16,7 +16,7 @@ function RegisterModalContainer() {
                 {/* <Row as="h2" className="formHeaderText">Register to Get Started</Row> */}
                 <Row><RegisterForm /></Row>
                 <Row as="h2" className="formHeaderText">Wandering Awaits</Row>
-                <Row><button className="defaultButton" onClick={() => history.push("/login")}>Login</button></Row>
+                <Row><button className="defaultButton" onClick={() => history.push("/login")}>Log In</button></Row>
             </Container>
         </Container>
     )

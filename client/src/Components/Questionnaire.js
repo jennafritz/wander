@@ -6,6 +6,10 @@ import { useAutocomplete } from "@ubilabs/google-maps-react-hooks";
 import { useRef } from "react";
 import { useGoogleMap } from "@ubilabs/google-maps-react-hooks";
 import { recommendItineraries } from '../reducers.js/itinerariesReducer';
+import Form from 'react-bootstrap/Form'
+import Container from 'react-bootstrap/esm/Container'
+import Row from 'react-bootstrap/Row'
+import Col from 'react-bootstrap/Col'
 
 function Questionnaire() {
 
@@ -70,183 +74,203 @@ function Questionnaire() {
     // }
 
     return (
-        <div>
-            {/* <h3>Questionnaire Component</h3> */}
-            {user.travel_season ? <h1>Edit Your Profile</h1> : <h1>Set Up Your Profile</h1>}
-            <form onSubmit={(event) => {
-                event.preventDefault()
-                dispatch(setUpProfile({userId: user.id, ...formData})).then(response => {
-                    debugger
-                    if(response.error){
-                        alert(response.payload)
-                    } else {
-                        dispatch(recommendItineraries(response.payload))
-                        history.push("/profile")
-                    }
-                })
-                }}>
-                <div>
-                    <label htmlFor="location">Your Location</label><br/>
-                    <input
-                    required
-                    id="location"
-                    name="location"
-                    ref={inputRef}
-                    value={inputValue}
-                    onChange={handleInputChange}
-                    /><br />
-                    <label>Ideal Travel Season:</label><br />
-                    <input 
-                    required
-                    type="radio"
-                    name="travel_season"
-                    id="Spring"
-                    value="Spring"
-                    checked={formData.travel_season === "Spring"}
-                    onChange={handleChange}
-                    />
-                    <label htmlFor="Spring">Spring</label><br/>
+        <Container fluid className="fullBackgroundImage verticalCenter">
+            <Container id="questionnaireParentContainer">
+                {/* <h3>Questionnaire Component</h3> */}
+                <Row style={{textAlign: 'center'}}>
+                    {user.travel_season ? <Col as="h1">Edit Your Profile</Col> : <Col as="h1">Set Up Your Profile</Col>}
+                </Row>
+                <Form className="formElement" onSubmit={(event) => {
+                    event.preventDefault()
+                    dispatch(setUpProfile({userId: user.id, ...formData})).then(response => {
+                        if(response.error){
+                            alert(response.payload)
+                        } else {
+                            dispatch(recommendItineraries(response.payload))
+                            history.push("/profile")
+                        }
+                    })
+                    }}>
+                    <Container >
+                        <Row>
+                            <Col>
+                                <Form.Label htmlFor="location">Your Location</Form.Label>
+                                <Form.Control
+                                required
+                                id="location"
+                                name="location"
+                                ref={inputRef}
+                                value={inputValue}
+                                onChange={handleInputChange}
+                                />
+                                </Col>
+                                <Col>
+                                <Form.Label>Ideal Length of Travel (Days)</Form.Label>
+                                <Form.Control 
+                                required
+                                type="number"
+                                id="travel_length"
+                                name="travel_length"
+                                min="2"
+                                value={formData.travel_length}
+                                onChange={handleChange}
+                                />
+                            </Col>
+                        </Row>
 
-                    <input 
-                    required
-                    type="radio"
-                    name="travel_season"
-                    id="Summer"
-                    value="Summer"
-                    checked={formData.travel_season === "Summer"}
-                    onChange={handleChange}
-                    />
-                    <label htmlFor="Summer">Summer</label><br/>
+                        <Row className="radioRow">
+                            <Col>
+                                <Form.Label>Ideal Travel Season:</Form.Label>
+                                <Form.Check 
+                                required
+                                type="radio"
+                                name="travel_season"
+                                id="Spring"
+                                value="Spring"
+                                checked={formData.travel_season === "Spring"}
+                                onChange={handleChange}
+                                label="Spring"
+                                />
 
-                    <input 
-                    required
-                    type="radio"
-                    name="travel_season"
-                    id="Fall"
-                    value="Fall"
-                    checked={formData.travel_season === "Fall"}
-                    onChange={handleChange}
-                    />
-                    <label htmlFor="Fall">Fall</label><br/>
+                                <Form.Check 
+                                required
+                                type="radio"
+                                name="travel_season"
+                                id="Summer"
+                                value="Summer"
+                                checked={formData.travel_season === "Summer"}
+                                onChange={handleChange}
+                                label="Summer"
+                                />
 
-                    <input 
-                    required
-                    type="radio"
-                    name="travel_season"
-                    id="Winter"
-                    value="Winter"
-                    checked={formData.travel_season === "Winter"}
-                    onChange={handleChange}
-                    />
-                    <label htmlFor="Winter">Winter</label>
-                </div>
-                <label>Ideal Length of Travel (in Days)</label><br/>
-                <input 
-                required
-                type="number"
-                id="travel_length"
-                name="travel_length"
-                min="2"
-                value={formData.travel_length}
-                onChange={handleChange}
-                />
-                <div>
-                    <label>Ideal Travel Locale:</label><br />
-                    <input 
-                    required
-                    type="radio"
-                    name="travel_locale"
-                    id="City"
-                    value="City"
-                    checked={formData.travel_locale === "City"}
-                    onChange={handleChange}
-                    />
-                    <label htmlFor="City">City</label><br/>
+                                <Form.Check 
+                                required
+                                type="radio"
+                                name="travel_season"
+                                id="Fall"
+                                value="Fall"
+                                checked={formData.travel_season === "Fall"}
+                                onChange={handleChange}
+                                label="Fall"
+                                />
 
-                    <input 
-                    required
-                    type="radio"
-                    name="travel_locale"
-                    id="Country"
-                    value="Country"
-                    checked={formData.travel_locale === "Country"}
-                    onChange={handleChange}
-                    />
-                    <label htmlFor="Country">Country</label><br/>
-                </div>
-                <div>
-                    <label>Ideal Type of Travel:</label><br />
-                    <input 
-                    required
-                    type="radio"
-                    name="travel_classification"
-                    value="Adventure"
-                    id="Adventure"
-                    checked={formData.travel_classification === "Adventure"}
-                    onChange={handleChange}
-                    />
-                    <label htmlFor="Adventure">Adventure</label><br/>
+                                <Form.Check 
+                                required
+                                type="radio"
+                                name="travel_season"
+                                id="Winter"
+                                value="Winter"
+                                checked={formData.travel_season === "Winter"}
+                                onChange={handleChange}
+                                label="Winter"
+                                />
+                            </Col>
 
-                    <input 
-                    required
-                    type="radio"
-                    name="travel_classification"
-                    value="Culture"
-                    id="Culture"
-                    checked={formData.travel_classification === "Culture"}
-                    onChange={handleChange}
-                    />
-                    <label htmlFor="Culture">Culture</label><br/>
-                </div>
-                <div>
-                    <label>Typical Travel Budget:</label><br />
-                    <input 
-                    required
-                    type="radio"
-                    name="budget"
-                    id="1"
-                    value="1"
-                    checked={String(formData.budget) === "1"}
-                    onChange={handleChange}
-                    />
-                    <label htmlFor="1">$</label><br/>
+                            <Col>
+                                <Form.Label>Typical Travel Budget:</Form.Label>
+                                <Form.Check 
+                                required
+                                type="radio"
+                                name="budget"
+                                id="1"
+                                value="1"
+                                checked={String(formData.budget) === "1"}
+                                onChange={handleChange}
+                                label="$"
+                                />
 
-                    <input 
-                    required
-                    type="radio"
-                    name="budget"
-                    id="2"
-                    value="2"
-                    checked={String(formData.budget) === "2"}
-                    onChange={handleChange}
-                    />
-                    <label htmlFor="2">$$</label><br/>
+                                <Form.Check 
+                                required
+                                type="radio"
+                                name="budget"
+                                id="2"
+                                value="2"
+                                checked={String(formData.budget) === "2"}
+                                onChange={handleChange}
+                                label="$$"
+                                />
 
-                    <input 
-                    required
-                    type="radio"
-                    name="budget"
-                    id="3"
-                    value="3"
-                    checked={String(formData.budget) === "3"}
-                    onChange={handleChange}
-                    />
-                    <label htmlFor="3">$$$</label><br/>
+                                <Form.Check 
+                                required
+                                type="radio"
+                                name="budget"
+                                id="3"
+                                value="3"
+                                checked={String(formData.budget) === "3"}
+                                onChange={handleChange}
+                                label="$$$"
+                                />
 
-                    <input 
-                    required
-                    type="radio"
-                    name="budget"
-                    id="4"
-                    value="4"
-                    checked={String(formData.budget) === "4"}
-                    onChange={handleChange}
-                    />
-                    <label htmlFor="4">$$$$</label><br />
-                    <input type="submit" value="Submit" />
-                </div>
-            </form>
-        </div>
+                                <Form.Check 
+                                required
+                                type="radio"
+                                name="budget"
+                                id="4"
+                                value="4"
+                                checked={String(formData.budget) === "4"}
+                                onChange={handleChange}
+                                label="$$$$"
+                                />
+                            </Col>
+                        </Row>
+
+                        <Row className="radioRow">
+                            <Col>
+                                <Form.Label>Ideal Travel Locale:</Form.Label>
+                                <Form.Check 
+                                required
+                                type="radio"
+                                name="travel_locale"
+                                id="City"
+                                value="City"
+                                checked={formData.travel_locale === "City"}
+                                onChange={handleChange}
+                                label="City"
+                                />
+
+                                <Form.Check 
+                                required
+                                type="radio"
+                                name="travel_locale"
+                                id="Country"
+                                value="Country"
+                                checked={formData.travel_locale === "Country"}
+                                onChange={handleChange}
+                                label="Country"
+                                />
+                            </Col>
+                            <Col>
+                                <Form.Label>Ideal Type of Travel:</Form.Label>
+                                <Form.Check 
+                                required
+                                type="radio"
+                                name="travel_classification"
+                                value="Adventure"
+                                id="Adventure"
+                                checked={formData.travel_classification === "Adventure"}
+                                onChange={handleChange}
+                                label="Adventure"
+                                />
+
+                                <Form.Check 
+                                required
+                                type="radio"
+                                name="travel_classification"
+                                value="Culture"
+                                id="Culture"
+                                checked={formData.travel_classification === "Culture"}
+                                onChange={handleChange}
+                                label="Culture"
+                                />
+                            </Col>
+                        </Row>
+                        <Row style={{justifyContent: 'center', marginTop: '0px', marginBottom: '0px'}}>
+                            <Form.Control id="questionnaireSubmit" className="formSubmit" type="submit" value="Submit" />
+                        </Row>
+                    </Container>
+                </Form>
+            </Container>
+        </Container>
     )
   }
   

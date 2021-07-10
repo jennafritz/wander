@@ -1,11 +1,18 @@
 import ItineraryDetails from '../Components/ItineraryDetails'
 import ItineraryPhotoGallery from '../Components/ItineraryPhotoGallery'
 import {useHistory, useLocation} from 'react-router-dom'
+import { createUserItinerary } from '../reducers.js/userItinerariesReducer'
+import { useDispatch, useSelector } from 'react-redux'
+import { fetchAllItineraries, fetchMyItineraries } from '../reducers.js/itinerariesReducer'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 
 function ItineraryDetailsContainer() {
+
+    const user = useSelector(state => state.user.currentUser)
+
+    let dispatch = useDispatch()
 
     let history = useHistory()
     let location = useLocation()
@@ -36,7 +43,7 @@ function ItineraryDetailsContainer() {
                     <Row as ="h4" id="itineraryDescription" className="itineraryDetailHeaderRow">
                         {itinerary.description}
                     </Row>
-                    <Row>
+                    <Row id="itineraryCategoryRow">
                         <Col as="h5">Destination: {itinerary.destination}</Col>
                         <Col as="h5">Trip Length: {itinerary.length} Days</Col>
                         <Col as="h5">Locale: {itinerary.locale}</Col>
@@ -55,8 +62,22 @@ function ItineraryDetailsContainer() {
                         </Col>
                     </Row>
                 </Container>
-                {/* <h1>Itinerary Details Container</h1> */}
-                <button onClick={() => history.goBack()}>Go Back</button>
+
+                <Row id="itineraryDetailsButtonRow">
+                    {(user.premium && !!mine === false) ? <button id="saveItineraryButton" className="defaultButton" onClick={() => {
+                        dispatch(createUserItinerary({user_id: user.id, itinerary_id: itinerary.id})).then(response => {
+                            if(response.error){
+                                alert(response.payload)
+                                return response.payload
+                            } else {
+                                alert("This itinerary has been saved to your account. Happy Wandering!")
+                                dispatch(fetchAllItineraries())
+                                dispatch(fetchMyItineraries(user.id))
+                            }
+                        })
+                    }}>Save Itinerary</button> : null}
+                    <button id="goBackButton" className="defaultButton" onClick={() => history.goBack()}>Go Back</button>
+            </Row>
             </Container>
         </Container>
     )
