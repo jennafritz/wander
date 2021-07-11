@@ -449,18 +449,18 @@ Photo.create(url: "https://pyxis.nymag.com/v1/imgs/efd/d35/08d678d196d9cb53dbf35
 # USER ITINERARIES
 puts "Seeding UserItineraries..."
 # Erika's
-UserItinerary.create(user_id: erika.id, itinerary_id: spring_in_vegas.id)
-UserItinerary.create(user_id: erika.id, itinerary_id: fall_in_romania.id)
-UserItinerary.create(user_id: erika.id, itinerary_id: winter_in_north_fork.id)
-UserItinerary.create(user_id: erika.id, itinerary_id: winter_in_newport.id)
-UserItinerary.create(user_id: erika.id, itinerary_id: summer_in_boston.id)
-UserItinerary.create(user_id: erika.id, itinerary_id: spring_in_philadelphia.id)
-UserItinerary.create(user_id: erika.id, itinerary_id: winter_in_brooklyn.id)
+UserItinerary.create(user_id: erika.id, itinerary_id: spring_in_vegas.id, past: true)
+UserItinerary.create(user_id: erika.id, itinerary_id: fall_in_romania.id, past: true)
+UserItinerary.create(user_id: erika.id, itinerary_id: winter_in_north_fork.id, past: true)
+UserItinerary.create(user_id: erika.id, itinerary_id: winter_in_newport.id, past: true)
+UserItinerary.create(user_id: erika.id, itinerary_id: summer_in_boston.id, past: false)
+UserItinerary.create(user_id: erika.id, itinerary_id: spring_in_philadelphia.id, past: false)
+UserItinerary.create(user_id: erika.id, itinerary_id: winter_in_brooklyn.id, past: false)
 
 
 # Jenna's
-UserItinerary.create(user_id: jenna.id, itinerary_id: summer_in_rome.id)
-UserItinerary.create(user_id: jenna.id, itinerary_id: summer_in_london.id)
+UserItinerary.create(user_id: jenna.id, itinerary_id: summer_in_rome.id, past: true)
+UserItinerary.create(user_id: jenna.id, itinerary_id: summer_in_london.id, past: true)
 
 
 

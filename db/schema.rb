@@ -59,6 +59,7 @@ ActiveRecord::Schema.define(version: 2021_06_29_203753) do
   create_table "user_itineraries", force: :cascade do |t|
     t.integer "user_id"
     t.integer "itinerary_id"
+    t.boolean "past"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

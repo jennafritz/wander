@@ -40,14 +40,14 @@ function App() {
 
   return (
     <Router>
-      {/* <GoogleMapProvider
+      <GoogleMapProvider
       googleMapsAPIKey={process.env.REACT_APP_MAPS_API_KEY}
       libraries={['places']}
       mapContainer={mapContainer}
       onLoad={map => {
         map.setZoom(4)
       }}
-      > */}
+      >
       <div>
         <Route exact path="/" render={() => <HomePageContainer />} />
         <Route exact path="/login" render={(routerProps) => <LoginModalContainer />} />
@@ -61,10 +61,10 @@ function App() {
         <Route exact path="/profile" render={() => <ProfilePageContainer />} />
         <Route exact path="/itineraryDetails" render={() => <ItineraryDetailsContainer />} />
       </div>
-      {/* <React.StrictMode>
+      <React.StrictMode>
         <MapCanvas ref={mapRef} />
       </React.StrictMode>
-      </GoogleMapProvider> */}
+      </GoogleMapProvider>
     </Router>
   );
   

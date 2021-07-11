@@ -2,6 +2,7 @@ import {useHistory} from 'react-router-dom'
 import {useSelector} from 'react-redux'
 import {useEffect, useState} from 'react'
 import SaveItineraryModal from '../Components/SaveItineraryModal'
+import NoCreditsModal from '../Components/NoCreditsModal'
 import Heart from '../heart_icon.png'
 import Card from 'react-bootstrap/Card'
 
@@ -12,11 +13,15 @@ function ItineraryThumbnailContainer({itinerary, parent}) {
     const myItineraries = useSelector(state => state.itineraries.myItineraries)
     const user = useSelector(state => state.user.currentUser)
 
-    const [modalShow, setModalShow] = useState(false);
+    const [saveModalShow, setSaveModalShow] = useState(false);
+    const [noCreditsModalShow, setNoCreditsModalShow] = useState(false)
     
     let mine = myItineraries.find(myItinerary => myItinerary.id === itinerary.id)
     return (
-        <Card id="itineraryCard" className={parent === "ItineraryListContainer" || parent === "RecItinerariesListContainer" || parent === "MyJourneysListContainer" ? "cardPadding" : null}>
+        <Card id="itineraryCard" 
+        // className="cardPadding"
+        className={parent === "ItineraryListContainer" || parent === "RecItinerariesListContainer" || parent === "MyJourneysListContainerPast" || parent === "MyJourneysListContainerFuture" ? "cardPadding" : null}
+        >
             {/* <h1>Itinerary Thumbnail Container</h1> */}
             {photos.length > 0 ? <Card.Img id="itineraryCardImg" src={photos[0].url} height="200px"/> : null}<br/>
             <Card.Title>{itinerary.name}</Card.Title>
@@ -31,14 +36,17 @@ function ItineraryThumbnailContainer({itinerary, parent}) {
                 } else {
                     if(mine){
                         history.push(({pathname: "/itineraryDetails", state: {itinerary, photos, mine}}))
-                    } else {
-                        setModalShow(true)
+                    } else if(user.credits > 0) {
+                        setSaveModalShow(true)
+                    } else if(user.credits < 0){
+                        setNoCreditsModalShow(true)
                     }
                 }
             }
             }>View Details</button>
             </Card.Footer>
-            <SaveItineraryModal itinerary={itinerary} photos={photos} show={modalShow} onHide={() => setModalShow(false)} />
+            <SaveItineraryModal itinerary={itinerary} photos={photos} show={saveModalShow} onHide={() => setSaveModalShow(false)} />
+            <NoCreditsModal show={noCreditsModalShow} onHide={() => setNoCreditsModalShow(false)} />
         </Card>
     )
   }

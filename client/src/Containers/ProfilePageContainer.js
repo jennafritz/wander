@@ -1,5 +1,6 @@
 import RecItinerariesPreviewContainer from './RecItinerariesPreviewContainer'
-import MyItinerariesPreviewContainer from './MyItinerariesPreviewContainer'
+import MyPastItinerariesPreviewContainer from './MyPastItinerariesPreviewContainer'
+import MyFutureItinerariesPreviewContainer from './MyFutureItinerariesPreviewContainer'
 import Profile from '../Components/Profile'
 import NavBar from '../Components/NavBarComponent'
 import Container from 'react-bootstrap/esm/Container'
@@ -11,7 +12,8 @@ function ProfilePageContainer() {
             <NavBar />
             {/* <h1>Profile Page Container</h1> */}
             <Profile />
-            <MyItinerariesPreviewContainer />
+            <MyPastItinerariesPreviewContainer />
+            <MyFutureItinerariesPreviewContainer />
             <RecItinerariesPreviewContainer />
         </Container>
     )

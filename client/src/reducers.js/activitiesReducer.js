@@ -32,7 +32,9 @@ const activitiesSlice = createSlice({
     name: "activities",
     initialState,
     reducers: {
-
+      clearActivities(state, action){
+        return initialState
+      }
     },
     extraReducers: {
         [submitItineraryActivities.fulfilled](state, action){
@@ -44,5 +46,6 @@ const activitiesSlice = createSlice({
     }
 })
 
+export const {clearActivities} = activitiesSlice.actions
 export default activitiesSlice.reducer
 

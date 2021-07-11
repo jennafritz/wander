@@ -22,9 +22,11 @@ function RecItinerariesListContainer() {
                     <Col as="h1">Adventures Recommended For You</Col>
                 </Row>
             <Container fluid id="recItineraryListThumbnailContainer">
-                <Row md={4}>
-                    {recommendedItineraries.map(itinerary => <ItineraryThumbnailContainer parent="RecItinerariesListContainer" itinerary={itinerary} mine={false}/>)}
-                </Row>
+               
+                    {recommendItineraries.length > 0
+                    ?  <Row md={4}> {recommendedItineraries.map(itinerary => <ItineraryThumbnailContainer parent="RecItinerariesListContainer" itinerary={itinerary} mine={false}/>)} </Row>
+                    : <Col as="h4">Looks like there are no good matches for you right now. Our catalog is always being updated, though, so please check back again soon.</Col>}
+                
             </Container>
             </Container>
         </Container>

@@ -2,10 +2,11 @@ import {useState} from 'react'
 import { fetchUser } from '../reducers.js/userReducer'
 import {useDispatch, useSelector} from 'react-redux'
 import {useHistory} from 'react-router-dom'
-import {fetchAllItineraries, fetchMyItineraries, recommendItineraries} from '../reducers.js/itinerariesReducer'
+import {fetchAllItineraries, fetchMyFutureItineraries, fetchMyItineraries, fetchMyPastItineraries, recommendItineraries} from '../reducers.js/itinerariesReducer'
 import { fetchAllPhotos } from '../reducers.js/photosReducer'
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/esm/Container'
+// import { fetchMyUserItineraries } from '../reducers.js/userItinerariesReducer'
 
 function LoginForm() {
 
@@ -33,8 +34,11 @@ function LoginForm() {
             } else {
                 let loggedInUser = response.payload.user
                 localStorage.token = response.payload.token
-                dispatch(fetchAllItineraries()).then(() => dispatch(fetchMyItineraries(loggedInUser.id))).then(() => dispatch(recommendItineraries(loggedInUser)))
+                dispatch(fetchAllItineraries()).then(() => dispatch(fetchMyItineraries(loggedInUser.id))).then(() => dispatch(fetchMyPastItineraries(loggedInUser.id))).then(() => dispatch(fetchMyFutureItineraries(loggedInUser.id))).then(() => dispatch(recommendItineraries(loggedInUser)))
                 dispatch(fetchAllPhotos())
+                // dispatch(fetchMyUserItineraries(loggedInUser.id))
+                
+                
                 if(loggedInUser.id && loggedInUser.travel_season){
                     history.push("/profile")
                 } else if(loggedInUser.id){

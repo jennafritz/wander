@@ -44,6 +44,30 @@ rescue_from ActiveRecord::RecordNotFound, with: :not_found
         render json: itineraries, status: :accepted
     end
 
+    def get_my_past_itineraries
+        user = User.find(params[:userId])
+        user_itineraries = user.user_itineraries
+        past_user_itineraries = user_itineraries.filter do |user_itinerary|
+            user_itinerary.past == true
+        end
+        past_itineraries = past_user_itineraries.map do |past_user_itinerary|
+            past_user_itinerary.itinerary
+        end
+        render json: past_itineraries, status: :accepted
+    end
+
+    def get_my_future_itineraries
+        user = User.find(params[:userId])
+        user_itineraries = user.user_itineraries
+        future_user_itineraries = user_itineraries.filter do |user_itinerary|
+            user_itinerary.past == false
+        end
+        future_itineraries = future_user_itineraries.map do |future_user_itinerary|
+            future_user_itinerary.itinerary
+        end
+        render json: future_itineraries, status: :accepted
+    end
+
     def update
         user = User.find(params[:userId])
         user.update!(user_params)

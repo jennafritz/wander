@@ -19,15 +19,23 @@
 
 //   const user = useSelector(state => state.user.currentUser) 
 //   const myItineraries = useSelector(state => state.itineraries.myItineraries)
+//   const myPastItineraries = useSelector(state => state.itineraries.myPastItineraries)
+//   const myFutureItineraries = useSelector(state => state.itineraries.myFutureItineraries)
 //   const {map} = useGoogleMap()
 
 //   let myMarker = {title: "Me", coords: {lat: parseFloat(user.latitude), lng: parseFloat(user.longitude)}}
 
-//   let mapMarkers = []
+//   let pastMapMarkers = []
 
-//     myItineraries.forEach(itinerary => {
-//         mapMarkers = [...mapMarkers, {title: itinerary.destination, coords: {lat: parseFloat(itinerary.latitude), lng: parseFloat(itinerary.longitude)}}]
+//     myPastItineraries.forEach(itinerary => {
+//         pastMapMarkers = [...pastMapMarkers, {title: itinerary.destination, coords: {lat: parseFloat(itinerary.latitude), lng: parseFloat(itinerary.longitude)}}]
 //     })  
+
+//     let futureMapMarkers = []
+
+//     myFutureItineraries.forEach(itinerary => {
+//         futureMapMarkers = [...futureMapMarkers, {title: itinerary.destination, coords: {lat: parseFloat(itinerary.latitude), lng: parseFloat(itinerary.longitude)}}]
+//     })
 
 //     const addMyMarker = (map) => {
 //       const marker = new window.google.maps.Marker({
@@ -40,8 +48,8 @@
 //       })
 //     }
 
-//     const addTripMarkers = (map) => {
-//       mapMarkers.forEach((link, index) => {
+//     const addPastMarkers = (map) => {
+//       pastMapMarkers.forEach((link, index) => {
 //           const marker = new window.google.maps.Marker({
 //               map,
 //               position: link.coords,
@@ -53,6 +61,19 @@
 //       })
 //   }
 
+//   const addFutureMarkers = (map) => {
+//     futureMapMarkers.forEach((link, index) => {
+//         const marker = new window.google.maps.Marker({
+//             map,
+//             position: link.coords,
+//             title: link.title,
+//             icon: {
+//               url: "http://maps.google.com/mapfiles/ms/icons/green-dot.png"
+//             }
+//         })
+//     })
+// }
+
 //   return (
 //     <Container fluid>
 //       <GoogleMapProvider
@@ -63,7 +84,8 @@
 //       onLoad={map => {
 //           map.setZoom(2)
 //           addMyMarker(map)
-//           addTripMarkers(map)
+//           addPastMarkers(map)
+//           addFutureMarkers(map)
 //       }}
 //       >
 //         <React.StrictMode>

@@ -134,6 +134,10 @@ html body{
   align-items: center;
 }
 
+.navbar-light #navBarContainer .navbar-nav.navBarSettings .active>.nav-link, .navbar-light .navbar-nav .nav-link.active, .navbar-light .navbar-nav .nav-link.show, .navbar-light .navbar-nav .show>.nav-link{
+  color: midnightblue !important;
+}
+
 .container.spaceBetween{
   justify-content: space-between;
 }
@@ -226,6 +230,13 @@ html body{
   width: 6rem;
 }
 
+#markTraveledButton{
+  font-size: 1.25rem;
+  width: 12rem;
+  margin-left: 3rem;
+  margin-right: 3rem;
+}
+
 #profileInfoContainer{
   height: 100%;
   text-align: center;
@@ -309,6 +320,53 @@ div.container-fluid.containerWidth{
 
 #filterModal form div.container{
   padding-bottom: 1rem;
+}
+
+#saveItineraryModal .modal-content{
+  background-color: lavender;
+}
+
+#randomItineraryModal .modal-content{
+  background-color: lavender;
+}
+
+#saveItinerarySaveButton{
+  font-size: 1rem;
+  width: 6rem;
+}
+
+#saveItineraryCancelButton{
+  font-size: 1rem;
+  width: 6rem;
+}
+
+#tryAgainButton{
+  font-size: 1rem;
+  width: 8rem;
+}
+
+#randomItineraryModal .modal-body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#randomItineraryModal .modal-footer{
+  display: flex;
+  flex-direction: column;
+  justify-content: center
+}
+
+#randomItineraryModal .modal-title{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-right: 0.5rem;
+}
+
+#randomItineraryModal .modal-header button.close{
+  margin-left: 0rem;
+  padding-left: 0rem;
 }
 
 #itineraryListContainer{
@@ -432,7 +490,7 @@ form#trip-form div.innerFormWidth.row{
 
 #carouselImageCaption{
   width: auto;
-  color: black;
+  color: midnightblue;
   margin-left: auto;
   margin-right: auto;
 }
@@ -526,6 +584,11 @@ form#trip-form div.innerFormWidth.row{
 #avatarFormContainer .row{
   margin-top: 2rem;
   margin-bottom: 2rem;
+}
+
+#myJourneysListContainer .row.thumbnailRow{
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 
 

@@ -71,7 +71,9 @@ const photosSlice = createSlice({
     name: "photos",
     initialState,
     reducers: {
-
+      clearPhotos(state, action){
+        return initialState
+      }
     },
     extraReducers: {
         [fetchAllPhotos.fulfilled](state, action){
@@ -89,5 +91,6 @@ const photosSlice = createSlice({
     }
 })
 
+export const {clearPhotos} = photosSlice.actions
 export default photosSlice.reducer
 

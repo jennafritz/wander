@@ -15,7 +15,9 @@ function RecItinerariesPreviewContainer() {
             {/* <h1>Recommended Itineraries Preview Container</h1> */}
             <Row as="h1">Recommended Trips</Row>
             <CardDeck>
-                {firstFour.map(itinerary => <ItineraryThumbnailContainer parent="RecItinerariesPreviewContainer" itinerary={itinerary} key={itinerary.id} mine={false}/>)}           
+                {firstFour.length > 0
+                ? firstFour.map(itinerary => <ItineraryThumbnailContainer parent="RecItinerariesPreviewContainer" itinerary={itinerary} key={itinerary.id} mine={false}/>)
+                : <Col as="h4">Looks like you've saved all the itineraries in our catalog!</Col>}           
             </CardDeck>
         </Container>
     )

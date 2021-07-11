@@ -1,12 +1,17 @@
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 // import ItineraryFilterForm from './ItineraryFilterForm';
+import {clearFilters, filterItineraries} from '../reducers.js/itinerariesReducer'
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/Container';
 import { useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 function ItineraryFilterModal(props) {
 
+    const dispatch = useDispatch()
+
+    const[removeSaved, setRemoveSaved] = useState(false)
 
     const [criteria, setCriteria] = useState({
         season: null,
@@ -22,6 +27,10 @@ function ItineraryFilterModal(props) {
             ...criteria,
             [key]: event.target.value
         })
+    }
+
+    const handleCheckbox = () => {
+        setRemoveSaved(!removeSaved)
     }
 
     return (
@@ -40,7 +49,8 @@ function ItineraryFilterModal(props) {
             <Container>
             <Form onSubmit={(event) => {
                 event.preventDefault()
-                props.filterItineraries(criteria)
+                dispatch(filterItineraries({criteria, removeSaved}))
+                props.onHide()
                 }}>
                 <Container>
                     <Form.Label>Ideal Travel Season:</Form.Label>
@@ -238,6 +248,17 @@ function ItineraryFilterModal(props) {
                         label="$$$$"
                         />
                     </Form.Group>
+
+                    <Form.Group style={{fontWeight: 'bold', marginTop: '2rem'}}>
+                        <Form.Check 
+                        type="checkbox"
+                        name="removeSaved"
+                        id="removeSaved"
+                        checked={removeSaved}
+                        onChange={handleCheckbox}
+                        label="Remove My Saved Itineraries"
+                        />
+                    </Form.Group>
                 </Container>
                     <Form.Group style={{display: 'flex', justifyContent: 'center', marginBottom: '0px'}}>
                         <Form.Control id="filterSubmit" className="formSubmit" type="submit" value="Submit" />
@@ -247,7 +268,7 @@ function ItineraryFilterModal(props) {
           </Modal.Body>
           <Modal.Footer style={{justifyContent: 'center'}}>
             <button id="clearFiltersButton" className="defaultButton" onClick={() => {
-                props.clearFilters()
+                dispatch(clearFilters())
                 setCriteria({
                     season: null,
                     length: null,
@@ -255,6 +276,7 @@ function ItineraryFilterModal(props) {
                     classification: null,
                     budget: null
                 })
+                props.onHide()
             }}>Clear</button>
           </Modal.Footer>
         </Modal>

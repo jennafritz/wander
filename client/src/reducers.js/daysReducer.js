@@ -67,11 +67,13 @@ export const submitItineraryDays = createAsyncThunk("days/submitItineraryDays", 
 
 // Reducer
 
-const photosSlice = createSlice({
+const daysSlice = createSlice({
     name: "days",
     initialState,
     reducers: {
-
+      clearDays(state, action){
+        return initialState
+      }
     },
     extraReducers: {
         [fetchAllDays.fulfilled](state, action){
@@ -89,4 +91,5 @@ const photosSlice = createSlice({
     }
 })
 
-export default photosSlice.reducer
+export const {clearDays} = daysSlice.actions
+export default daysSlice.reducer

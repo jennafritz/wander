@@ -106,7 +106,9 @@ const userSlice = createSlice({
     name: "user",
     initialState,
     reducers: {
-
+        clearUser(state, action){
+            return initialState
+        }
     },
     extraReducers: {
         [fetchUser.fulfilled](state, action){
@@ -134,4 +136,5 @@ const userSlice = createSlice({
     }
 })
 
+export const {clearUser} = userSlice.actions
 export default userSlice.reducer

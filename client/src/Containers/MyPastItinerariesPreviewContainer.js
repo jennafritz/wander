@@ -1,14 +1,23 @@
 import ItineraryThumbnailContainer from './ItineraryThumbnailContainer'
-import {useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
+import { useEffect } from 'react'
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import CardDeck from 'react-bootstrap/CardDeck'
+import { fetchMyPastItineraries } from '../reducers.js/itinerariesReducer'
 
-function MyItinerariesPreviewContainer() {
+function MyPastItinerariesPreviewContainer() {
 
-    const myItineraries = useSelector(state => state.itineraries.myItineraries)
-    let firstFour = myItineraries.slice(0, 4)
+    const dispatch = useDispatch()
+
+    const myPastItineraries = useSelector(state => state.itineraries.myPastItineraries)
+    
+    useEffect(() => {
+        dispatch(fetchMyPastItineraries)
+    }, [myPastItineraries])
+
+    let firstFour = myPastItineraries.slice(0, 4)
 
     return (
         <Container fluid className="containerWidth" >
@@ -23,4 +32,4 @@ function MyItinerariesPreviewContainer() {
     )
   }
   
-  export default MyItinerariesPreviewContainer;
+  export default MyPastItinerariesPreviewContainer;

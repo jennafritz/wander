@@ -3,7 +3,7 @@ import {useState} from 'react'
 import ActivitiesForm from './ActivitiesForm'
 import ImagesForm from "./ImagesForm";
 import {useDispatch, useSelector} from 'react-redux'
-import {submitItineraryDetails} from '../reducers.js/itinerariesReducer'
+import {createFullTrip, submitItineraryDetails} from '../reducers.js/itinerariesReducer'
 import {submitItineraryDays} from '../reducers.js/daysReducer'
 import {submitItineraryPhotos} from '../reducers.js/photosReducer'
 import {submitItineraryActivities} from '../reducers.js/activitiesReducer'
@@ -26,7 +26,7 @@ function SubmitATripForm() {
 
     const inputRef = useRef(null)
     // const [inputValue, setInputValue] = useState('')
-    // const {map} = useGoogleMap()
+    const {map} = useGoogleMap()
 
     const [formData, setFormData] = useState({
         name: "",
@@ -60,7 +60,7 @@ function SubmitATripForm() {
             // setInputValue(place.formatted_address || place.name)
             setFormData({
                 ...formData,
-                destination: place.formatted_address || place.name,
+                destination: place.name || place.formatted_address,
                 latitude: place.geometry.location.lat(),
                 longitude: place.geometry.location.lng()
             })
@@ -71,15 +71,15 @@ function SubmitATripForm() {
         inputRef.current && inputRef.current.focus()
     }
 
-    // useAutocomplete({
-    //     inputField: inputRef && inputRef.current,
-    //     // options: "", 
-    //     // {
-    //     //     fields: ['formatted_address', 'geometry', 'name', 'place_id', 'url']
-    //     // },
-    //     map,
-    //     onPlaceChanged
-    //   });
+    useAutocomplete({
+        inputField: inputRef && inputRef.current,
+        // options: "", 
+        // {
+        //     fields: ['formatted_address', 'geometry', 'name', 'place_id', 'url']
+        // },
+        map,
+        onPlaceChanged
+      });
 
     // Their input change
     // const handleInputChange = (event) => {
@@ -220,6 +220,15 @@ function SubmitATripForm() {
         }
     }
 
+    const handleCreateFullTrip = () => {
+        let fullTripObj = {itinerary: formData, activitiesArray, imagesArray}
+        dispatch(createFullTrip(fullTripObj))
+        // fetch all itineraries
+        // fetch my itineraries (and past and future) - not sure if need to do?
+        // fetch all photos
+        // fetch all days
+    }
+
     // const handleFullSubmit = async () => {
     //     let createdPhotos = []
     //     let createdDays = []
@@ -287,7 +296,8 @@ function SubmitATripForm() {
                     <Form id="trip-form" onSubmit={(event) => {
                         // IF TRIP IS VALID HERE
                         event.preventDefault()
-                        handleFullSubmitAsyncTest()
+                        // handleFullSubmitAsyncTest()
+                        handleCreateFullTrip()
                         console.log("trip form submitted")
                         }}>
                         <Row>
