@@ -3,4 +3,5 @@ class Itinerary < ApplicationRecord
     has_many :users, through: :user_itineraries
     has_many :days
     has_many :photos
+    has_many :reviews
 end

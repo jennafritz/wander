@@ -3,6 +3,7 @@ import activitiesReducer from './reducers.js/activitiesReducer'
 import daysReducer from './reducers.js/daysReducer'
 import itinerariesReducer from './reducers.js/itinerariesReducer'
 import photosReducer from './reducers.js/photosReducer'
+import reviewsReducer from './reducers.js/reviewsReducer'
 import userItinerariesReducer from './reducers.js/userItinerariesReducer'
 import userReducer from './reducers.js/userReducer'
 
@@ -13,7 +14,8 @@ const store = configureStore({
         photos: photosReducer,
         days: daysReducer,
         activities: activitiesReducer,
-        userItineraries: userItinerariesReducer
+        userItineraries: userItinerariesReducer, 
+        reviews: reviewsReducer
     }
 })
 

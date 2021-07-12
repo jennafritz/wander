@@ -23,7 +23,7 @@ function RecItinerariesListContainer() {
                 </Row>
             <Container fluid id="recItineraryListThumbnailContainer">
                
-                    {recommendItineraries.length > 0
+                    {recommendedItineraries.length > 0
                     ?  <Row md={4}> {recommendedItineraries.map(itinerary => <ItineraryThumbnailContainer parent="RecItinerariesListContainer" itinerary={itinerary} mine={false}/>)} </Row>
                     : <Col as="h4">Looks like there are no good matches for you right now. Our catalog is always being updated, though, so please check back again soon.</Col>}
                 

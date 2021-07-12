@@ -33,18 +33,24 @@ function RandomItineraryModal(props) {
           aria-labelledby="contained-modal-title-vcenter"
           centered
         >
+            
           <Modal.Header closeButton >
             <Modal.Title id="contained-modal-title-vcenter" >
-              How about some time in {randomItinerary.destination} this {randomItinerary.season}?
+                {randomItinerary && randomItinerary.id ? `How about some time in ${randomItinerary.destination} this ${randomItinerary.season}?`
+              : `No Itineraries Found`}
             </Modal.Title>
           </Modal.Header>
           <Modal.Body >
+            {randomItinerary && randomItinerary.id ? 
             <ItineraryThumbnailContainer parent="RandomItineraryModal" itinerary={randomItinerary} key={randomItinerary.id}/>
+            : `Looks like you may have saved all the itineraries in our catalog!`}
           </Modal.Body>
-          <Modal.Footer >
+          {randomItinerary && randomItinerary.id ?
+          <Modal.Footer >              
               Not what you had in mind?
             <button id="tryAgainButton" className="defaultButton" onClick={generateRandomItinerary}>Try Again</button>
           </Modal.Footer>
+          : null}
         </Modal>
       );
     }

@@ -13,6 +13,7 @@ Itinerary.destroy_all
 Photo.destroy_all
 UserItinerary.destroy_all
 User.destroy_all
+Review.destroy_all
 
 # USERS
 puts "Seeding Users..."
@@ -20,6 +21,7 @@ jenna = User.create(username: "jenna", password: "admin", picture: "https://imag
 
 erika = User.create(username: "erika", password: "admin", picture: "https://image.freepik.com/free-photo/scenic-view-sunrise-mountains-carpathian-ukraine_146671-19541.jpg", latitude: 40.784464408532635, longitude: -73.97770002620597, travel_season: "Spring", travel_length: 14, travel_locale: "Country", travel_classification: "Culture", budget: 2, credits: 5, premium: true)
 
+helen = User.create(username: "helen", password: "admin", picture: "https://image.freepik.com/free-photo/scenic-view-sunrise-mountains-carpathian-ukraine_146671-19541.jpg", latitude: 40.24546575735813, longitude: -74.84552948589332, travel_season: "Winter", travel_length: 4, travel_locale: "City", travel_classification: "Culture", budget: 4, credits: 5, premium: false)
 
 
 # ITINERARIES
@@ -443,6 +445,16 @@ Photo.create(url: "https://pyxis.nymag.com/v1/imgs/efd/d35/08d678d196d9cb53dbf35
 
 
 
+# REVIEWS (Tests for now)
+puts "Seeding Reviews..."
+Review.create(comment: "Had the best time ever! The Cirque du Soleil show was a definite highlight, but relaxing at the poolside cabanas was also amazing!", rating: nil, user_id: erika.id, itinerary_id: spring_in_vegas.id)
+Review.create(comment: "The old-fashioned arcade-style bar was such a hidden gem! Such a great suggestion!", rating: nil, user_id: erika.id, itinerary_id: winter_in_newport.id)
+Review.create(comment: "Simply spectacular and not terribly crowded at this time of year. The mansion tours are the best part of the trip!", rating: nil, user_id: helen.id, itinerary_id: winter_in_newport.id)
+Review.create(comment: "Even if you're not a typical opera fan, you have to include it on your trip just for the excellent experience!", rating: nil, user_id: helen.id, itinerary_id: summer_in_london.id)
+Review.create(comment: "Seeing a show at the West End is a must! We had the privilege of going to Romeo & Juliet and it was the most incredible Shakespeare performance we had ever seen.", rating: nil, user_id: jenna.id, itinerary_id: summer_in_london.id)
+Review.create(comment: "They weren't kidding when they said it would be a whirlwind, but we're so glad we got to see and experience everything we did during our trip!", rating: nil, user_id: jenna.id, itinerary_id: summer_in_rome.id)
+
+
 
 
 
@@ -461,6 +473,11 @@ UserItinerary.create(user_id: erika.id, itinerary_id: winter_in_brooklyn.id, pas
 # Jenna's
 UserItinerary.create(user_id: jenna.id, itinerary_id: summer_in_rome.id, past: true)
 UserItinerary.create(user_id: jenna.id, itinerary_id: summer_in_london.id, past: true)
+
+
+# Helen's
+UserItinerary.create(user_id: helen.id, itinerary_id: summer_in_london.id, past: true)
+UserItinerary.create(user_id: helen.id, itinerary_id: winter_in_newport.id, past: true)
 
 
 

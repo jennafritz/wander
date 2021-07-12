@@ -17,7 +17,7 @@ function RecItinerariesPreviewContainer() {
             <CardDeck>
                 {firstFour.length > 0
                 ? firstFour.map(itinerary => <ItineraryThumbnailContainer parent="RecItinerariesPreviewContainer" itinerary={itinerary} key={itinerary.id} mine={false}/>)
-                : <Col as="h4">Looks like you've saved all the itineraries in our catalog!</Col>}           
+                : <Col as="h4">Looks like there are no good matches for you right now. Our catalog is always being updated, though, so please check back again soon.</Col>}           
             </CardDeck>
         </Container>
     )

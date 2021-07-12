@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   
+  resources :reviews, only: [:create]
+  get "/itinerary_reviews", to: "reviews#get_itinerary_reviews"
   resources :photos, only: [:index, :create]
   get "/itinerary_photos", to: "photos#get_itinerary_photos"
   resources :activities, only: [:create]

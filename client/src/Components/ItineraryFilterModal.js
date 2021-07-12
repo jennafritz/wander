@@ -269,6 +269,7 @@ function ItineraryFilterModal(props) {
           <Modal.Footer style={{justifyContent: 'center'}}>
             <button id="clearFiltersButton" className="defaultButton" onClick={() => {
                 dispatch(clearFilters())
+                setRemoveSaved(false)
                 setCriteria({
                     season: null,
                     length: null,
