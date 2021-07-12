@@ -285,6 +285,7 @@ html body{
   background-color: lavender;
   border: none;
   max-width: 25vw;
+  margin-bottom: 2rem;
 }
 
 #itineraryCardBody{
@@ -298,6 +299,10 @@ html body{
   justify-content: center;
 }
 
+#itineraryCardTitle{
+  margin-top: 1.5rem;
+}
+
 #itineraryCardFooter{
   padding: 0px;
   background-color: lavender;
@@ -306,6 +311,28 @@ html body{
 
 #itineraryCardImg{
   object-fit: cover;
+}
+
+#itineraryMatch{
+  z-index: 1; 
+  position: absolute; 
+  top: 0.5rem; 
+  right: 0.5rem; 
+  text-align: right; 
+  width: auto; 
+  background-color: rgb(255, 255, 255, 0.8); 
+  padding-left: 0.5rem; 
+  padding-right: 0.5rem; 
+  border-radius: 12rem;
+  padding-top: 0.15rem;
+  padding-bottom: 0.15rem;
+}
+
+#itineraryHeart{
+  z-index: 1; 
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
 }
 
 div.container-fluid.containerWidth{
@@ -378,6 +405,7 @@ div.container-fluid.containerWidth{
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-bottom: -2rem;
 }
 
 #randomItineraryModal .modal-footer{

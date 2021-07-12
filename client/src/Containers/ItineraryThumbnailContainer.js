@@ -5,6 +5,7 @@ import SaveItineraryModal from '../Components/SaveItineraryModal'
 import NoCreditsModal from '../Components/NoCreditsModal'
 import Heart from '../heart_icon.png'
 import Card from 'react-bootstrap/Card'
+import Container from 'react-bootstrap/Container'
 
 function ItineraryThumbnailContainer({itinerary, parent}) {
 
@@ -24,12 +25,15 @@ function ItineraryThumbnailContainer({itinerary, parent}) {
         >
             {/* <h1>Itinerary Thumbnail Container</h1> */}
             {photos.length > 0 
-            ? <Card.Img id="itineraryCardImg" src={photos[0].url} height="200px"/> 
+            ? 
+            <Container fluid style={{marginLeft: '0rem', marginRight: '0rem', paddingLeft: '0rem', paddingRight: '0rem', zIndex: '2', position: 'relative'}}>
+                <Card.Img id="itineraryCardImg" src={photos[0].url} height="200px"/> 
+                {parent === "ItineraryListContainer" && mine ? <img src={Heart} width="30px" id="itineraryHeart" /> : null}
+                {parent === "RecItinerariesListContainer" ? <Container as="h6" id="itineraryMatch">{itinerary.match}/5</Container> : null}
+            </Container>
             : null}
-                {parent === "RecItinerariesListContainer" ? <h6>Match: {itinerary.match}/5</h6> : null}
-            <Card.Title>{itinerary.name}</Card.Title>
+            <Card.Title id="itineraryCardTitle">{itinerary.name}</Card.Title>
             <Card.Body id="itineraryCardBody">
-                {parent === "ItineraryListContainer" && mine ? <img src={Heart} width="30px" /> : null}
             </Card.Body>
             <Card.Footer id="itineraryCardFooter">
             <button id="viewDetailsButton" className="defaultButton" onClick={() => {

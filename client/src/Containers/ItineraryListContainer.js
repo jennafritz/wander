@@ -33,7 +33,7 @@ function ItineraryListContainer() {
                     : <Row> <Col as="h3" >We're sorry, it looks like no itineraries match your search criteria. Our catalog is continuously being updated, though, so please try this search again soon.</Col></Row>}
                     <ItineraryFilterModal show={itineraryModalShow} onHide={() => setItineraryModalShow(false)}/>
                 </Container>
-                <Row id="randomItineraryRow" as="h4" >Not sure where you want to wander? Let us surprise you!
+                <Row id="randomItineraryRow" as="h4" >Not sure where to wander? Let us surprise you!
                     <RandomItineraryModal show={randomModalShow} onHide={() => setRandomModalShow(false)}/>
                     <button id="chooseForMeButton" className="defaultButton" onClick={() => setRandomModalShow(true)}>Choose For Me</button>
                 </Row>
