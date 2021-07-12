@@ -23,10 +23,12 @@ function ItineraryThumbnailContainer({itinerary, parent}) {
         className={parent === "ItineraryListContainer" || parent === "RecItinerariesListContainer" || parent === "MyJourneysListContainerPast" || parent === "MyJourneysListContainerFuture" ? "cardPadding" : null}
         >
             {/* <h1>Itinerary Thumbnail Container</h1> */}
-            {photos.length > 0 ? <Card.Img id="itineraryCardImg" src={photos[0].url} height="200px"/> : null}<br/>
+            {photos.length > 0 
+            ? <Card.Img id="itineraryCardImg" src={photos[0].url} height="200px"/> 
+            : null}
+                {parent === "RecItinerariesListContainer" ? <h6>Match: {itinerary.match}/5</h6> : null}
             <Card.Title>{itinerary.name}</Card.Title>
             <Card.Body id="itineraryCardBody">
-                {parent === "RecItinerariesListContainer" ? <h6>Match: {itinerary.match}/5</h6> : null}
                 {parent === "ItineraryListContainer" && mine ? <img src={Heart} width="30px" /> : null}
             </Card.Body>
             <Card.Footer id="itineraryCardFooter">
