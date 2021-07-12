@@ -3,9 +3,10 @@ import {useState} from 'react'
 import ActivitiesForm from './ActivitiesForm'
 import ImagesForm from "./ImagesForm";
 import {useDispatch, useSelector} from 'react-redux'
-import {createFullTrip, submitItineraryDetails} from '../reducers.js/itinerariesReducer'
+import {createFullTrip, fetchAllItineraries, fetchMyItineraries, submitItineraryDetails} from '../reducers.js/itinerariesReducer'
 import {submitItineraryDays} from '../reducers.js/daysReducer'
-import {submitItineraryPhotos} from '../reducers.js/photosReducer'
+import {fetchAllPhotos, submitItineraryPhotos} from '../reducers.js/photosReducer'
+import { fetchAllDays } from "../reducers.js/daysReducer";
 import {submitItineraryActivities} from '../reducers.js/activitiesReducer'
 import {useHistory} from 'react-router-dom'
 import {addCreditToUser} from '../reducers.js/userReducer'
@@ -141,72 +142,72 @@ function SubmitATripForm() {
     // need to implement error message handling for photos and activities!
     // also need to handle adding credits to user and thanking them before pushing them to another page (perhaps profile? maybe a modal that asks them if they want to submit again? or should there be a limit on submissions?)
 
-    const handleFullSubmitAsyncTest = async () => {
-        let numDays = Array(formData.length).fill(null)
-        // debugger
-        let itinerary = await dispatch(submitItineraryDetails(formData)).then(response => {
-            // debugger
-            if(response.error){
-                alert(response.payload)
-                return response.payload
-            } else {
-                // debugger
-                return response.payload
-            }
-        })
-        // debugger
-        let daysArray = numDays.map((day, index) => {
-            // debugger
-            return {"name": `${itinerary.name} Day ${index + 1}`, "number": index + 1, "itinerary_id": itinerary.id}
-        })
-        // debugger
-        let photos = await dispatch(submitItineraryPhotos({itineraryId: itinerary.id, photosArray: imagesArray})).then(response => {
-            // debugger
-            if(response.error){
-                alert(response.payload)
-                return response.payload
-            } else {
-                // debugger
-                return response.payload
-            }
-        })
-        // debugger
-        let days = await dispatch(submitItineraryDays(daysArray)).then(response => {
-            // debugger
-            if(response.error){
-                alert(response.payload)
-                return response.payload
-            } else {
-                // debugger
-                return response.payload
-            }
-        })
-        // debugger
+    // const handleFullSubmitAsyncTest = async () => {
+    //     let numDays = Array(formData.length).fill(null)
+    //     // debugger
+    //     let itinerary = await dispatch(submitItineraryDetails(formData)).then(response => {
+    //         // debugger
+    //         if(response.error){
+    //             alert(response.payload)
+    //             return response.payload
+    //         } else {
+    //             // debugger
+    //             return response.payload
+    //         }
+    //     })
+    //     // debugger
+    //     let daysArray = numDays.map((day, index) => {
+    //         // debugger
+    //         return {"name": `${itinerary.name} Day ${index + 1}`, "number": index + 1, "itinerary_id": itinerary.id}
+    //     })
+    //     // debugger
+    //     let photos = await dispatch(submitItineraryPhotos({itineraryId: itinerary.id, photosArray: imagesArray})).then(response => {
+    //         // debugger
+    //         if(response.error){
+    //             alert(response.payload)
+    //             return response.payload
+    //         } else {
+    //             // debugger
+    //             return response.payload
+    //         }
+    //     })
+    //     // debugger
+    //     let days = await dispatch(submitItineraryDays(daysArray)).then(response => {
+    //         // debugger
+    //         if(response.error){
+    //             alert(response.payload)
+    //             return response.payload
+    //         } else {
+    //             // debugger
+    //             return response.payload
+    //         }
+    //     })
+    //     // debugger
 
-        let activities = await Promise.all(days.map(async day => {
-            // debugger
-            let dayActivities = activitiesArray.filter(activity => activity.day === day.number)
-            let newActivities = await dispatch(submitItineraryActivities({dayId: day.id, activitiesArray: dayActivities})).then(response => {
-                if(response.error){
-                    alert(response.payload)
-                    return response
-                } else {
-                    return response.payload
-                }
-            })
-            return newActivities
-        }))
-        // debugger
+    //     let activities = await Promise.all(days.map(async day => {
+    //         // debugger
+    //         let dayActivities = activitiesArray.filter(activity => activity.day === day.number)
+    //         let newActivities = await dispatch(submitItineraryActivities({dayId: day.id, activitiesArray: dayActivities})).then(response => {
+    //             if(response.error){
+    //                 alert(response.payload)
+    //                 return response
+    //             } else {
+    //                 return response.payload
+    //             }
+    //         })
+    //         return newActivities
+    //     }))
+    //     // debugger
         
-        // need some way to only run this if everything above went through properly.
-        // issue is mainly with activities bc cannot do .then and have different return for error/success
-        if(activities[0][0] && activities[0][0].id){
-            dispatch(addCreditToUser(user))
-            alert("Thank you for contributing to Wander! An itinerary credit has been added to your account - Happy Wandering!")
-            history.push("/profile")
-        }
-        return {itinerary: itinerary, photos: photos, days: days, activities: activities}
-    }
+    //     // need some way to only run this if everything above went through properly.
+    //     // issue is mainly with activities bc cannot do .then and have different return for error/success
+    //     if(activities[0][0] && activities[0][0].id){
+    //         dispatch(addCreditToUser(user))
+    //         alert("Thank you for contributing to Wander! An itinerary credit has been added to your account - Happy Wandering!")
+    //         history.push("/profile")
+    //     }
+    //     return {itinerary: itinerary, photos: photos, days: days, activities: activities}
+    // }
 
     const tripValid = () => {
         let numDays = Array(formData.length).fill(null)
@@ -222,11 +223,26 @@ function SubmitATripForm() {
 
     const handleCreateFullTrip = () => {
         let fullTripObj = {itinerary: formData, activitiesArray, imagesArray}
-        dispatch(createFullTrip(fullTripObj))
-        // fetch all itineraries
-        // fetch my itineraries (and past and future) - not sure if need to do?
-        // fetch all photos
-        // fetch all days
+        if(tripValid()){
+            dispatch(createFullTrip(fullTripObj)).then(response => {
+                if(response.payload && response.payload.id){
+                    dispatch(addCreditToUser(user)).then(() => {
+                        if(user.premium){
+                            alert("Thank you for contributing to Wander!")
+                            history.push("/profile")
+                        } else {
+                            alert("Thank you for contributing to Wander! An itinerary credit has been added to your account - Happy Wandering!")
+                            history.push("/profile")
+                        }
+                    })
+                    dispatch(fetchAllItineraries())
+                    dispatch(fetchAllPhotos())
+                    dispatch(fetchAllDays())
+                }
+            })
+        } else {
+            alert("Each day must have at least two activities.")
+        }
     }
 
     // const handleFullSubmit = async () => {
