@@ -17,6 +17,7 @@ import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/esm/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import AlertComponent from "./AlertComponent";
 
 function SubmitATripForm() {
 
@@ -24,6 +25,8 @@ function SubmitATripForm() {
     const dispatch = useDispatch()
     const user = useSelector(state => state.user.currentUser)
     const userId = user.id
+
+    const [showAlert, setShowAlert] = useState(false)
 
     const inputRef = useRef(null)
     // const [inputValue, setInputValue] = useState('')
@@ -314,7 +317,6 @@ function SubmitATripForm() {
                         event.preventDefault()
                         // handleFullSubmitAsyncTest()
                         handleCreateFullTrip()
-                        console.log("trip form submitted")
                         }}>
                         <Row>
                             <Col>

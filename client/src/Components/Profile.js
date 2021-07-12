@@ -1,10 +1,12 @@
 import {useDispatch, useSelector} from 'react-redux'
+import { useState } from 'react'
 import { useHistory } from 'react-router'
 import { setUpProfile } from '../reducers.js/userReducer'
 import Container from 'react-bootstrap/Container'
 import Image from 'react-bootstrap/Image'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
+import UpgradeModal from './UpgradeModal'
 
 function Profile() {
 
@@ -12,6 +14,8 @@ function Profile() {
     const dispatch = useDispatch()
 
     const user = useSelector(state => state.user.currentUser)
+
+    const [upgradeModalShow, setUpgradeModalShow] = useState(false);
     
     let season
     let length
@@ -102,10 +106,7 @@ function Profile() {
                         </Row>
                         <Row style={{alignItems: 'center'}}>
                             <Col style={{textAlign: 'left'}}>
-                                {user.premium === false ? <button id="premiumButton" className="defaultButton" onClick={() => {
-                                dispatch(setUpProfile({userId: user.id, premium: true}))
-                                // NEED A MODAL HERE ABOUT PRICING AND PERKS
-                                }}>Upgrade to Premium</button> : null}
+                                {user.premium === false ? <button id="premiumButton" className="defaultButton" onClick={() => setUpgradeModalShow(true)}>Upgrade to Premium</button> : null}
                             </Col>
                             <Col style={{textAlign: 'right'}}>
                                     <button className="defaultButton" id="questionnaireButton" onClick={() => history.push("/questionnaire")}>Change Travel Settings</button>
@@ -118,6 +119,7 @@ function Profile() {
             <Row>
               
             </Row>
+            <UpgradeModal show={upgradeModalShow} onHide={() => setUpgradeModalShow(false)}/>
         </Container>
     )
   }
