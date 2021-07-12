@@ -2,6 +2,9 @@ html body{
   font-family: 'Montserrat', sans-serif;
   color: midnightblue;
 }
+html body a{
+  color: midnightblue;
+}
 
 .fullBackgroundImage{
   background-image: url("./Wander.jpg");
@@ -543,6 +546,30 @@ form#trip-form div.innerFormWidth.row{
 #activityListRow{
   flex-direction: column;
   padding-left: 2rem;
+}
+
+#activityListItemTab{
+  flex-direction: column;
+  padding-left: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+}
+
+#tabContentRow{
+  margin-top: 1rem;
+}
+
+#scheduleHeaderRow{
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+#dayListRow .nav.nav-tabs a.nav-link.active{
+  background-color: midnightblue;
+  color: gainsboro;
+}
+#dayListRow .nav.nav-tabs{
+  border-bottom-color: rgb(72, 61, 139, 0.1);
 }
 
 #photoGalleryCarousel .carousel-caption{
