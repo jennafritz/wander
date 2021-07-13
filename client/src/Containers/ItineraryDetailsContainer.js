@@ -219,8 +219,9 @@ function ItineraryDetailsContainer() {
                     {(user.premium && !!mine === false) 
                         ? <button id="saveItineraryButton" className="defaultButton" onClick={() => {
                             dispatch(createUserItinerary({user_id: user.id, itinerary_id: itinerary.id, past: false})).then(response => {
-                                if(response.error){
-                                    alert(response.error)
+                                if(response.payload.error){
+                                    setAlertMessage("An error occurred. Please try again.")
+                                    setShowAlertModal(true)
                                 } else {
                                     dispatch(fetchAllItineraries()).then(() => dispatch(fetchMyItineraries(user.id))).then(() => dispatch(fetchMyPastItineraries(user.id))).then(() => dispatch(fetchMyFutureItineraries(user.id))).then(() => {
                                         setAlertMessage("This itinerary has been saved to your account. Happy Wandering!")

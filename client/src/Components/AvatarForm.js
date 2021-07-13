@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import Form from 'react-bootstrap/Form'
 import Image from 'react-bootstrap/Image'
+import AlertModal from './AlertModal'
 
 function AvatarForm() {
 
@@ -15,6 +16,9 @@ function AvatarForm() {
     const user = useSelector(state => state.user.currentUser)
 
     const [picture, setPicture] = useState("")
+
+    const [alertMessage, setAlertMessage] = useState("")
+    const [showAlertModal, setShowAlertModal] = useState(false)
 
     function handleCustomPhoto(event) {
         setPicture(event.target.value)
@@ -123,8 +127,9 @@ function AvatarForm() {
                     onSubmit={(event) => {
                     event.preventDefault()
                         dispatch(setUpProfile({userId: user.id, picture: picture})).then(response => {
-                            if(response.error){
-                                alert(response.payload)
+                            if(response.payload.error){
+                                setAlertMessage(response.payload.error)
+                                setShowAlertModal(true)
                             } 
                             else {
                                 history.push("/profile")
@@ -143,6 +148,8 @@ function AvatarForm() {
                     </Form>
                 </Row>
             </Container>
+            <AlertModal message={alertMessage} show={showAlertModal} alertControl={() => setShowAlertModal(false)}/>
+
         </Container>
     )
   }

@@ -5,7 +5,7 @@ skip_before_action :authorized, only: [:create, :login]
 rescue_from ActiveRecord::RecordNotFound, with: :not_found
 
     def create
-        @user = User.create!(username: params[:username], password: params[:password], credits: 5, premium: false, picture: "https://image.freepik.com/free-photo/scenic-view-sunrise-mountains-carpathian-ukraine_146671-19541.jpg")
+        @user = User.create!(username: params[:username], password: params[:password], credits: 5, premium: false, picture: "client/src/Wander.jpg")
         token = encode_token(user_id: @user.id)
         render json: {user: UserSerializer.new(@user), token: token}, status: :created
     rescue ActiveRecord::RecordInvalid => invalid

@@ -7,6 +7,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import { submitItineraryReview } from '../reducers.js/reviewsReducer'
 import { fetchItineraryReviews } from '../reducers.js/reviewsReducer'
+import AlertModal from './AlertModal'
 
 function ReviewForm({setShowReviewForm, itineraryId}) {
 
@@ -15,6 +16,9 @@ function ReviewForm({setShowReviewForm, itineraryId}) {
     const user = useSelector(state => state.user.currentUser)
 
     const [comment, setComment] = useState("")
+
+    const [alertMessage, setAlertMessage] = useState("")
+    const [showAlertModal, setShowAlertModal] = useState(false)
 
     function handleChange(event) {
         setComment(event.target.value)
@@ -27,14 +31,14 @@ function ReviewForm({setShowReviewForm, itineraryId}) {
             </Row>
             <Form onSubmit={(event) => {
                 event.preventDefault()
-                dispatch(submitItineraryReview({comment: comment, user_id: user.id, itinerary_id: itineraryId}))
-                // .then((response) => {
-                //     if(response.error){
-                //         alert(response.payload)
-                //     } else {
-                //         dispatch(fetchItineraryReviews(itineraryId))
-                //     }
-                // })
+                dispatch(submitItineraryReview({comment: comment, user_id: user.id, itinerary_id: itineraryId})).then((response) => {
+                    if(response.payload.error){
+                        setAlertMessage(response.payload.error)
+                        setShowAlertModal(true)    
+                    } else {
+                        dispatch(fetchItineraryReviews(itineraryId))
+                    }
+                })
                 setShowReviewForm(false)
                 }}>
                 <Form.Group >
@@ -48,6 +52,8 @@ function ReviewForm({setShowReviewForm, itineraryId}) {
                 </Form.Group>
                 <Form.Control id="submitReviewInput" className="formSubmit" type="submit" value="Submit"/>
             </Form>
+            <AlertModal message={alertMessage} show={showAlertModal} alertControl={() => setShowAlertModal(false)}/>
+
         </Container>
     )
   }

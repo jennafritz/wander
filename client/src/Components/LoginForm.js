@@ -6,13 +6,16 @@ import {fetchAllItineraries, fetchMyFutureItineraries, fetchMyItineraries, fetch
 import { fetchAllPhotos } from '../reducers.js/photosReducer'
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/esm/Container'
-// import { fetchMyUserItineraries } from '../reducers.js/userItinerariesReducer'
+import AlertModal from './AlertModal'
 
 function LoginForm() {
 
     const dispatch = useDispatch()
     const history = useHistory()
     const user = useSelector(state => state.user.currentUser)
+
+    const [alertMessage, setAlertMessage] = useState("")
+    const [showAlertModal, setShowAlertModal] = useState(false)
 
     const [formData, setFormData] = useState({
         username: "",
@@ -29,8 +32,9 @@ function LoginForm() {
 
     const handleLogin = (loginObj) => {
         dispatch(fetchUser(loginObj)).then((response) => {
-            if(response.error){
-                alert(response.payload)
+            if(response.payload.error){
+                setAlertMessage(response.payload.error)
+                setShowAlertModal(true)            
             } else {
                 let loggedInUser = response.payload.user
                 localStorage.token = response.payload.token
@@ -45,20 +49,6 @@ function LoginForm() {
                     history.push("/questionnaire")
                 }
             }
-
-            // if (response.payload.user){
-            //     let loggedInUser = response.payload.user
-            //     localStorage.token = response.payload.token
-            //     dispatch(fetchAllItineraries()).then(() => dispatch(fetchMyItineraries(loggedInUser.id))).then(() => dispatch(recommendItineraries(loggedInUser)))
-            //     dispatch(fetchAllPhotos())
-            //     if(loggedInUser.id && loggedInUser.travel_season){
-            //         history.push("/profile")
-            //     } else if(loggedInUser.id){
-            //         history.push("/questionnaire")
-            //     }
-            // } else {
-            //     alert(response.payload)
-            // }
         })
     }
 
@@ -89,6 +79,7 @@ function LoginForm() {
                 </Form.Group>
                 <Form.Control className="formSubmit" type="submit" value="Log In"/>
             </Form>
+            <AlertModal message={alertMessage} show={showAlertModal} alertControl={() => setShowAlertModal(false)}/>
         </Container>
     )
   }

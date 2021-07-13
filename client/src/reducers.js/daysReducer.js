@@ -16,14 +16,14 @@ export const fetchAllDays = createAsyncThunk("days/fetchAllDays", (unused, thunk
         }
     })
       .then(res => res.json())
-      .then(daysArray => daysArray)
-    //     {
-    //     if(daysArray.error){
-    //       return thunkAPI.rejectWithValue(daysArray.error)
-    //     } else {
-    //       return daysArray
-    //     }
-    //   })
+      .then(daysArray => 
+        {
+        if(daysArray.error){
+          return thunkAPI.rejectWithValue(daysArray.error)
+        } else {
+          return daysArray
+        }
+      })
 })
 
 export const fetchItineraryDays = createAsyncThunk("days/fetchItineraryDays", (itineraryId, thunkAPI) => {
@@ -35,34 +35,34 @@ export const fetchItineraryDays = createAsyncThunk("days/fetchItineraryDays", (i
         }
     })
       .then(res => res.json())
-      .then(daysArray => daysArray)
-    //     {
-    //     if(daysArray.error){
-    //       return thunkAPI.rejectWithValue(daysArray.error)
-    //     } else {
-    //       return daysArray
-    //     }
-    //   })
+      .then(daysArray => 
+        {
+        if(daysArray.error){
+          return thunkAPI.rejectWithValue(daysArray.error)
+        } else {
+          return daysArray
+        }
+      })
 })
 
-export const submitItineraryDays = createAsyncThunk("days/submitItineraryDays", (arrayOfDays, thunkAPI) => {
-    return fetch("http://localhost:3000/days", {
-        method: "POST",
-        headers: {
-          Authorization: `Bearer ${localStorage.token}`,
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(arrayOfDays)
-      })
-        .then(res => res.json())
-        .then(newlyCreatedDays => {
-            if(newlyCreatedDays.error){
-              return thunkAPI.rejectWithValue(newlyCreatedDays.error)
-            } else {
-              return newlyCreatedDays
-            }
-          })
-  })
+// export const submitItineraryDays = createAsyncThunk("days/submitItineraryDays", (arrayOfDays, thunkAPI) => {
+//     return fetch("http://localhost:3000/days", {
+//         method: "POST",
+//         headers: {
+//           Authorization: `Bearer ${localStorage.token}`,
+//           "Content-Type": "application/json"
+//         },
+//         body: JSON.stringify(arrayOfDays)
+//       })
+//         .then(res => res.json())
+//         .then(newlyCreatedDays => {
+//             if(newlyCreatedDays.error){
+//               return thunkAPI.rejectWithValue(newlyCreatedDays.error)
+//             } else {
+//               return newlyCreatedDays
+//             }
+//           })
+//   })
 
 
 // Reducer
@@ -82,12 +82,12 @@ const daysSlice = createSlice({
         [fetchItineraryDays.fulfilled](state, action){
             state.itineraryDays = action.payload
         },
-        [submitItineraryDays.fulfilled](state, action){
-            state.allDays = [...state.allDays, ...action.payload]
-        },
-        [submitItineraryDays.rejected](state, action){
-            return action
-        }
+        // [submitItineraryDays.fulfilled](state, action){
+        //     state.allDays = [...state.allDays, ...action.payload]
+        // },
+        // [submitItineraryDays.rejected](state, action){
+        //     return action
+        // }
     }
 })
 

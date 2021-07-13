@@ -10,6 +10,7 @@ import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/esm/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
+import AlertModal from './AlertModal';
 
 function Questionnaire() {
 
@@ -20,6 +21,9 @@ function Questionnaire() {
     const inputRef = useRef(null)
     const [inputValue, setInputValue] = useState('')
     const {map} = useGoogleMap()
+
+    const [alertMessage, setAlertMessage] = useState("")
+    const [showAlertModal, setShowAlertModal] = useState(false)
 
     const [formData, setFormData] = useState({
         travel_season: user.travel_season,
@@ -69,10 +73,6 @@ function Questionnaire() {
         setInputValue(event.target.value)
     }
 
-    // const handleSetUpProfile = () => {
-    //    dispatch(setUpProfile({userId: user.id, ...formData}))        
-    // }
-
     return (
         <Container fluid className="fullBackgroundImage verticalCenter">
             <Container id="questionnaireParentContainer">
@@ -83,8 +83,9 @@ function Questionnaire() {
                 <Form className="formElement" onSubmit={(event) => {
                     event.preventDefault()
                     dispatch(setUpProfile({userId: user.id, ...formData})).then(response => {
-                        if(response.error){
-                            alert(response.payload)
+                        if(response.payload.error){
+                            setAlertMessage(response.payload.error)
+                            setShowAlertModal(true)  
                         } else {
                             dispatch(recommendItineraries(response.payload))
                             history.push("/profile")
@@ -270,6 +271,7 @@ function Questionnaire() {
                     </Container>
                 </Form>
             </Container>
+            <AlertModal message={alertMessage} show={showAlertModal} alertControl={() => setShowAlertModal(false)}/>
         </Container>
     )
   }

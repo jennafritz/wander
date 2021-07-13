@@ -15,11 +15,12 @@ export const fetchUser = createAsyncThunk("user/fetchUser", (loginObj,thunkAPI) 
     })
         .then(res => res.json())
         .then(userInfo => {
-            if(userInfo.error){
-                return thunkAPI.rejectWithValue(userInfo.error)
-            } else {
-                return userInfo
-            }
+            // if(userInfo.error){
+            //     return thunkAPI.rejectWithValue(userInfo.error)
+            // } else {
+            //     return userInfo
+            // }
+            return userInfo
         })
 })
 
@@ -31,11 +32,12 @@ export const registerUser = createAsyncThunk("user/registerUser", (registerObj,t
     })
         .then(res => res.json())
         .then(userInfo => {
-            if(userInfo.error){
-                return thunkAPI.rejectWithValue(userInfo.error)
-            } else {
-                return userInfo
-            }
+            // if(userInfo.error){
+            //     return thunkAPI.rejectWithValue(userInfo.error)
+            // } else {
+            //     return userInfo
+            // }
+            return userInfo
         })
 })
 
@@ -92,11 +94,12 @@ export const setUpProfile = createAsyncThunk("user/setUpProfile", (userInfoObj, 
     })
         .then(res => res.json())
         .then(updatedUser => {
-            if(updatedUser.error){
-                return thunkAPI.rejectWithValue(updatedUser.error)
-            } else {
-                return updatedUser
-            }
+            // if(updatedUser.error){
+            //     return thunkAPI.rejectWithValue(updatedUser.error)
+            // } else {
+            //     return updatedUser
+            // }
+            return updatedUser
         })
 })
 
@@ -112,14 +115,23 @@ const userSlice = createSlice({
     },
     extraReducers: {
         [fetchUser.fulfilled](state, action){
-            state.currentUser = action.payload.user
-            state.token = action.payload.token
+            if(action.payload.error){
+                console.log(action.payload.error)
+            } else {
+                state.currentUser = action.payload.user
+                state.token = action.payload.token
+            }
         },
-        [fetchUser.rejected](state, action){
-            return action
-        },
+        // [fetchUser.rejected](state, action){
+        //     debugger
+        //     // action
+        // },
         [registerUser.fulfilled](state, action){
-            return action.payload
+            if(action.payload.error){
+                console.log(action.payload.error)
+            } else {
+                console.log(action.payload)
+            }
         },
         [addCreditToUser.fulfilled](state, action){
             state.currentUser = action.payload
@@ -128,11 +140,15 @@ const userSlice = createSlice({
             state.currentUser = action.payload
         },
         [setUpProfile.fulfilled](state, action){
-            state.currentUser = action.payload
+            if(action.payload.error){
+                console.log(action.payload.error)
+            } else{
+                state.currentUser = action.payload
+            }
         },
-        [setUpProfile.rejected](state, action){
-            return action
-        }
+        // [setUpProfile.rejected](state, action){
+        //     return action
+        // }
     }
 })
 

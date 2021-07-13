@@ -3,11 +3,15 @@ import { registerUser } from '../reducers.js/userReducer'
 import {useDispatch, useSelector} from 'react-redux'
 import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/esm/Container'
+import AlertModal from './AlertModal'
 
 function RegisterForm({handleRegister}) {
 
     const dispatch = useDispatch()
     const user = useSelector(state => state.user.currentUser)
+
+    const [alertMessage, setAlertMessage] = useState("")
+    const [showAlertModal, setShowAlertModal] = useState(false)
 
     const [formData, setFormData] = useState({
         username: "",
@@ -25,10 +29,12 @@ function RegisterForm({handleRegister}) {
     function handleRegister(registerObj){
         dispatch(registerUser(registerObj)).then(response => {
             console.log(response)
-            if (response.payload.user){
-                alert("Registration successful! Please log in to continue.")
+            if (response.payload.error){
+                setAlertMessage(response.payload.error)
+                setShowAlertModal(true) 
             } else {
-                alert(response.payload)
+                setAlertMessage("Registration successful! Please log in to continue.")
+                setShowAlertModal(true) 
             }
         })
             
@@ -71,6 +77,7 @@ function RegisterForm({handleRegister}) {
                 </Form.Group>
                 <Form.Control className="formSubmit" type="submit" value="Register"/>
             </Form>
+            <AlertModal message={alertMessage} show={showAlertModal} alertControl={() => setShowAlertModal(false)}/>
         </Container>
     )
   }

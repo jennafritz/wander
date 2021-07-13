@@ -55,13 +55,14 @@ export const submitItineraryReview = createAsyncThunk("reviews/submitItineraryRe
         body: JSON.stringify(reviewObj)
       })
         .then(res => res.json())
-        .then(newlyCreatedReview => {
-            if(newlyCreatedReview.error){
-              return thunkAPI.rejectWithValue(newlyCreatedReview.error)
-            } else {
-              return newlyCreatedReview
-            }
-          })
+        .then(newlyCreatedReview => newlyCreatedReview)
+          // {
+          //   if(newlyCreatedReview.error){
+          //     return thunkAPI.rejectWithValue(newlyCreatedReview.error)
+          //   } else {
+          //     return newlyCreatedReview
+          //   }
+          // })
   })
 
 
@@ -83,11 +84,15 @@ const reviewsSlice = createSlice({
             state.itineraryReviews = action.payload
         },
         [submitItineraryReview.fulfilled](state, action){
+          if(action.payload.error){
+            console.log(action.payload.error)
+          } else {
             state.itineraryReviews.push(action.payload)
+          }
         },
-        [submitItineraryReview.rejected](state, action){
-            return action
-        }
+        // [submitItineraryReview.rejected](state, action){
+        //     return action
+        // }
     }
 })
 

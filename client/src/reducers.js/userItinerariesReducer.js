@@ -37,13 +37,14 @@ export const createUserItinerary = createAsyncThunk("userItineraries/createUserI
         body: JSON.stringify(userItineraryInfo)
       })
         .then(res => res.json())
-        .then(newlyCreatedUserItinerary => {
-            if(newlyCreatedUserItinerary.error){
-              return thunkAPI.rejectWithValue(newlyCreatedUserItinerary.error)
-            } else {
-              return newlyCreatedUserItinerary
-            }
-          })
+        .then(newlyCreatedUserItinerary => newlyCreatedUserItinerary)
+          // {
+          //   if(newlyCreatedUserItinerary.error){
+          //     return thunkAPI.rejectWithValue(newlyCreatedUserItinerary.error)
+          //   } else {
+          //     return newlyCreatedUserItinerary
+          //   }
+          // })
   })
 
 
@@ -61,15 +62,19 @@ const userItinerariesSlice = createSlice({
       [markUserItineraryTraveled.fulfilled](state, action){
         state.userItinerary = action.payload
       },
-      [markUserItineraryTraveled.rejected](state, action){
-          return action
-      },
+      // [markUserItineraryTraveled.rejected](state, action){
+      //     return action
+      // },
       [createUserItinerary.fulfilled](state, action){
+        if(action.payload.error){
+          console.log(action.payload.error)
+        } else {
           state.userItinerary = action.payload
+        }
       },
-      [createUserItinerary.rejected](state, action){
-          return action
-      }
+      // [createUserItinerary.rejected](state, action){
+      //     return action
+      // }
     }
 })
 

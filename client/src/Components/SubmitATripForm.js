@@ -19,6 +19,7 @@ import Container from 'react-bootstrap/esm/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import AlertModal from "./AlertModal";
+import SubmissionTermsModal from "./SubmissionTermsModal";
 
 function SubmitATripForm() {
 
@@ -30,6 +31,7 @@ function SubmitATripForm() {
     const [alertMessage, setAlertMessage] = useState("")
     const [alertControl, setAlertControl] = useState(null)
     const [showAlertModal, setShowAlertModal] = useState(false)
+    const [showSubmissionTermsModal, setShowSubmissionTermsModal] = useState(false)
 
     const inputRef = useRef(null)
     // const [inputValue, setInputValue] = useState('')
@@ -239,7 +241,11 @@ function SubmitATripForm() {
         let fullTripObj = {itinerary: formData, activitiesArray, imagesArray}
         if(tripValid()){
             dispatch(createFullTrip(fullTripObj)).then(response => {
-                if(response.payload && response.payload.id){
+                if(response.payload.error){
+                    setAlertMessage(response.payload.error)
+                    setAlertControl(() => closeModal)
+                    setShowAlertModal(true)
+                } else {
                     dispatch(addCreditToUser(user)).then(() => {
                         if(user.premium){
                             setAlertMessage("Thank you for contributing to Wander!")
@@ -262,7 +268,6 @@ function SubmitATripForm() {
             setShowAlertModal(true)
         }
     }
-console.log(alertControl)
     // const handleFullSubmit = async () => {
     //     let createdPhotos = []
     //     let createdDays = []
@@ -330,8 +335,9 @@ console.log(alertControl)
                     <Form id="trip-form" onSubmit={(event) => {
                         // IF TRIP IS VALID HERE
                         event.preventDefault()
+                        setShowSubmissionTermsModal(true)
                         // handleFullSubmitAsyncTest()
-                        handleCreateFullTrip()
+                        // handleCreateFullTrip()
                         }}>
                         <Row>
                             <Col>
@@ -597,6 +603,7 @@ console.log(alertControl)
                 </Container>
             </Container>
             <AlertModal message={alertMessage} show={showAlertModal} alertControl={() => alertControl()}/>
+            <SubmissionTermsModal show={showSubmissionTermsModal} onHide={() => setShowSubmissionTermsModal(false)} handleCreateFullTrip={handleCreateFullTrip} />
         </Container>
     )
   }

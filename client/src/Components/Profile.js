@@ -1,7 +1,6 @@
 import {useDispatch, useSelector} from 'react-redux'
 import { useState } from 'react'
 import { useHistory } from 'react-router'
-import { setUpProfile } from '../reducers.js/userReducer'
 import Container from 'react-bootstrap/Container'
 import Image from 'react-bootstrap/Image'
 import Col from 'react-bootstrap/Col'

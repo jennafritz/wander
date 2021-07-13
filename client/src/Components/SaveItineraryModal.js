@@ -38,9 +38,8 @@ function SaveItineraryModal(props) {
               className="defaultButton"
               onClick={() => {
                 dispatch(createUserItinerary({user_id: user.id, itinerary_id: props.itinerary.id, past: false})).then(response => {
-                    if(response.error){
-                        alert(response.payload)
-                        return response.payload
+                    if(response.payload.error){
+                        console.log(response.payload)
                     } else {
                         dispatch(removeCreditFromUser(user))
                         

@@ -7,7 +7,7 @@ function AlertModal(props) {
       <Modal
         {...props}
           id="saveItineraryModal"
-          size="lg"
+          size="md"
           aria-labelledby="contained-modal-title-vcenter"
           centered
         >
@@ -16,10 +16,8 @@ function AlertModal(props) {
               
             </Modal.Title>
           </Modal.Header> */}
-          <Modal.Body>
-            <p>
+          <Modal.Body style={{display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: '0.5rem', marginBottom: '0.5rem'}}>
               {props.message}
-            </p>
           </Modal.Body>
           <Modal.Footer>
             <button id="saveItineraryCancelButton" className="defaultButton" onClick={() => props.alertControl()}>Dismiss</button>

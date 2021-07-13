@@ -21,14 +21,14 @@ export const fetchAllItineraries = createAsyncThunk("itineraries/fetchAllItinera
         }
       })
         .then(res => res.json())
-        .then(itinerariesArray => itinerariesArray)
-      //     {
-      //     if(itinerariesArray.error){
-      //       return thunkAPI.rejectWithValue(itinerariesArray.error)
-      //     } else {
-      //       return itinerariesArray
-      //     }
-      // })
+        .then(itinerariesArray => 
+          {
+              if(itinerariesArray.error){
+                return thunkAPI.rejectWithValue(itinerariesArray.error)
+              } else {
+                return itinerariesArray
+              }
+          })
 })
 
 export const fetchMyItineraries = createAsyncThunk("itineraries/fetchMyItineraries", (loggedInUserId, thunkAPI) => {
@@ -40,14 +40,14 @@ export const fetchMyItineraries = createAsyncThunk("itineraries/fetchMyItinerari
         }
       })
         .then(res => res.json())
-        .then(myItinerariesArray => myItinerariesArray)
-        //   {
-        //   if(myItinerariesArray.error){
-        //     return thunkAPI.rejectWithValue(myItinerariesArray.error)
-        //   } else {
-        //     return myItinerariesArray
-        //   }
-        // })
+        .then(myItinerariesArray => 
+          {
+          if(myItinerariesArray.error){
+            return thunkAPI.rejectWithValue(myItinerariesArray.error)
+          } else {
+            return myItinerariesArray
+          }
+        })
 })
 
 export const fetchMyPastItineraries = createAsyncThunk("itineraries/fetchMyPastItineraries", (loggedInUserId, thunkAPI) => {
@@ -59,14 +59,14 @@ export const fetchMyPastItineraries = createAsyncThunk("itineraries/fetchMyPastI
       }
     })
       .then(res => res.json())
-      .then(myPastItinerariesArray => myPastItinerariesArray)
-      //   {
-      //   if(myItinerariesArray.error){
-      //     return thunkAPI.rejectWithValue(myItinerariesArray.error)
-      //   } else {
-      //     return myItinerariesArray
-      //   }
-      // })
+      .then(myPastItinerariesArray => 
+        {
+        if(myPastItinerariesArray.error){
+          return thunkAPI.rejectWithValue(myPastItinerariesArray.error)
+        } else {
+          return myPastItinerariesArray
+        }
+      })
 })
 
 export const fetchMyFutureItineraries = createAsyncThunk("itineraries/fetchMyFutureItineraries", (loggedInUserId, thunkAPI) => {
@@ -78,34 +78,34 @@ export const fetchMyFutureItineraries = createAsyncThunk("itineraries/fetchMyFut
       }
     })
       .then(res => res.json())
-      .then(myFutureItinerariesArray => myFutureItinerariesArray)
-      //   {
-      //   if(myItinerariesArray.error){
-      //     return thunkAPI.rejectWithValue(myItinerariesArray.error)
-      //   } else {
-      //     return myItinerariesArray
-      //   }
-      // })
-})
-
-export const submitItineraryDetails = createAsyncThunk("itineraries/submitItinerary", (itineraryObj, thunkAPI) => {
-  return fetch("http://localhost:3000/itineraries", {
-      method: "POST",
-      headers: {
-        Authorization: `Bearer ${localStorage.token}`,
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(itineraryObj)
-    })
-      .then(res => res.json())
-      .then(newlyCreatedItinerary => {
-        if(newlyCreatedItinerary.error){
-          return thunkAPI.rejectWithValue(newlyCreatedItinerary.error)
+      .then(myFutureItinerariesArray => 
+        {
+        if(myFutureItinerariesArray.error){
+          return thunkAPI.rejectWithValue(myFutureItinerariesArray.error)
         } else {
-          return newlyCreatedItinerary
+          return myFutureItinerariesArray
         }
       })
 })
+
+// export const submitItineraryDetails = createAsyncThunk("itineraries/submitItinerary", (itineraryObj, thunkAPI) => {
+//   return fetch("http://localhost:3000/itineraries", {
+//       method: "POST",
+//       headers: {
+//         Authorization: `Bearer ${localStorage.token}`,
+//         "Content-Type": "application/json"
+//       },
+//       body: JSON.stringify(itineraryObj)
+//     })
+//       .then(res => res.json())
+//       .then(newlyCreatedItinerary => {
+//         if(newlyCreatedItinerary.error){
+//           return thunkAPI.rejectWithValue(newlyCreatedItinerary.error)
+//         } else {
+//           return newlyCreatedItinerary
+//         }
+//       })
+// })
 
 export const createFullTrip = createAsyncThunk("itineraries/createFullTrip", (fullItineraryObj, thunkAPI) => {
   return fetch("http://localhost:3000/itineraries/create_full_trip", {
@@ -117,13 +117,14 @@ export const createFullTrip = createAsyncThunk("itineraries/createFullTrip", (fu
       body: JSON.stringify(fullItineraryObj)
     })
       .then(res => res.json())
-      .then(newlyCreatedItinerary => {
-        if(newlyCreatedItinerary.error){
-          return thunkAPI.rejectWithValue(newlyCreatedItinerary.error)
-        } else {
-          return newlyCreatedItinerary
-        }
-      })
+      .then(newlyCreatedItinerary => newlyCreatedItinerary)
+      //   {
+      //   if(newlyCreatedItinerary.error){
+      //     return thunkAPI.rejectWithValue(newlyCreatedItinerary.error)
+      //   } else {
+      //     return newlyCreatedItinerary
+      //   }
+      // })
 })
 
 export const generateRandomItinerary = createAsyncThunk("itineraries/generateRandomItinerary", (undefined, thunkAPI) => {
@@ -248,18 +249,22 @@ const itinerariesSlice = createSlice({
         [fetchMyFutureItineraries.fulfilled](state, action){
           state.myFutureItineraries = action.payload
         },
-        [submitItineraryDetails.fulfilled](state, action){
-          state.allItineraries.push({...action.payload, match: 0})
-        },
-        [submitItineraryDetails.rejected](state, action){
-          state.error = action.payload
-        },
+        // [submitItineraryDetails.fulfilled](state, action){
+        //   state.allItineraries.push({...action.payload, match: 0})
+        // },
+        // [submitItineraryDetails.rejected](state, action){
+        //   state.error = action.payload
+        // },
         [createFullTrip.fulfilled](state, action){
-          state.allItineraries.push({...action.payload, match: 0})
+          if(action.payload.error){
+            console.log(action.payload.error)
+          } else {
+            state.allItineraries.push({...action.payload, match: 0})
+          }
         },
-        [createFullTrip.rejected](state, action){
-          state.error = action.payload
-        },
+        // [createFullTrip.rejected](state, action){
+        //   state.error = action.payload
+        // },
         [generateRandomItinerary.fulfilled](state, action){
           state.allItineraries.push({...action.payload, match: 0})
         },
