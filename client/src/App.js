@@ -16,6 +16,7 @@ import AvatarForm from './Components/AvatarForm';
 import { fetchAllItineraries, fetchMyItineraries, recommendItineraries } from './reducers.js/itinerariesReducer';
 import React, {useCallback, forwardRef} from 'react';
 import {GoogleMapProvider} from '@ubilabs/google-maps-react-hooks'
+import Questionnaire from './Components/Questionnaire';
 
 
 const MapCanvas = React.forwardRef((props, ref) => (
@@ -52,7 +53,7 @@ function App() {
         <Route exact path="/" render={() => <HomePageContainer />} />
         <Route exact path="/login" render={(routerProps) => <LoginModalContainer />} />
         <Route exact path="/register" render={(routerProps) => <RegisterModalContainer />} />
-        <Route exact path="/questionnaire" render={() => <ProfileSetupContainer />} />
+        <Route exact path="/questionnaire" render={() => <Questionnaire />} />
         <Route exact path="/avatar" render={() => <AvatarForm />} />
         <Route exact path="/submitATrip" render={() => <SubmitATripForm />} />
         <Route exact path="/myJourneys" render={() => <MyJourneysContainer />} />

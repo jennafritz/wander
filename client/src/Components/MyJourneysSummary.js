@@ -33,7 +33,7 @@ function MyJourneysSummary() {
             </Row>
             <Row>
                 <Col>
-                    {/* <MapOfMyJourneys /> */}
+                    <MapOfMyJourneys />
                 </Col>
                 <Col style={{justifyContent: 'space-evenly'}} className="verticalCenter">
                     <h5>Trips Taken: {myPastItineraries.length}</h5>

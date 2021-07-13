@@ -2,7 +2,6 @@ import Modal from 'react-bootstrap/Modal'
 
 function AlertModal(props) {
 
-  console.log(props)
     return (
       <Modal
         {...props}
