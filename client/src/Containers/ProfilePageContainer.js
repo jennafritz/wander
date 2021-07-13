@@ -16,48 +16,6 @@ function ProfilePageContainer() {
             <MyPastItinerariesPreviewContainer />
             <MyFutureItinerariesPreviewContainer />
             <RecItinerariesPreviewContainer />
-            <Carousel show={4}>
-                <div>
-                    <div style={{padding: 8}}>
-                        <img src="https://via.placeholder.com/300x300" alt="placeholder" style={{width: '100%'}} />
-                    </div>
-                </div>
-                <div>
-                    <div style={{padding: 8}}>
-                        <img src="https://via.placeholder.com/300x300" alt="placeholder" style={{width: '100%'}} />
-                    </div>
-                </div>
-                <div>
-                    <div style={{padding: 8}}>
-                        <img src="https://via.placeholder.com/300x300" alt="placeholder" style={{width: '100%'}} />
-                    </div>
-                </div>
-                <div>
-                    <div style={{padding: 8}}>
-                        <img src="https://via.placeholder.com/300x300" alt="placeholder" style={{width: '100%'}} />
-                    </div>
-                </div>
-                <div>
-                    <div style={{padding: 8}}>
-                        <img src="https://via.placeholder.com/300x300" alt="placeholder" style={{width: '100%'}} />
-                    </div>
-                </div>
-                <div>
-                    <div style={{padding: 8}}>
-                        <img src="https://via.placeholder.com/300x300" alt="placeholder" style={{width: '100%'}} />
-                    </div>
-                </div>
-                <div>
-                    <div style={{padding: 8}}>
-                        <img src="https://via.placeholder.com/300x300" alt="placeholder" style={{width: '100%'}} />
-                    </div>
-                </div>
-                <div>
-                    <div style={{padding: 8}}>
-                        <img src="https://via.placeholder.com/300x300" alt="placeholder" style={{width: '100%'}} />
-                    </div>
-                </div>
-            </Carousel>
         </Container>
     )
   }

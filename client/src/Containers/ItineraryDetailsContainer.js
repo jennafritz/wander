@@ -225,7 +225,7 @@ function ItineraryDetailsContainer() {
                                     //     {response.payload}
                                     // </Alert>)
                                 } else {
-                                    dispatch(fetchAllItineraries()).then(() => dispatch(fetchMyItineraries(user.id))).then(() => dispatch(fetchMyPastItineraries(user.id))).then(() => alert("This itinerary has been saved to your account. Happy Wandering!"))
+                                    dispatch(fetchAllItineraries()).then(() => dispatch(fetchMyItineraries(user.id))).then(() => dispatch(fetchMyPastItineraries(user.id))).then(() => dispatch(fetchMyFutureItineraries(user.id))).then(() => alert("This itinerary has been saved to your account. Happy Wandering!"))
                                     // setShowSuccessAlert(true)
                                     // return(
                                     // <Alert show={showSuccessAlert} variant={'info'} fade={false} onClose={() => setShowSuccessAlert(false)} dismissible>

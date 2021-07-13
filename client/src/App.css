@@ -283,6 +283,22 @@ html body a{
   margin-bottom: 4rem;
 }
 
+div.container-fluid.previewHeader{
+  width: 100%;
+  padding-right: 8rem;
+  padding-left: 8rem;
+  margin-top: 4rem;
+  margin-bottom: 2rem;
+}
+
+div.container-fluid.previewContainerNoItineraries{
+  width: 100%;
+  padding-right: 8rem;
+  padding-left: 8rem;
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+
 #itineraryCard{
   text-align: center;
   background-color: lavender;

@@ -19,7 +19,7 @@ function ItineraryThumbnailContainer({itinerary, parent}) {
     
     let mine = myItineraries.find(myItinerary => myItinerary.id === itinerary.id)
     return (
-        <Card id="itineraryCard" 
+        <Card id="itineraryCard" style={parent === "myItinerariesPreviewContainer" || parent === "RecItinerariesPreviewContainer" ? {height: '100%'} : null} 
         // className="cardPadding"
         className={parent === "ItineraryListContainer" || parent === "RecItinerariesListContainer" || parent === "MyJourneysListContainerPast" || parent === "MyJourneysListContainerFuture" ? "cardPadding" : null}
         >
@@ -35,7 +35,7 @@ function ItineraryThumbnailContainer({itinerary, parent}) {
             <Card.Title id="itineraryCardTitle">{itinerary.name}</Card.Title>
             <Card.Body id="itineraryCardBody">
             </Card.Body>
-            <Card.Footer id="itineraryCardFooter">
+            <Card.Footer id="itineraryCardFooter" style={parent === "myItinerariesPreviewContainer" || parent === "RecItinerariesPreviewContainer" ? {marginTop: '-2rem'} : null}>
             <button id="viewDetailsButton" className="defaultButton" onClick={() => {
                 if(user.premium){
                     history.push(({pathname: "/itineraryDetails", state: {itinerary, photos, mine}}))
