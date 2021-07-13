@@ -4,6 +4,7 @@ import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import CardDeck from 'react-bootstrap/CardDeck'
+import Carousel from '../Components/Carousel'
 
 function RecItinerariesPreviewContainer() {
 
@@ -11,14 +12,22 @@ function RecItinerariesPreviewContainer() {
     let firstFour = recommendedItineraries.slice(0, 4)
     
     return (
-        <Container fluid className="containerWidth">
-            {/* <h1>Recommended Itineraries Preview Container</h1> */}
-            <Row as="h1">Recommended Trips</Row>
-            <CardDeck>
-                {firstFour.length > 0
-                ? firstFour.map(itinerary => <ItineraryThumbnailContainer parent="RecItinerariesPreviewContainer" itinerary={itinerary} key={itinerary.id} mine={false}/>)
-                : <Col as="h4">Looks like there are no good matches for you right now. Our catalog is always being updated, though, so please check back again soon.</Col>}           
-            </CardDeck>
+        <Container fluid>
+            <Container fluid className="containerWidth">
+                <Row as="h1">Recommended Trips</Row>
+                <CardDeck>
+                    {firstFour.length > 0
+                    ? firstFour.map(itinerary => <ItineraryThumbnailContainer parent="RecItinerariesPreviewContainer" itinerary={itinerary} key={itinerary.id} mine={false}/>)
+                    : <Col as="h4">Looks like there are no good matches for you right now. Our catalog is always being updated, though, so please check back again soon.</Col>}           
+                </CardDeck>
+            </Container>
+            <Carousel show={4}>
+                {recommendedItineraries.map(itinerary =>
+                <Col xs={3}>
+                    <ItineraryThumbnailContainer parent="RecItinerariesPreviewContainer" itinerary={itinerary} key={itinerary.id} mine={false}/>
+                </Col>
+                )}
+            </Carousel>
         </Container>
     )
   }
