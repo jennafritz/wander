@@ -6,6 +6,7 @@ import Image from 'react-bootstrap/Image'
 import Col from 'react-bootstrap/Col'
 import Row from 'react-bootstrap/Row'
 import UpgradeModal from './UpgradeModal'
+import Wander from '../Wander.jpg'
 
 function Profile() {
 
@@ -75,7 +76,7 @@ function Profile() {
         <Container fluid id="profileContainer">
             <Row>
                 <Col xs="auto" className="flexColumnColumn">
-                    <Image src={user.picture} alt="user profile" width="250rem" height="250rem" roundedCircle />
+                    <Image src={user.picture ? user.picture : Wander} alt="user profile" width="250rem" height="250rem" roundedCircle />
                     <button className="defaultButton" id="avatarButton" onClick={() => history.push("/avatar")}>Change Avatar</button>
                 </Col>
                 <Col className="flexColumnColumn">
