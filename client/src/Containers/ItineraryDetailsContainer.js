@@ -12,8 +12,8 @@ import { GoogleMapProvider, useDirections, useGoogleMap } from '@ubilabs/google-
 import Container from 'react-bootstrap/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import Alert from 'react-bootstrap/Alert'
 import ReviewForm from '../Components/ReviewForm'
+import AlertModal from '../Components/AlertModal'
 
 const DirectionsDiv = React.forwardRef((props, ref) => (
     <Container ref={ref} style={{height: "200px"}}/>
@@ -47,7 +47,9 @@ function ItineraryDetailsContainer() {
         dispatch(fetchItineraryReviews(itinerary.id))
     }, [])
 
-    // const [showErrorAlert, setShowErrorAlert] = useState(false)
+    const [showAlertModal, setShowAlertModal] = useState(false)
+    const [alertMessage, setAlertMessage] = useState("")
+
     // const [showSuccessAlert, setShowSuccessAlert] = useState(false)
 
     // const [directions, setDirections] = useState("")
@@ -219,18 +221,11 @@ function ItineraryDetailsContainer() {
                             dispatch(createUserItinerary({user_id: user.id, itinerary_id: itinerary.id, past: false})).then(response => {
                                 if(response.error){
                                     alert(response.error)
-                                    // setShowErrorAlert(true)
-                                    // return(
-                                    // <Alert show={showErrorAlert} variant={'info'} fade={false} onClose={() => setShowErrorAlert(false)} dismissible>
-                                    //     {response.payload}
-                                    // </Alert>)
                                 } else {
-                                    dispatch(fetchAllItineraries()).then(() => dispatch(fetchMyItineraries(user.id))).then(() => dispatch(fetchMyPastItineraries(user.id))).then(() => dispatch(fetchMyFutureItineraries(user.id))).then(() => alert("This itinerary has been saved to your account. Happy Wandering!"))
-                                    // setShowSuccessAlert(true)
-                                    // return(
-                                    // <Alert show={showSuccessAlert} variant={'info'} fade={false} onClose={() => setShowSuccessAlert(false)} dismissible>
-                                    //     {"This itinerary has been saved to your account. Happy Wandering!"}
-                                    // </Alert>)
+                                    dispatch(fetchAllItineraries()).then(() => dispatch(fetchMyItineraries(user.id))).then(() => dispatch(fetchMyPastItineraries(user.id))).then(() => dispatch(fetchMyFutureItineraries(user.id))).then(() => {
+                                        setAlertMessage("This itinerary has been saved to your account. Happy Wandering!")
+                                        setShowAlertModal(true)
+                                    })
                                 }
                             })
                         }}>Save Itinerary</button> 
@@ -259,6 +254,7 @@ function ItineraryDetailsContainer() {
             </React.StrictMode> */}
             {/* </GoogleMapProvider> */}
             </Container>
+            <AlertModal message={alertMessage} show={showAlertModal} alertControl={() => setShowAlertModal(false)}/>
         </Container>
     )
   }

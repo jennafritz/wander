@@ -1,5 +1,6 @@
 import NavBar from "./NavBarComponent";
 import {useState} from 'react'
+import { useCallback } from "react";
 import ActivitiesForm from './ActivitiesForm'
 import ImagesForm from "./ImagesForm";
 import {useDispatch, useSelector} from 'react-redux'
@@ -26,6 +27,8 @@ function SubmitATripForm() {
     const user = useSelector(state => state.user.currentUser)
     const userId = user.id
 
+    const [alertMessage, setAlertMessage] = useState("")
+    const [alertControl, setAlertControl] = useState(null)
     const [showAlertModal, setShowAlertModal] = useState(false)
 
     const inputRef = useRef(null)
@@ -224,6 +227,14 @@ function SubmitATripForm() {
         }
     }
 
+    const closeModal = useCallback(
+        () => setShowAlertModal(false)
+    )
+
+    const pushToProfile = useCallback(
+        () => history.push("/profile")
+    )
+
     const handleCreateFullTrip = () => {
         let fullTripObj = {itinerary: formData, activitiesArray, imagesArray}
         if(tripValid()){
@@ -231,11 +242,13 @@ function SubmitATripForm() {
                 if(response.payload && response.payload.id){
                     dispatch(addCreditToUser(user)).then(() => {
                         if(user.premium){
-                            alert("Thank you for contributing to Wander!")
-                            history.push("/profile")
+                            setAlertMessage("Thank you for contributing to Wander!")
+                            setAlertControl(() => pushToProfile)
+                            setShowAlertModal(true)
                         } else {
-                            alert("Thank you for contributing to Wander! An itinerary credit has been added to your account - Happy Wandering!")
-                            history.push("/profile")
+                            setAlertMessage("Thank you for contributing to Wander! An itinerary credit has been added to your account - Happy Wandering!")
+                            setAlertControl(() => pushToProfile)
+                            setShowAlertModal(true)
                         }
                     })
                     dispatch(fetchAllItineraries())
@@ -244,10 +257,12 @@ function SubmitATripForm() {
                 }
             })
         } else {
-            alert("Each day must have at least two activities.")
+            setAlertMessage("Each day must have at least two activities.")
+            setAlertControl(() => closeModal)
+            setShowAlertModal(true)
         }
     }
-
+console.log(alertControl)
     // const handleFullSubmit = async () => {
     //     let createdPhotos = []
     //     let createdDays = []
@@ -581,6 +596,7 @@ function SubmitATripForm() {
                     </Form>
                 </Container>
             </Container>
+            <AlertModal message={alertMessage} show={showAlertModal} alertControl={() => alertControl()}/>
         </Container>
     )
   }

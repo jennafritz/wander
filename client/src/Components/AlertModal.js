@@ -2,8 +2,9 @@ import Modal from 'react-bootstrap/Modal'
 
 function AlertModal(props) {
 
+  console.log(props)
     return (
-        <Modal
+      <Modal
         {...props}
           id="saveItineraryModal"
           size="lg"
@@ -21,7 +22,7 @@ function AlertModal(props) {
             </p>
           </Modal.Body>
           <Modal.Footer>
-            <button id="saveItineraryCancelButton" className="defaultButton" onClick={props.onHide}>Dismiss</button>
+            <button id="saveItineraryCancelButton" className="defaultButton" onClick={() => props.alertControl()}>Dismiss</button>
           </Modal.Footer>
         </Modal>
       );
