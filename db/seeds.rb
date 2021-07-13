@@ -17,11 +17,11 @@ Review.destroy_all
 
 # USERS
 puts "Seeding Users..."
-jenna = User.create(username: "jenna", password: "admin", picture: "client/src/Wander.jpg", latitude: 40.24546575735813, longitude: -74.84552948589332, travel_season: "Fall", travel_length: 7, travel_locale: "City", travel_classification: "Culture", budget: 3, credits: 5, premium: false)
+jenna = User.create(username: "jenna", password: "admin", picture: nil, latitude: 40.24546575735813, longitude: -74.84552948589332, travel_season: "Fall", travel_length: 7, travel_locale: "City", travel_classification: "Culture", budget: 3, credits: 5, premium: false)
 
-erika = User.create(username: "erika", password: "admin", picture: "client/src/Wander.jpg", latitude: 40.784464408532635, longitude: -73.97770002620597, travel_season: "Spring", travel_length: 14, travel_locale: "Country", travel_classification: "Culture", budget: 2, credits: 5, premium: true)
+erika = User.create(username: "erika", password: "admin", picture: nil, latitude: 40.784464408532635, longitude: -73.97770002620597, travel_season: "Spring", travel_length: 14, travel_locale: "Country", travel_classification: "Culture", budget: 2, credits: 5, premium: true)
 
-helen = User.create(username: "helen", password: "admin", picture: "client/src/Wander.jpg", latitude: 40.24546575735813, longitude: -74.84552948589332, travel_season: "Winter", travel_length: 4, travel_locale: "City", travel_classification: "Culture", budget: 4, credits: 5, premium: false)
+helen = User.create(username: "helen", password: "admin", picture: nil, latitude: 40.24546575735813, longitude: -74.84552948589332, travel_season: "Winter", travel_length: 4, travel_locale: "City", travel_classification: "Culture", budget: 4, credits: 5, premium: false)
 
 
 # ITINERARIES
