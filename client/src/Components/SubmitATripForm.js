@@ -17,7 +17,7 @@ import Form from 'react-bootstrap/Form'
 import Container from 'react-bootstrap/esm/Container'
 import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
-import AlertComponent from "./AlertComponent";
+import AlertModal from "./AlertModal";
 
 function SubmitATripForm() {
 
@@ -26,7 +26,7 @@ function SubmitATripForm() {
     const user = useSelector(state => state.user.currentUser)
     const userId = user.id
 
-    const [showAlert, setShowAlert] = useState(false)
+    const [showAlertModal, setShowAlertModal] = useState(false)
 
     const inputRef = useRef(null)
     // const [inputValue, setInputValue] = useState('')
