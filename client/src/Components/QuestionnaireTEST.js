@@ -2,7 +2,7 @@ import {useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {useHistory} from 'react-router-dom'
 import { setUpProfile } from '../reducers.js/userReducer'
-import { useAutocomplete } from "@ubilabs/google-maps-react-hooks";
+import { useAutocomplete } from '@ubilabs/google-maps-react-hooks'
 import { useRef } from "react";
 import { useGoogleMap } from "@ubilabs/google-maps-react-hooks";
 import { recommendItineraries } from '../reducers.js/itinerariesReducer';
@@ -12,7 +12,7 @@ import Row from 'react-bootstrap/Row'
 import Col from 'react-bootstrap/Col'
 import AlertModal from './AlertModal';
 
-function Questionnaire() {
+function QuestionnaireTEST() {
 
     const dispatch = useDispatch()
     const history = useHistory()
@@ -44,17 +44,13 @@ function Questionnaire() {
     }
 
     const onPlaceChanged = (place) => {
-        debugger
         if (place) {
-            console.log(place)
             setInputValue(place.name || place.formatted_address)
             setFormData({
                 ...formData,
                 latitude: place.geometry.location.lat(),
                 longitude: place.geometry.location.lng()
             })
-        } else {
-            console.log(place)
         }
         // console.log(place.geometry.location.lat())
         // console.log(place.geometry.location.lng())
@@ -62,15 +58,25 @@ function Questionnaire() {
         inputRef.current && inputRef.current.focus()
     }
 
+    // useAutocomplete({
+    //     inputField: inputRef && inputRef.current,
+    //     // options: "", 
+    //     // {
+    //     //     fields: ['formatted_address', 'geometry', 'name', 'place_id', 'url']
+    //     // },
+    //     map,
+    //     onPlaceChanged
+    //   });
     useAutocomplete({
         inputField: inputRef && inputRef.current,
         // options: "", 
         // {
-        //     fields: ['formatted_address', 'geometry', 'name', 'place_id', 'url']
-        // },
-        // map,
-        onPlaceChanged
-      });
+            //     fields: ['formatted_address', 'geometry', 'name', 'place_id', 'url']
+            // },
+            map,
+            onPlaceChanged
+        });
+      console.log(inputRef, map)
 
     // Their input change
     const handleInputChange = (event) => {
@@ -81,6 +87,7 @@ function Questionnaire() {
     //     setInputValue(event.target.value)
     // }
 
+    // debugger
 
     return (
         <Container fluid className="fullBackgroundImage verticalCenter">
@@ -285,4 +292,4 @@ function Questionnaire() {
     )
   }
   
-  export default Questionnaire;
+  export default QuestionnaireTEST;

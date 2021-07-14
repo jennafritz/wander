@@ -17,6 +17,7 @@ import { fetchAllItineraries, fetchMyItineraries, recommendItineraries } from '.
 import React, {useCallback, forwardRef} from 'react';
 import {GoogleMapProvider} from '@ubilabs/google-maps-react-hooks'
 import Questionnaire from './Components/Questionnaire';
+import QuestionnaireTEST from './Components/QuestionnaireTEST';
 
 
 const MapCanvas = React.forwardRef((props, ref) => (

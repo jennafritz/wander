@@ -66,6 +66,7 @@ function SubmitATripForm() {
 
     const onPlaceChanged = (place) => {
         if (place) {
+            console.log(place)
             // setInputValue(place.formatted_address || place.name)
             setFormData({
                 ...formData,
@@ -73,6 +74,8 @@ function SubmitATripForm() {
                 latitude: place.geometry.location.lat(),
                 longitude: place.geometry.location.lng()
             })
+        } else {
+            console.log(place)
         }
         // console.log(place.geometry.location.lat())
         // console.log(place.geometry.location.lng())
@@ -84,17 +87,17 @@ function SubmitATripForm() {
         inputField: inputRef && inputRef.current,
         // options: "", 
         // {
-        //     fields: ['formatted_address', 'geometry', 'name', 'place_id', 'url']
-        // },
-        map,
-        onPlaceChanged
-      });
+            //     fields: ['formatted_address', 'geometry', 'name', 'place_id', 'url']
+            // },
+            map,
+            onPlaceChanged
+        });
+        console.log(inputRef, map)
 
     // Their input change
     // const handleInputChange = (event) => {
     //     setInputValue(event.target.value)
     // }
-
     const updateActivitiesArray = (arrayOfActivities) => {
         let activities = [...activitiesArray]
         let updatedActivities

@@ -44,7 +44,7 @@ function ItineraryThumbnailContainer({itinerary, parent}) {
                         history.push(({pathname: "/itineraryDetails", state: {itinerary, photos, mine}}))
                     } else if(user.credits > 0) {
                         setSaveModalShow(true)
-                    } else if(user.credits < 0){
+                    } else if(user.credits <= 0){
                         setNoCreditsModalShow(true)
                     }
                 }

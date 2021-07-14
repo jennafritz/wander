@@ -16,6 +16,7 @@ function Profile() {
     const user = useSelector(state => state.user.currentUser)
 
     const [upgradeModalShow, setUpgradeModalShow] = useState(false);
+    const [trueTest, setTrueTest] = useState(true)
     
     let season
     let length
@@ -74,6 +75,7 @@ function Profile() {
 
     return (
         <Container fluid id="profileContainer">
+            <button onClick={() => history.push("/submitATrip")}>Test Button</button>
             <Row>
                 <Col xs="auto" className="flexColumnColumn">
                     <Image src={user.picture ? user.picture : Wander} alt="user profile" width="250rem" height="250rem" roundedCircle />
@@ -109,7 +111,12 @@ function Profile() {
                                 {user.premium === false ? <button id="premiumButton" className="defaultButton" onClick={() => setUpgradeModalShow(true)}>Upgrade to Premium</button> : null}
                             </Col>
                             <Col style={{textAlign: 'right'}}>
-                                    <button className="defaultButton" id="questionnaireButton" onClick={() => history.push("/questionnaire")}>Change Travel Settings</button>
+                                    <button className="defaultButton" id="questionnaireButton" onClick={() => {
+                                        if(trueTest){
+                                            // history.push("/questionnaire")
+                                            history.push("/questionnaire")
+                                        }
+                                        }}>Change Travel Settings</button>
                             </Col>
                             
                         </Row>
