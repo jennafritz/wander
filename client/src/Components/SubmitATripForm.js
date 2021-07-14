@@ -604,7 +604,7 @@ function SubmitATripForm() {
                         </Row>
                     </Form>
                 </Container>
-                <button onClick={() => history.push("/questionnaire")}>Test Button</button>
+                {/* <button onClick={() => history.push("/questionnaire")}>Test Button</button> */}
             </Container>
             <AlertModal message={alertMessage} show={showAlertModal} alertControl={() => alertControl()}/>
             <SubmissionTermsModal show={showSubmissionTermsModal} onHide={() => setShowSubmissionTermsModal(false)} handleCreateFullTrip={handleCreateFullTrip} />

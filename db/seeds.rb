@@ -17,11 +17,24 @@ Review.destroy_all
 
 # USERS
 puts "Seeding Users..."
-jenna = User.create(username: "jenna", password: "admin", picture: nil, latitude: 40.24546575735813, longitude: -74.84552948589332, travel_season: "Fall", travel_length: 7, travel_locale: "City", travel_classification: "Culture", budget: 3, credits: 5, premium: false)
+jenna = User.create(username: "jenna", password: "admin", picture: "https://gradivahotels.com/wp-content/uploads/2019/07/Best-Travel-Destination.jpg", latitude: 40.24546575735813, longitude: -74.84552948589332, travel_season: "Fall", travel_length: 7, travel_locale: "City", travel_classification: "Culture", budget: 3, credits: 1, premium: false)
 
-erika = User.create(username: "erika", password: "admin", picture: nil, latitude: 40.784464408532635, longitude: -73.97770002620597, travel_season: "Spring", travel_length: 14, travel_locale: "Country", travel_classification: "Culture", budget: 2, credits: 5, premium: true)
+erika = User.create(username: "erika", password: "admin", picture: "https://757967.smushcdn.com/1421783/wp-content/uploads/2020/01/Venice-Italy-Italys-Floating-City-The-city-has-so-many-places-to-visit-that-needs-to-be-seen-slowly..jpg?lossy=1&strip=0&webp=1", latitude: 40.784464408532635, longitude: -73.97770002620597, travel_season: "Spring", travel_length: 14, travel_locale: "Country", travel_classification: "Culture", budget: 2, credits: 5, premium: true)
 
-helen = User.create(username: "helen", password: "admin", picture: nil, latitude: 40.24546575735813, longitude: -74.84552948589332, travel_season: "Winter", travel_length: 4, travel_locale: "City", travel_classification: "Culture", budget: 4, credits: 5, premium: false)
+helen = User.create(username: "helen", password: "admin", picture: "https://images.adsttc.com/media/images/5d44/14fa/284d/d1fd/3a00/003d/large_jpg/eiffel-tower-in-paris-151-medium.jpg?1564742900", latitude: 40.24546575735813, longitude: -74.84552948589332, travel_season: "Winter", travel_length: 4, travel_locale: "City", travel_classification: "Culture", budget: 4, credits: 5, premium: true)
+
+fred = User.create(username: "fred", password: "admin", picture: "https://www.tripsavvy.com/thmb/vP7pCia2UJMBSz-lWLFUyEFtLMk=/1883x1414/filters:no_upscale():max_bytes(150000):strip_icc()/Manarola-Liguria-Coast-Italy-Sunset-5b5fcb3b46e0fb00828b35dd.jpg", latitude: 40.24546575735813, longitude: -74.84552948589332, travel_season: "Summer", travel_length: 6, travel_locale: "Country", travel_classification: "Adventure", budget: 1, credits: 5, premium: false)
+
+steven = User.create(username: "steven", password: "admin", picture: "https://thetravelscene.com/Over-the-water-bungalowsa.jpg", latitude: 40.784464408532635, longitude: -73.97770002620597, travel_season: "Spring", travel_length: 12, travel_locale: "City", travel_classification: "Adventure", budget: 1, credits: 5, premium: false)
+
+travelnova = User.create(username: "travelnova", password: "admin", picture: "http://images.summitmedia-digital.com/cosmo/images/2019/11/30/palawan-1575079999.png", latitude: 40.784464408532635, longitude: -73.97770002620597, travel_season: "Spring", travel_length: 12, travel_locale: "City", travel_classification: "Adventure", budget: 1, credits: 5, premium: false)
+
+wandermelon = User.create(username: "wandermelon", password: "admin", picture: "https://www.wanderlustchloe.com/wp-content/uploads/2017/10/Aberta-Canada.jpg", latitude: 40.784464408532635, longitude: -73.97770002620597, travel_season: "Spring", travel_length: 12, travel_locale: "City", travel_classification: "Adventure", budget: 1, credits: 5, premium: false)
+
+nomadman = User.create(username: "nomadman", password: "admin", picture: "https://cdn.cnn.com/cnnnext/dam/assets/170606121226-japan---travel-destination---shutterstock-230107657.jpg", latitude: 40.784464408532635, longitude: -73.97770002620597, travel_season: "Spring", travel_length: 12, travel_locale: "City", travel_classification: "Adventure", budget: 1, credits: 5, premium: false)
+
+savannah = User.create(username: "savannah", password: "admin", picture: "https://cdn.cnn.com/cnnnext/dam/assets/170606121226-japan---travel-destination---shutterstock-230107657.jpg", latitude: 40.784464408532635, longitude: -73.97770002620597, travel_season: "Winter", travel_length: 12, travel_locale: "City", travel_classification: "Adventure", budget: 3, credits: 5, premium: false)
+
 
 
 # ITINERARIES
@@ -201,32 +214,42 @@ Activity.create(name: "Check into AirBnB (evening)", number: 1, info_url: "", da
 Activity.create(name: "Walk to the water and have dinner at Baja, a boat restaurant on the Tiber River", number: 2, info_url: "https://www.tripadvisor.com/Restaurant_Review-g187791-d4154025-Reviews-Baja-Rome_Lazio.html", day_id: summer_in_rome_day_1.id)
 
 Activity.create(name: "Head to the Le Domus Romane di Palazzo Valentini for an AM tour", number: 1, info_url: "https://www.tosc.it/artist/ingresso-palazzo-valentini/#fragment-2", day_id: summer_in_rome_day_2.id)
-Activity.create(name: "Walk to the Piazza del Campidoglio and Capitoline Museum", number: 2, info_url: "", day_id: summer_in_rome_day_2.id)
-Activity.create(name: "Walk around the Roman Forum, Palatine Hill, Arch of Constantine and the Colosseum", number: 3, info_url: "", day_id: summer_in_rome_day_2.id)
-Activity.create(name: "Walk to the Pantheon, then Trevi Fountain", number: 4, info_url: "", day_id: summer_in_rome_day_2.id)
-Activity.create(name: "Grab dinner near the Forum of Augustus", number: 5, info_url: "", day_id: summer_in_rome_day_2.id)
+Activity.create(name: "Walk to the Piazza del Campidoglio", number: 2, info_url: "https://www.rome.net/piazza-campidoglio", day_id: summer_in_rome_day_2.id)
+Activity.create(name: "Take a tour of the Capitoline Museum", number: 3, info_url: "http://www.museicapitolini.org/en/", day_id: summer_in_rome_day_2.id)
+Activity.create(name: "Walk around the Roman Forum (pro tip: wear comfortable shoes you don’t care about - you’re about to get dusty!) ", number: 4, info_url: "https://en.wikipedia.org/wiki/Roman_Forum", day_id: summer_in_rome_day_2.id)
+Activity.create(name: "Next, head to the Palatine Hill, the rumored place where Romulus and Remus were found", number: 5, info_url: "https://en.wikipedia.org/wiki/Palatine_Hill", day_id: summer_in_rome_day_2.id)
+Activity.create(name: "On your way to the Colosseum, stop at the Arch of Constantine", number: 6, info_url: "https://en.wikipedia.org/wiki/Arch_of_Constantine", day_id: summer_in_rome_day_2.id)
+Activity.create(name: "Walk to the Colosseum (pro tip: there’s an amazing sandwich shop on your way!)", number: 7, info_url: "https://en.wikipedia.org/wiki/Colosseum", day_id: summer_in_rome_day_2.id)
+Activity.create(name: "Walk to and tour the inside of the Pantheon", number: 8, info_url: "https://en.wikipedia.org/wiki/Pantheon,_Rome", day_id: summer_in_rome_day_2.id)
+Activity.create(name: "Complete your long day of sightseeing with a visit to the Trevi Fountain (make sure you toss a coin in!)", number: 9, info_url: "https://en.wikipedia.org/wiki/Trevi_Fountain", day_id: summer_in_rome_day_2.id)
+Activity.create(name: "Grab dinner near the Forum of Augustus", number: 10, info_url: "https://en.wikipedia.org/wiki/Forum_of_Augustus", day_id: summer_in_rome_day_2.id)
 
-Activity.create(name: "Leave the apartment and walk to Piazza Navona to people watch and grab a quick coffee/pastry", number: 1, info_url: "", day_id: summer_in_rome_day_3.id)
-Activity.create(name: "Walk to the Campo Dei Fiori Market", number: 2, info_url: "", day_id: summer_in_rome_day_3.id)
-Activity.create(name: "Head to St. Peter’s Square/Basilica, Vatican City for a tour of the Basilica and Sistine Chapel", number: 3, info_url: "", day_id: summer_in_rome_day_3.id)
-Activity.create(name: "Walk to and tour Castel Sant’Angelo", number: 4, info_url: "", day_id: summer_in_rome_day_3.id)
-Activity.create(name: "Walk to and tour the Museum dell’Ara Pacis", number: 5, info_url: "", day_id: summer_in_rome_day_3.id)
-Activity.create(name: "Walk to the Piazza del Popolo to take a break and people watch!", number: 6, info_url: "", day_id: summer_in_rome_day_3.id)
-Activity.create(name: "Walk through the Giardini di Villa Borghese and tour Villa Borghese", number: 7, info_url: "", day_id: summer_in_rome_day_3.id)
-Activity.create(name: "Walk to the Spanish Steps", number: 8, info_url: "", day_id: summer_in_rome_day_3.id)
-Activity.create(name: "Head back to the Colosseum for a “Moonlight Tour of the Colosseum and Ancient Rome”", number: 9, info_url: "", day_id: summer_in_rome_day_3.id)
+Activity.create(name: "Leave the apartment and walk to Piazza Navona to people watch and grab a quick coffee/pastry", number: 1, info_url: "https://en.wikipedia.org/wiki/Piazza_Navona", day_id: summer_in_rome_day_3.id)
+Activity.create(name: "Walk to the Campo Dei Fiori Market", number: 2, info_url: "https://civitavecchia.portmobility.it/en/market-campo-dei-fiori", day_id: summer_in_rome_day_3.id)
+Activity.create(name: "Head to St. Peter’s Square/Basilica, Vatican City for a tour of the Basilica", number: 3, info_url: "https://en.wikipedia.org/wiki/St._Peter%27s_Basilica", day_id: summer_in_rome_day_3.id)
+Activity.create(name: "Don’t miss the world-famous Sistine Chapel", number: 4, info_url: "https://en.wikipedia.org/wiki/Sistine_Chapel", day_id: summer_in_rome_day_3.id)
+Activity.create(name: "Walk to and tour Castel Sant’Angelo", number: 5, info_url: "https://en.wikipedia.org/wiki/Castel_Sant%27Angelo", day_id: summer_in_rome_day_3.id)
+Activity.create(name: "Walk to and tour the Museum dell’Ara Pacis", number: 6, info_url: "https://en.wikipedia.org/wiki/Museum_of_the_Ara_Pacis", day_id: summer_in_rome_day_3.id)
+Activity.create(name: "Walk to the Piazza del Popolo to take a break and people watch!", number: 7, info_url: "https://en.wikipedia.org/wiki/Piazza_del_Popolo", day_id: summer_in_rome_day_3.id)
+Activity.create(name: "Take a leisurely, nature-filled walk through the Giardini di Villa Borghese", number: 8, info_url: "https://en.wikipedia.org/wiki/Villa_Borghese_gardens", day_id: summer_in_rome_day_3.id)
+Activity.create(name: "Make your way to Galleria Borghese", number: 9, info_url: "https://galleriaborghese.beniculturali.it/", day_id: summer_in_rome_day_3.id)
+Activity.create(name: "Walk to the Spanish Steps", number: 10, info_url: "https://en.wikipedia.org/wiki/Spanish_Steps", day_id: summer_in_rome_day_3.id)
+Activity.create(name: "Head back to the Colosseum for a “Moonlight Tour of the Colosseum and Ancient Rome”", number: 11, info_url: "https://www.viator.com/tours/Rome/Colosseum-and-Ancient-Rome-under-the-moonlight/d511-21175P41", day_id: summer_in_rome_day_3.id)
 
-Activity.create(name: "Take a biking tour of the Via Appia, stopping at the various Catacombs along the way (pro tip: bring a picnic lunch!)", number: 1, info_url: "", day_id: summer_in_rome_day_4.id)
-Activity.create(name: "Head to the Baths of Caracalla, then the Circus Maximus", number: 2, info_url: "", day_id: summer_in_rome_day_4.id)
-Activity.create(name: "Book a tour of the Domus Aurea, Emperor Nero’s palace (now underground)", number: 3, info_url: "", day_id: summer_in_rome_day_4.id)
-Activity.create(name: "Walk to and tour the Palazzo Massimo alle Terme Museum, and the Baths of Diocletian", number: 4, info_url: "", day_id: summer_in_rome_day_4.id)
-Activity.create(name: "Book a tour of the Palazzo Altemps Museum", number: 5, info_url: "", day_id: summer_in_rome_day_4.id)
-Activity.create(name: "Grab dinner (and a spritz!) at Saltimbocca", number: 6, info_url: "", day_id: summer_in_rome_day_4.id)
-Activity.create(name: "Watch the nighttime “Journeys Through Ancient Rome” Light Show at the Forum of Augustus, then take a free tour of the area", number: 7, info_url: "", day_id: summer_in_rome_day_4.id)
-Activity.create(name: "Grab a gelato on your way home!", number: 8, info_url: "", day_id: summer_in_rome_day_4.id)
+Activity.create(name: "Take a biking tour of the Via Appia, Rome’s oldest road", number: 1, info_url: "https://www.tripadvisor.com/AttractionProductReview-g187791-d11473967-Bike_Rental_Appia_Antica_Regional_Park_in_Rome-Rome_Lazio.html", day_id: summer_in_rome_day_4.id)
+Activity.create(name: "On your tour, stop at the various Catacombs along the way (pro tip: bring cash for the catacomb entrance fees and pack a picnic to have on the way!)", number: 2, info_url: "http://www.italia.it/en/travel-ideas/art-and-history/the-catacombs-of-rome/itinerary-the-catacombs-of-the-appia-antica.html", day_id: summer_in_rome_day_4.id)
+Activity.create(name: "Head to the Baths of Caracalla", number: 3, info_url: "https://en.wikipedia.org/wiki/Baths_of_Caracalla", day_id: summer_in_rome_day_4.id)
+Activity.create(name: "Walk (or hail a cab) to the Circus Maximus, the site of chariot races!", number: 4, info_url: "https://en.wikipedia.org/wiki/Circus_Maximus", day_id: summer_in_rome_day_4.id)
+Activity.create(name: "Book a tour of the Domus Aurea, Emperor Nero’s palace (now underground)", number: 5, info_url: "https://www.rome-museum.com/domus-aurea-guided-tour-raphael-exhibition.php", day_id: summer_in_rome_day_4.id)
+Activity.create(name: "Walk to and tour the Palazzo Massimo alle Terme Museum", number: 6, info_url: "https://museonazionaleromano.beniculturali.it/en/palazzo-massimo/", day_id: summer_in_rome_day_4.id)
+Activity.create(name: "Next, head to the Baths of Diocletian", number: 7, info_url: "https://en.wikipedia.org/wiki/Baths_of_Diocletian", day_id: summer_in_rome_day_4.id)
+Activity.create(name: "Book a tour of the Palazzo Altemps Museum", number: 8, info_url: "https://museonazionaleromano.beniculturali.it/palazzo-altemps/", day_id: summer_in_rome_day_4.id)
+Activity.create(name: "Grab dinner (and a spritz!) at Saltimbocca", number: 9, info_url: "https://www.tripadvisor.com/Restaurant_Review-g187791-d7646558-Reviews-Saltimbocca-Rome_Lazio.html", day_id: summer_in_rome_day_4.id)
+Activity.create(name: "Watch the nighttime “Journeys Through Ancient Rome” Light Show at the Forum of Augustus, then take a free tour of the area", number: 10, info_url: "http://www.viaggioneifori.it/en/", day_id: summer_in_rome_day_4.id)
+Activity.create(name: "Grab a gelato on your way home!", number: 11, info_url: "", day_id: summer_in_rome_day_4.id)
 
-Activity.create(name: "Book an early train to Pompeii, spend the day exploring the city (pro tip: book an official tour with a guide who can tell you all about the story of Pompeii, Mt. Vesuvius, etc.)", number: 1, info_url: "", day_id: summer_in_rome_day_5.id)
-Activity.create(name: "Head to Naples to tour the National Archaeological Museum", number: 2, info_url: "", day_id: summer_in_rome_day_5.id)
+Activity.create(name: "Book an early train to Pompeii, spend the day exploring the city (pro tip: book an official tour with a guide who can tell you all about the story of Pompeii, Mt. Vesuvius, etc.)", number: 1, info_url: "https://en.wikipedia.org/wiki/Pompeii", day_id: summer_in_rome_day_5.id)
+Activity.create(name: "Return to Naples to tour the National Archaeological Museum", number: 2, info_url: "http://www.museoarcheologiconapoli.it/en/", day_id: summer_in_rome_day_5.id)
 Activity.create(name: "Head back to Rome for your last night", number: 3, info_url: "", day_id: summer_in_rome_day_5.id)
 
 
@@ -255,34 +278,34 @@ Activity.create(name: "Check into AirBnB", number: 1, info_url: "", day_id: summ
 Activity.create(name: "Grab dinner near the West End, then see a play/show", number: 2, info_url: "https://officiallondontheatre.com/london-west-end-guide/", day_id: summer_in_london_day_1.id)
 
 Activity.create(name: "Have breakfast near the British Museum", number: 1, info_url: "", day_id: summer_in_london_day_2.id)
-Activity.create(name: "Tour the British Museum", number: 2, info_url: "https://www.britishmuseum.org/", day_id: summer_in_london_day_2.id)
-Activity.create(name: "Have high tea at Fortum & Mason", number: 3, info_url: "https://www.fortnumandmason.com/", day_id: summer_in_london_day_2.id)
-Activity.create(name: "Tour the National Gallery", number: 4, info_url: "https://www.nationalgallery.org.uk/", day_id: summer_in_london_day_2.id)
-Activity.create(name: "Walk through Trafalgar Square", number: 5, info_url: "https://en.wikipedia.org/wiki/Trafalgar_Square", day_id: summer_in_london_day_2.id)
-Activity.create(name: "Walk around Piccadilly Circus", number: 6, info_url: "https://en.wikipedia.org/wiki/Piccadilly_Circus", day_id: summer_in_london_day_2.id)
-Activity.create(name: "Have dinner at Covent Garden", number: 7, info_url: "https://www.coventgarden.london/", day_id: summer_in_london_day_2.id)
+Activity.create(name: "Take a tour of the British Museum", number: 2, info_url: "https://www.britishmuseum.org/", day_id: summer_in_london_day_2.id)
+Activity.create(name: "Make your way to a lunchtime high tea at Fortum & Mason", number: 3, info_url: "https://www.fortnumandmason.com/", day_id: summer_in_london_day_2.id)
+Activity.create(name: "Next, tour the National Gallery", number: 4, info_url: "https://www.nationalgallery.org.uk/", day_id: summer_in_london_day_2.id)
+Activity.create(name: "Walk through Trafalgar Square (pro tip: take at least one red double decker bus from one location to the next!)", number: 5, info_url: "https://en.wikipedia.org/wiki/Trafalgar_Square", day_id: summer_in_london_day_2.id)
+Activity.create(name: "Walk around Piccadilly Circus (make sure to take your obligatory 'tourist' photo!)", number: 6, info_url: "https://en.wikipedia.org/wiki/Piccadilly_Circus", day_id: summer_in_london_day_2.id)
+Activity.create(name: "Grab dinner at Covent Garden", number: 7, info_url: "https://www.coventgarden.london/", day_id: summer_in_london_day_2.id)
 
-Activity.create(name: "Visit the Tower of London", number: 1, info_url: "https://www.hrp.org.uk/tower-of-london/#gs.56bj7s", day_id: summer_in_london_day_3.id)
-Activity.create(name: "Take a tour of Shakespeare’s Globe", number: 2, info_url: "https://www.shakespearesglobe.com/", day_id: summer_in_london_day_3.id)
-Activity.create(name: "Visit St. Paul’s Cathedral", number: 3, info_url: "https://www.stpauls.co.uk/", day_id: summer_in_london_day_3.id)
-Activity.create(name: "Do the London Bridge Experience", number: 4, info_url: "https://www.thelondonbridgeexperience.com/", day_id: summer_in_london_day_3.id)
+Activity.create(name: "Visit the Tower of London (pro tip: budget enough time to take a tour, see the Crown Jewels, and leisurely walk the grounds)", number: 1, info_url: "https://www.hrp.org.uk/tower-of-london/#gs.56bj7s", day_id: summer_in_london_day_3.id)
+Activity.create(name: "Learn all about England’s most famous playwright with a tour of Shakespeare’s Globe", number: 2, info_url: "https://www.shakespearesglobe.com/", day_id: summer_in_london_day_3.id)
+Activity.create(name: "Visit St. Paul’s Cathedral (pro tip: the crypt below the cathedral and The Whispering Gallery are not-to-be-missed)", number: 3, info_url: "https://www.stpauls.co.uk/", day_id: summer_in_london_day_3.id)
+Activity.create(name: "If you’re into all-things-scary, book the London Bridge Experience ", number: 4, info_url: "https://www.thelondonbridgeexperience.com/", day_id: summer_in_london_day_3.id)
 Activity.create(name: "Walk across the Tower Bridge, then go up to the top for the Tower Bridge Experience", number: 5, info_url: "https://www.towerbridge.org.uk/", day_id: summer_in_london_day_3.id)
-Activity.create(name: "See an opera at the Royal Opera House", number: 6, info_url: "https://www.roh.org.uk/", day_id: summer_in_london_day_3.id)
+Activity.create(name: "Dress up, go out to dinner, and finish your night by seeing an opera at the Royal Opera House", number: 6, info_url: "https://www.roh.org.uk/", day_id: summer_in_london_day_3.id)
 
 Activity.create(name: "Visit and tour Westminster Abbey", number: 1, info_url: "https://www.westminster-abbey.org/", day_id: summer_in_london_day_4.id)
-Activity.create(name: "Head to the Banqueting House", number: 2, info_url: "https://www.hrp.org.uk/banqueting-house/", day_id: summer_in_london_day_4.id)
-Activity.create(name: "Walk through St. James’s Park", number: 3, info_url: "https://en.wikipedia.org/wiki/St_James%27s_Park", day_id: summer_in_london_day_4.id)
-Activity.create(name: "Tour the Churchill War Rooms", number: 4, info_url: "https://www.iwm.org.uk/visits/churchill-war-rooms", day_id: summer_in_london_day_4.id)
-Activity.create(name: "Walk by Big Ben and the Houses of Parliament", number: 5, info_url: "https://www.parliament.uk/about/living-heritage/building/palace/big-ben/", day_id: summer_in_london_day_4.id)
-Activity.create(name: "Reserve and go to The London Dungeon", number: 6, info_url: "https://www.thedungeons.com/london/", day_id: summer_in_london_day_4.id)
+Activity.create(name: "Head to the Banqueting House (pro tip: snag a beanbag and take some time looking up at the most gorgeous ceiling)", number: 2, info_url: "https://www.hrp.org.uk/banqueting-house/", day_id: summer_in_london_day_4.id)
+Activity.create(name: "Take a stroll through St. James’s Park", number: 3, info_url: "https://en.wikipedia.org/wiki/St_James%27s_Park", day_id: summer_in_london_day_4.id)
+Activity.create(name: "Time travel to WWII with a tour of the Churchill War Rooms", number: 4, info_url: "https://www.iwm.org.uk/visits/churchill-war-rooms", day_id: summer_in_london_day_4.id)
+Activity.create(name: "Walk by Big Ben and the Houses of Parliament for some touristy photo ops", number: 5, info_url: "https://www.parliament.uk/about/living-heritage/building/palace/big-ben/", day_id: summer_in_london_day_4.id)
+Activity.create(name: "Horror fans, reserve and go to The London Dungeon", number: 6, info_url: "https://www.thedungeons.com/london/", day_id: summer_in_london_day_4.id)
 Activity.create(name: "Visit the London Eye for a bird’s eye view of London", number: 7, info_url: "https://www.londoneye.com/", day_id: summer_in_london_day_4.id)
-Activity.create(name: "Have dinner at Pierre Victoire Bistro", number: 8, info_url: "http://www.pierrevictoire.com/london/restaurant/", day_id: summer_in_london_day_4.id)
+Activity.create(name: "Have a candlelit dinner at Pierre Victoire Bistro", number: 8, info_url: "http://www.pierrevictoire.com/london/restaurant/", day_id: summer_in_london_day_4.id)
 
 Activity.create(name: "Visit Buckingham Palace (pro tip: try to time it so you can see the changing of the guards!)", number: 1, info_url: "https://www.royal.uk/royal-residences-buckingham-palace", day_id: summer_in_london_day_5.id)
 Activity.create(name: "Walk through the Green Park and Hyde Park", number: 2, info_url: "https://en.wikipedia.org/wiki/Green_Park", day_id: summer_in_london_day_5.id)
-Activity.create(name: "Walk by Wellington Arch", number: 3, info_url: "https://www.english-heritage.org.uk/visit/places/wellington-arch/", day_id: summer_in_london_day_5.id)
-Activity.create(name: "Visit and tour Kensington Palace", number: 4, info_url: "https://www.hrp.org.uk/kensington-palace/", day_id: summer_in_london_day_5.id)
-Activity.create(name: "Tour the Victoria & Albert Museum", number: 5, info_url: "https://www.vam.ac.uk/", day_id: summer_in_london_day_5.id)
+Activity.create(name: "Before you leave, make sure to stop by the Wellington Arch", number: 3, info_url: "https://www.english-heritage.org.uk/visit/places/wellington-arch/", day_id: summer_in_london_day_5.id)
+Activity.create(name: "Visit and tour Kensington Palace, birthplace of Queen Victoria", number: 4, info_url: "https://www.hrp.org.uk/kensington-palace/", day_id: summer_in_london_day_5.id)
+Activity.create(name: "Take a tour of the Victoria & Albert Museum (pro tip: allow some time to grab a snack and sit outside in the stunning garden)", number: 5, info_url: "https://www.vam.ac.uk/", day_id: summer_in_london_day_5.id)
 Activity.create(name: "Spend your last afternoon (and some $$!) at Harrod’s", number: 6, info_url: "https://www.harrods.com/", day_id: summer_in_london_day_5.id)
 
 
@@ -445,16 +468,61 @@ Photo.create(url: "https://pyxis.nymag.com/v1/imgs/efd/d35/08d678d196d9cb53dbf35
 
 
 
-# REVIEWS (Tests for now)
+# REVIEWS
 puts "Seeding Reviews..."
+
+# Spring in Vegas Reviews
 Review.create(comment: "Had the best time ever! The Cirque du Soleil show was a definite highlight, but relaxing at the poolside cabanas was also amazing!", rating: nil, user_id: erika.id, itinerary_id: spring_in_vegas.id)
-Review.create(comment: "The old-fashioned arcade-style bar was such a hidden gem! Such a great suggestion!", rating: nil, user_id: erika.id, itinerary_id: winter_in_newport.id)
-Review.create(comment: "Simply spectacular and not terribly crowded at this time of year. The mansion tours are the best part of the trip!", rating: nil, user_id: helen.id, itinerary_id: winter_in_newport.id)
+Review.create(comment: "I don’t adore nightclubs so I liked that this itinerary broke it up a bit. Loved the pole dancing class - got to work off those vodka sodas from the night before!", rating: nil, user_id: travelnova.id, itinerary_id: spring_in_vegas.id)
+Review.create(comment: "Amazing weekend with my girls, thanks for all the suggestions! If you are looking for a bit more adventure, I’d also suggest an ATV tour in the desert. 10/10 would recommend!", rating: nil, user_id: wandermelon.id, itinerary_id: spring_in_vegas.id)
+
+
+# Fall in Romania Reviews
+Review.create(comment: "My favorite part of the whole trip (and that’s saying a lot) was the Bigar Waterfall. I don’t know that I’ll ever see something as unique/hidden as that ever again.", rating: nil, user_id: erika.id, itinerary_id: fall_in_romania.id)
+Review.create(comment: "Amazing itinerary! I’d also suggest spending a bit more time in Bucharest if you can, it’s such an interesting city. The National Museum of Art and the Dimitrie Gusti National Village Museum are not-to-be-missed.", rating: nil, user_id: fred.id, itinerary_id: fall_in_romania.id)
+Review.create(comment: "WOW do not miss the painted monasteries. Also, while you’re in that area there are some incredible spas/hotels you should check out (including natural hot springs)!", rating: nil, user_id: savannah.id, itinerary_id: fall_in_romania.id)
+
+
+# Winter in North Fork Reviews
+Review.create(comment: "What a fun weekend! We loved the wineries - I suggest ordering a little charcuterie/some appetizers at each one along the way.", rating: nil, user_id: helen.id, itinerary_id: winter_in_north_fork.id)
+Review.create(comment: "Greenport was an amazing end to the trip, the seafood was absolutely delicious and the town so quaint.", rating: nil, user_id: steven.id, itinerary_id: winter_in_north_fork.id)
+Review.create(comment: "If we could’ve stayed longer, we would have done a couple more wineries on another day. There’s so many in the area, like Palmer and Sherwood House. Overall wonderful, thank you!", rating: nil, user_id: erika.id, itinerary_id: winter_in_north_fork.id)
+
+
+# Summer in Rome Reviews
+Review.create(comment: "They weren't kidding when they said it would be a whirlwind, but we're so glad we got to see and experience everything we did during our trip!", rating: nil, user_id: jenna.id, itinerary_id: summer_in_rome.id)
+Review.create(comment: "I’ve been to Rome several times and have always done the touristy things, but never tried the Via Appia bike tour. Best part of the trip, in my opinion!", rating: nil, user_id: nomadman.id, itinerary_id: summer_in_rome.id)
+Review.create(comment: "Trip was perfect! If you have extra time, definitely grab pizza in Naples (the birthplace of it)!", rating: nil, user_id: steven.id, itinerary_id: summer_in_rome.id)
+
+
+# Summer in Boston Reviews
+Review.create(comment: "Publico had one of the best brunches I’ve ever had - the arepas are to die for.", rating: nil, user_id: steven.id, itinerary_id: summer_in_boston.id)
+Review.create(comment: "The whale watch brought tears to my eyes. Thankfully we packed a load of Dramamine (waters were choppy), but a whale breached literally twenty feet from the boat… it was incredible.", rating: nil, user_id: erika.id, itinerary_id: summer_in_boston.id)
+Review.create(comment: "I LOVE this itinerary, but I’d definitely include a visit to the Boston Public Library and the Sam Adams Brewery.", rating: nil, user_id: travelnova.id, itinerary_id: summer_in_boston.id)
+
+
+# Summer in London Reviews
 Review.create(comment: "Even if you're not a typical opera fan, you have to include it on your trip just for the excellent experience!", rating: nil, user_id: helen.id, itinerary_id: summer_in_london.id)
 Review.create(comment: "Seeing a show at the West End is a must! We had the privilege of going to Romeo & Juliet and it was the most incredible Shakespeare performance we had ever seen.", rating: nil, user_id: jenna.id, itinerary_id: summer_in_london.id)
-Review.create(comment: "They weren't kidding when they said it would be a whirlwind, but we're so glad we got to see and experience everything we did during our trip!", rating: nil, user_id: jenna.id, itinerary_id: summer_in_rome.id)
-Review.create(comment: "Never thought I would go ice skating on a rooftop - it was incredible! Would never have known that existed, or even think to look for it. Thanks for another great trip, Wander!", rating: nil, user_id: erika.id, itinerary_id: winter_in_brooklyn.id)
+Review.create(comment: "If you love this itinerary (and the couple of horror-themed activities), you can’t miss the Jack the Ripper tour!", rating: nil, user_id: fred.id, itinerary_id: summer_in_london.id)
 
+
+# Winter in Newport Reviews
+Review.create(comment: "The old-fashioned arcade-style bar was such a hidden gem! Such a great suggestion!", rating: nil, user_id: erika.id, itinerary_id: winter_in_newport.id)
+Review.create(comment: "Simply spectacular and not terribly crowded at this time of year. The mansion tours are the best part of the trip!", rating: nil, user_id: helen.id, itinerary_id: winter_in_newport.id)
+Review.create(comment: "Loved this trip! We also took a day and spent it in Providence. There’s tons to do there as well, including an amazing zoo and a lot of historical tours/places.", rating: nil, user_id: nomadman.id, itinerary_id: winter_in_newport.id)
+
+
+# Spring in Philadelphia Reviews
+Review.create(comment: "The Kimpton is one of the coolest hotels I’ve ever stayed in, and it’s RIGHT across the street from the Liberty Bell and Independence Hall! Don’t miss the (free) happy hour they have every day at 4!", rating: nil, user_id: wandermelon.id, itinerary_id: spring_in_philadelphia.id)
+Review.create(comment: "Great trip! If you’re in Philly near October, you have to visit the Eastern State Penitentiary. Their haunted house is the best!", rating: nil, user_id: nomadman.id, itinerary_id: spring_in_philadelphia.id)
+Review.create(comment: "Instead of Martha’s, we went to Cuba Libre Restaurant & Rum Bar (my husband loves rum). We had a great time, thank you!", rating: nil, user_id: travelnova.id, itinerary_id: spring_in_philadelphia.id)
+
+
+# Winter in Brooklyn Reviews
+Review.create(comment: "Never thought I would go ice skating on a rooftop - it was incredible! Would never have known that existed, or even think to look for it. Thanks for another great trip, Wander!", rating: nil, user_id: erika.id, itinerary_id: winter_in_brooklyn.id)
+Review.create(comment: "That pool hall was one of the most fun things I’ve ever done, and so inexpensive! If you love that kind of stuff, definitely check out Barcade.", rating: nil, user_id: wandermelon.id, itinerary_id: winter_in_brooklyn.id)
+Review.create(comment: "Ainslie was delicious, and the garden so beautiful. If you go there, definitely get the burrata and the pizza. Both are to die for!", rating: nil, user_id: steven.id, itinerary_id: winter_in_brooklyn.id)
 
 
 

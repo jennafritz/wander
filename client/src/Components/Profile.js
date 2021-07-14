@@ -75,7 +75,7 @@ function Profile() {
 
     return (
         <Container fluid id="profileContainer">
-            <button onClick={() => history.push("/submitATrip")}>Test Button</button>
+            {/* <button onClick={() => history.push("/submitATrip")}>Test Button</button> */}
             <Row>
                 <Col xs="auto" className="flexColumnColumn">
                     <Image src={user.picture ? user.picture : Wander} alt="user profile" width="250rem" height="250rem" roundedCircle />
