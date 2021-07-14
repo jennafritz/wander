@@ -57,6 +57,9 @@ spring_in_philadelphia = Itinerary.create(name: "Spring in Philadelphia", descri
 
 winter_in_brooklyn = Itinerary.create(name: "Winter in Brooklyn", description: "Spend a couple days in Williamsburg, enjoying a hotel with a rooftop (amazing views of Manhattan), ice skating, great food, and some late-night fun.", destination: "Brooklyn, NY", latitude: 40.67758753448411, longitude: -73.948028468185, season: "Winter", length: 3, locale: "City", classification: "Culture", budget: 3, creator_id: erika.id)
 
+spring_in_paris = Itinerary.create(name: "Spring in Paris", description: "Explore the unique beauty of Paris on a six-day spring trip filled with cherry blossom trees, tours of stunning cathedrals and monuments, impressionist art, the best pastries, and so much more. Pro tip: Get a Paris Pass and plan to take the Paris Subway - it’s a cheap, easy way to get around the city!", destination: "Paris, France", latitude: 48.85685368229347, longitude: 2.3517475598308715, season: "Spring", length: 6, locale: "City", classification: "Culture", budget: 3, creator_id: jenna.id)
+
+fall_in_edinburgh = Itinerary.create(name: "Fall in Edinburgh", description: "Visit the charming capital of Scotland and immerse yourself in the city’s rich history and stunning old architecture, from cobblestone streets to gothic monuments and a centuries-old castle. Tour the more rural highlands while you’re here to experience the breathtaking natural beauty this country has to offer! Pro Tip: if you time your visit for the end of November, you get all the magic Edinburgh has to offer during the holiday season, without all the crowds!", destination: "Edinburgh, UK", latitude: 55.95329138182551, longitude: -3.192330016154397, season: "Fall", length: 7, locale: "City", classification: "Culture", budget: 2, creator_id: jenna.id)
 
 
 #DAYS
@@ -118,6 +121,22 @@ winter_in_brooklyn_day_1 = Day.create(name: "Winter in Brooklyn Day 1", number: 
 winter_in_brooklyn_day_2 = Day.create(name: "Winter in Brooklyn Day 2", number: 2, itinerary_id: winter_in_brooklyn.id)
 winter_in_brooklyn_day_3 = Day.create(name: "Winter in Brooklyn Day 3", number: 3, itinerary_id: winter_in_brooklyn.id)
 
+#Spring in Paris Days
+spring_in_paris_day_1 = Day.create(name: "Spring in Paris Day 1", number: 1, itinerary_id: spring_in_paris.id)
+spring_in_paris_day_2 = Day.create(name: "Spring in Paris Day 2", number: 2, itinerary_id: spring_in_paris.id)
+spring_in_paris_day_3 = Day.create(name: "Spring in Paris Day 3", number: 3, itinerary_id: spring_in_paris.id)
+spring_in_paris_day_4 = Day.create(name: "Spring in Paris Day 4", number: 4, itinerary_id: spring_in_paris.id)
+spring_in_paris_day_5 = Day.create(name: "Spring in Paris Day 5", number: 5, itinerary_id: spring_in_paris.id)
+spring_in_paris_day_6 = Day.create(name: "Spring in Paris Day 6", number: 6, itinerary_id: spring_in_paris.id)
+
+# Fall in Edinburgh Days
+fall_in_edinburgh_day_1 = Day.create(name: "Fall in Edinburgh Day 1", number: 1, itinerary_id: fall_in_edinburgh.id)
+fall_in_edinburgh_day_2 = Day.create(name: "Fall in Edinburgh Day 2", number: 2, itinerary_id: fall_in_edinburgh.id)
+fall_in_edinburgh_day_3 = Day.create(name: "Fall in Edinburgh Day 3", number: 3, itinerary_id: fall_in_edinburgh.id)
+fall_in_edinburgh_day_4 = Day.create(name: "Fall in Edinburgh Day 4", number: 4, itinerary_id: fall_in_edinburgh.id)
+fall_in_edinburgh_day_5 = Day.create(name: "Fall in Edinburgh Day 5", number: 5, itinerary_id: fall_in_edinburgh.id)
+fall_in_edinburgh_day_6 = Day.create(name: "Fall in Edinburgh Day 6", number: 6, itinerary_id: fall_in_edinburgh.id)
+fall_in_edinburgh_day_7 = Day.create(name: "Fall in Edinburgh Day 7", number: 7, itinerary_id: fall_in_edinburgh.id)
 
 
 # ACTIVITIES
@@ -368,6 +387,85 @@ Activity.create(name: "Late check-out and head home", number: 2, info_url: "", d
 
 
 
+# Spring in Paris Activities
+Activity.create(name: "Check into your AirBnB/hotel (pro tip: If you can, try to stay on the Île Saint-Louis. It’s perfectly located next to Notre Dame and has some of the best food/views of the city!)", number: 1, info_url: "", day_id: spring_in_paris_day_1.id)
+
+Activity.create(name: "Grab a croissant and coffee from your local boulangerie and head to Notre Dame (pro tip: the Paris Pass will cover the cost of your ticket to tour the tower and the crypt). Take some iconic pictures outside, then tour inside, the tower, and the crypt.", number: 1, info_url: "https://en.wikipedia.org/wiki/Notre-Dame_de_Paris", day_id: spring_in_paris_day_2.id)
+Activity.create(name: "Walk over to Saint Chapelle and take the tour", number: 2, info_url: "https://en.wikipedia.org/wiki/Sainte-Chapelle", day_id: spring_in_paris_day_2.id)
+Activity.create(name: "Next, head over to the Place du Pantheon to tour the Pantheon (pro tip: take some time to leisurely walk around inside - some famous people are buried there, including Victor Hugo, Voltaire, and Marie Curie)", number: 3, info_url: "https://en.wikipedia.org/wiki/Panth%C3%A9on", day_id: spring_in_paris_day_2.id)
+Activity.create(name: "Go underground and view the famous Les Catacombes de Paris", number: 4, info_url: "https://www.catacombes.paris.fr/en/visit/useful-information#section-290", day_id: spring_in_paris_day_2.id)
+Activity.create(name: "Head back to your AirBnB/hotel to refresh, then head to a spectacular nighttime dinner cruise on Le Calife (pro tip: make sure your camera battery is fully charged, you’ll get some incredible photos of the Eiffel Tower!)", number: 5, info_url: "https://www.calife.com/", day_id: spring_in_paris_day_2.id)
+
+Activity.create(name: "Get an early start and beat the crowds with an AM pastry, coffee, and tour of the Musee D’Orsay", number: 1, info_url: "https://m.musee-orsay.fr/en/home.html", day_id: spring_in_paris_day_3.id)
+Activity.create(name: "Next, walk to and tour the Musee Rodin", number: 2, info_url: "https://www.musee-rodin.fr/en", day_id: spring_in_paris_day_3.id)
+Activity.create(name: "On your way to the next site, walk across the Ponte Alexandre III Bridge for some great photo ops (channel your inner Anastasia!", number: 3, info_url: "https://en.wikipedia.org/wiki/Pont_Alexandre_III", day_id: spring_in_paris_day_3.id)
+Activity.create(name: "Head to and tour Musée de l'Orangerie", number: 4, info_url: "https://www.musee-orangerie.fr/en", day_id: spring_in_paris_day_3.id)
+Activity.create(name: "Stop for lunch at Café des Marronniers", number: 5, info_url: "https://www.cafe-des-marronniers.com/?utm_source=Google&utm_medium=GMB&utm_campaign=CDM", day_id: spring_in_paris_day_3.id)
+Activity.create(name: "Leisurely stroll through the Jardin des Tuileries", number: 6, info_url: "https://en.wikipedia.org/wiki/Tuileries_Garden", day_id: spring_in_paris_day_3.id)
+Activity.create(name: "Spend time at the Louvre Museum until close", number: 7, info_url: "https://www.louvre.fr/en", day_id: spring_in_paris_day_3.id)
+Activity.create(name: "Grab dinner near your apartment/hotel, then take a nighttime walk around Notre Dame", number: 8, info_url: "", day_id: spring_in_paris_day_3.id)
+
+Activity.create(name: "Visit the Musée Marmottan Monet (pro tip: leave your apartment/hotel a bit early so you can slowly walk through Jardin du Ranelagh with your pastry/coffee)", number: 1, info_url: "https://www.marmottan.fr/en/marmottan-monet-museum/", day_id: spring_in_paris_day_4.id)
+Activity.create(name: "Head over to the Arc de Triomphe", number: 2, info_url: "https://en.wikipedia.org/wiki/Arc_de_Triomphe", day_id: spring_in_paris_day_4.id)
+Activity.create(name: "Walk along the Champs-Élysées, do some window shopping (and some really shopping if you'd like!)", number: 3, info_url: "https://en.wikipedia.org/wiki/Champs-%C3%89lys%C3%A9es", day_id: spring_in_paris_day_4.id)
+Activity.create(name: "Stop for lunch (and some amazing macarons!) at Ladurée", number: 4, info_url: "https://www.laduree.fr/en/laduree-paris-champs-elysees.html", day_id: spring_in_paris_day_4.id)
+Activity.create(name: "Next, go to and tour the Petit Palais, the museum of fine arts", number: 5, info_url: "https://www.petitpalais.paris.fr/en", day_id: spring_in_paris_day_4.id)
+Activity.create(name: "Then walk across the street for a tour of the Grand Palais", number: 6, info_url: "https://www.grandpalais.fr/en/discover-grand-palais-0", day_id: spring_in_paris_day_4.id)
+Activity.create(name: "Find a cute restaurant in the area for dinner", number: 7, info_url: "", day_id: spring_in_paris_day_4.id)
+
+Activity.create(name: "Travel up to Montmarte and plan to spend a good amount of the day exploring", number: 1, info_url: "https://en.parisinfo.com/discovering-paris/walks-in-paris/montmartre-village-in-paris", day_id: spring_in_paris_day_5.id)
+Activity.create(name: "Visit the basilica, Sacré-Cœur", number: 2, info_url: "http://www.sacre-coeur-montmartre.com/english/", day_id: spring_in_paris_day_5.id)
+Activity.create(name: "Make your way back for some hot chocolate at Angelina tearoom near the Tuileries", number: 3, info_url: "https://www.angelina-paris.fr/en/home", day_id: spring_in_paris_day_5.id)
+Activity.create(name: "Walk along the Rue du Rivoli for some views of Tour Saint-Jacques", number: 4, info_url: "https://en.wikipedia.org/wiki/Tour_Saint-Jacques", day_id: spring_in_paris_day_5.id)
+Activity.create(name: "Spend the afternoon in Le Marais", number: 5, info_url: "https://en.parisinfo.com/discovering-paris/walks-in-paris/exploring-the-marais", day_id: spring_in_paris_day_5.id)
+Activity.create(name: "Have a late-afternoon wine & cheese along the Seine", number: 6, info_url: "", day_id: spring_in_paris_day_5.id)
+Activity.create(name: "Relax for a bit at your apartment/hotel, and then on your last night in Paris, have dinner overlooking Notre Dame and the Seine at Le Flore en l'Ile (pro tip: there may be some live accordion music depending on your luck!)", number: 7, info_url: "https://lefloreenlile.fr/en/", day_id: spring_in_paris_day_5.id)
+
+Activity.create(name: "Spend the morning walking through the Jardin du Luxembourg", number: 1, info_url: "https://en.parisinfo.com/paris-museum-monument/71393/Jardin-du-Luxembourg", day_id: spring_in_paris_day_6.id)
+Activity.create(name: "If you can’t fit an opera into your Paris trip, definitely make time to visit the Palais Garnier", number: 2, info_url: "https://www.operadeparis.fr/en/visits/palais-garnier", day_id: spring_in_paris_day_6.id)
+Activity.create(name: "Visit a covered arcade like Galerie Vivienne", number: 3, info_url: "https://en.parisinfo.com/paris-museum-monument/100272/Galerie-Vivienne", day_id: spring_in_paris_day_6.id)
+Activity.create(name: "Stop for a late lunch at Bistrot Vivienne", number: 4, info_url: "https://www.bistrotvivienne.com/", day_id: spring_in_paris_day_6.id)
+Activity.create(name: "Check out of your AirBnB/hotel and begin your trip home!", number: 5, info_url: "", day_id: spring_in_paris_day_6.id)
+
+
+# Fall in Edinburgh Activities
+Activity.create(name: "Check into your AirBnB; unpack and settle in", number: 1, info_url: "", day_id: fall_in_edinburgh_day_1.id)
+Activity.create(name: "Stroll around the neighborhood and find a place for a quiet dinner", number: 2, info_url: "", day_id: fall_in_edinburgh_day_1.id)
+Activity.create(name: "Head to the Royal Botanic Garden Edinburgh for a Christmas lights show (Note: runs 11/25 to ½, so be sure to plan your trip accordingly!)", number: 3, info_url: "https://www.rbge.org.uk/christmas", day_id: fall_in_edinburgh_day_1.id)
+Activity.create(name: "Call it an early night to catch up on any jet lag and prepare for the rest of your trip", number: 4, info_url: "", day_id: fall_in_edinburgh_day_1.id)
+
+Activity.create(name: "Visit the Palace of Holyroodhouse, the official residence of the British monarch in Scotland! (pro tip: do the audio tour and definitely take the time to look around the ruins of the old abbey)", number: 1, info_url: "https://www.rct.uk/visit/palace-of-holyroodhouse", day_id: fall_in_edinburgh_day_2.id)
+Activity.create(name: "While you’re in the area, climb up Arthur’s Seat (an extinct volcano!) for some spectacular views of the city and the Firth of Forth (pro tip: this is a hike, but you can choose different paths based on difficulty level. You’ll know you’re at the top when you get to a mound of rock with a small monument on it!)", number: 2, info_url: "https://en.wikipedia.org/wiki/Arthur%27s_Seat", day_id: fall_in_edinburgh_day_2.id)
+Activity.create(name: "Descend back down into the city, and on your way back to your AirBnB stop in at a local pub off of Canongate for a quaint Scottish meal", number: 3, info_url: "", day_id: fall_in_edinburgh_day_2.id)
+Activity.create(name: "Depending on how tired you are, either keep exploring the winding streets and narrow alleys of the old city or head back to the AirBnB for a little rest, then grab dinner when you’re ready", number: 4, info_url: "", day_id: fall_in_edinburgh_day_2.id)
+Activity.create(name: "Book a nighttime tour of Mary King’s Close, a now-underground city that was ravaged by the Black Plague and is rumored to be haunted", number: 5, info_url: "https://www.realmarykingsclose.com/", day_id: fall_in_edinburgh_day_2.id)
+
+Activity.create(name: "Tour The Edinburgh Castle – there is so much history to see here, expect to stay the majority of the day", number: 1, info_url: "https://www.edinburghcastle.scot/", day_id: fall_in_edinburgh_day_3.id)
+Activity.create(name: "Head down to Mary’s Milk Bar for homemade gelato and continued views of the castle!", number: 2, info_url: "https://www.marysmilkbar.com/", day_id: fall_in_edinburgh_day_3.id)
+Activity.create(name: "Walk back to your Airbnb along the Royal Mile, being sure to stop for photo ops and some shopping (if you’re in the market for a tartan or some cashmere, this is the place to get it!)", number: 3, info_url: "https://en.wikipedia.org/wiki/Royal_Mile", day_id: fall_in_edinburgh_day_3.id)
+Activity.create(name: "Be sure to stop at the iconic St. Giles’ Cathedral on your way down the Royal Mile", number: 4, info_url: "https://stgilescathedral.org.uk/", day_id: fall_in_edinburgh_day_3.id)
+Activity.create(name: "If you prefer your spirits strong instead of haunting, check out the Scotch Whisky Experience", number: 5, info_url: "https://www.scotchwhiskyexperience.co.uk/", day_id: fall_in_edinburgh_day_3.id)
+
+Activity.create(name: "Take a Coach Tour of Scotland with The Hairy Coo! – You can choose your trip based on length and which destinations you want to visit, but regardless of what you pick you will be blown away by the natural beauty of Scotland’s countryside (and its beloved hairy coos!)", number: 1, info_url: "https://www.thehairycoo.com/", day_id: fall_in_edinburgh_day_4.id)
+Activity.create(name: "If you love all things holiday, have dinner at The Dome when you return, where you’ll dine under a massive color-changing Christmas tree in a room full of other spectacular holiday decorations", number: 2, info_url: "https://www.thedomeedinburgh.com/", day_id: fall_in_edinburgh_day_4.id)
+
+Activity.create(name: "Start your day at the Scottish National Gallery, taking in exceptional fine art (for free!)", number: 1, info_url: "https://www.nationalgalleries.org/visit/scottish-national-gallery", day_id: fall_in_edinburgh_day_5.id)
+Activity.create(name: "If you’re interested, you can also check out the rest of Scotland’s National Galleries, including two Modern Art museums and the National Portrait Gallery", number: 2, info_url: "https://www.nationalgalleries.org/", day_id: fall_in_edinburgh_day_5.id)
+Activity.create(name: "Head to Greyfriar’s Kirkyard, where you can see the grave of Thomas Riddell and hear the story of Greyfriars Bobby", number: 3, info_url: "https://greyfriarskirk.com/visit/kirkyard/", day_id: fall_in_edinburgh_day_5.id)
+Activity.create(name: "Finish your museum day with a tour of the National Museum of Scotland (pro tip: don’t miss seeing Dolly the Sheep!)", number: 4, info_url: "https://www.nms.ac.uk/national-museum-of-scotland/", day_id: fall_in_edinburgh_day_5.id)
+Activity.create(name: "After dinner, take a Ghost Tour of Edinburgh’s Blair Street underground vaults and haunted buildings", number: 5, info_url: "https://www.mercattours.com/", day_id: fall_in_edinburgh_day_5.id)
+
+Activity.create(name: "Climb Calton Hill to see where they used to sound cannons to warn of attacks, and to get that iconic “Edinburgh” photo", number: 1, info_url: "https://ewh.org.uk/world-heritage-sites/calton-hill/", day_id: fall_in_edinburgh_day_6.id)
+Activity.create(name: "Head toward New Town to explore its more Georgian architecture and some more modern shopping", number: 2, info_url: "https://en.wikipedia.org/wiki/New_Town,_Edinburgh", day_id: fall_in_edinburgh_day_6.id)
+Activity.create(name: "Take a stroll through Princes Street Gardens", number: 3, info_url: "https://en.wikipedia.org/wiki/Princes_Street_Gardens#Winter_Wonderland", day_id: fall_in_edinburgh_day_6.id)
+Activity.create(name: "Once it starts to get dark, head toward the Scott monument to see gothic architecture lit up in stunning colors (pro tip: you can go up in the monument, though this is not recommended for those who are scared of heights or confined spaces)", number: 4, info_url: "https://www.edinburghmuseums.org.uk/venue/scott-monument", day_id: fall_in_edinburgh_day_6.id)
+Activity.create(name: "Visit the Winter Wonderland on your last night in Edinburgh! There is something for everyone here, from a Christmas Market to carnival rides, an ice rink, and plenty of mulled wine", number: 5, info_url: "http://www.edinburghschristmas.com/", day_id: fall_in_edinburgh_day_6.id)
+
+Activity.create(name: "Take a final morning stroll around Old Town", number: 1, info_url: "", day_id: fall_in_edinburgh_day_7.id)
+Activity.create(name: "Check out of your AirBnB, say goodbye to Edinburgh, and head home!", number: 2, info_url: "", day_id: fall_in_edinburgh_day_7.id)
+
+
+
 
 
 
@@ -466,6 +564,29 @@ Photo.create(url: "https://media.timeout.com/images/105705364/image.jpg", captio
 Photo.create(url: "https://pyxis.nymag.com/v1/imgs/efd/d35/08d678d196d9cb53dbf3594ad32eaf7455-sunday-in-brooklyn-01.rsocial.w1200.jpg", caption: "Sunday in BK", itinerary_id: winter_in_brooklyn.id)
 
 
+# Spring in Paris Photos
+Photo.create(url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/La_Tour_Eiffel_vue_de_la_Tour_Saint-Jacques%2C_Paris_ao%C3%BBt_2014_%282%29.jpg", caption: "Paris", itinerary_id: spring_in_paris.id)
+Photo.create(url: "https://upload.wikimedia.org/wikipedia/commons/d/d0/Cath%C3%A9drale_Notre-Dame_de_Paris%2C_3_June_2010.jpg", caption: "Notre Dame", itinerary_id: spring_in_paris.id)
+Photo.create(url: "https://www.eutouring.com/le_calife_cruises_image_7.jpg", caption: "Le Calife", itinerary_id: spring_in_paris.id)
+Photo.create(url: "https://media.timeout.com/images/105581784/630/472/image.jpg", caption: "Musee D'Orsay", itinerary_id: spring_in_paris.id)
+Photo.create(url: "Musee L'Orangerie", caption: "https://www.travelcaffeine.com/wp-content/uploads/2017/05/musee-orangerie-art-museum-paris-france-227.jpg", itinerary_id: spring_in_paris.id)
+Photo.create(url: "https://cdn2.civitatis.com/francia/paris/guia/jardines-luxemburgo.jpg", caption: "Luxembourg Gardens", itinerary_id: spring_in_paris.id)
+Photo.create(url: "https://lp-cms-production.imgix.net/2020-11/1.%20shutterstock_1153527289.jpg?auto=format&fit=crop&sharp=10&vib=20&ixlib=react-8.6.4&w=850", caption: "Le Marais", itinerary_id: spring_in_paris.id)
+Photo.create(url: "https://lefloreenlile.fr/wp-content/themes/lefloreenlile/img/flore-nuit-saint-louis.jpg", caption: "Le Flore en l'Ile", itinerary_id: spring_in_paris.id)
+Photo.create(url: "https://res.cloudinary.com/opera-national-de-paris/image/upload/c_crop%2Ch_2815%2Cw_5000%2Cx_0%2Cy_0/w_870/f_auto/v1/user_photos/najocddrarivc3uljafm", caption: "Palais Garnier", itinerary_id: spring_in_paris.id)
+
+
+# Fall in Edinburgh Photos
+Photo.create(url: "https://zomagazine.com/wp-content/uploads/2019/06/Edinburgh-skyline.jpg", caption: "Edinburgh", itinerary_id: fall_in_edinburgh.id)
+Photo.create(url: "https://www.visitbritain.com/sites/default/files/consumer/images/lovewall/palace-of-holyroodhouse-john-freeman-royal-collection-trust-c-her-majesty-queen-elizabeth-ii-2017.jpg", caption: "Palace of Holyroodhouse", itinerary_id: fall_in_edinburgh.id)
+Photo.create(url: "https://www.touristsecrets.com/wp-content/uploads/2019/07/3-18.jpg", caption: "Mary King's Close", itinerary_id: fall_in_edinburgh.id)
+Photo.create(url: "https://foundtheworld.com/wp-content/uploads/2017/02/Edinburgh-Castle-3-1392x901.jpg", caption: "Edinburgh Castle", itinerary_id: fall_in_edinburgh.id)
+Photo.create(url: "https://images.squarespace-cdn.com/content/v1/5e70b026bb4c67039784032d/1584445408944-7NONQFBYWRPEY8KVQFYH/shopfront.jpg", caption: "Mary's Milk Bar", itinerary_id: fall_in_edinburgh.id)
+Photo.create(url: "https://images.fineartamerica.com/images/artworkimages/mediumlarge/1/st-giles-cathedral-edinburgh-scotland-ina-kratzsch.jpg", caption: "St. Giles' Cathedral", itinerary_id: fall_in_edinburgh.id)
+Photo.create(url: "https://www.zaui.com/wp-content/uploads/2018/09/Zaui-Tourism-Software-The-Hairy-Coo.png", caption: "Hairy Coo", itinerary_id: fall_in_edinburgh.id)
+Photo.create(url: "https://independenttravelcats.com/wp-content/uploads/2017/12/Dome-Christmas-2.jpg", caption: "Holiday Season at The Dome", itinerary_id: fall_in_edinburgh.id)
+Photo.create(url: "https://planetofhotels.com/guide/sites/default/files/styles/paragraph__hero_banner__hb_image__1880bp/public/hero_banner/Calton-Hill.jpg", caption: "Calton Hill", itinerary_id: fall_in_edinburgh.id)
+Photo.create(url: "https://pbs.twimg.com/media/Cs5HJ3FWgAA2qMU.jpg", caption: "Scott Monument at Night", itinerary_id: fall_in_edinburgh.id)
 
 
 # REVIEWS
@@ -524,6 +645,17 @@ Review.create(comment: "Never thought I would go ice skating on a rooftop - it w
 Review.create(comment: "That pool hall was one of the most fun things I’ve ever done, and so inexpensive! If you love that kind of stuff, definitely check out Barcade.", rating: nil, user_id: wandermelon.id, itinerary_id: winter_in_brooklyn.id)
 Review.create(comment: "Ainslie was delicious, and the garden so beautiful. If you go there, definitely get the burrata and the pizza. Both are to die for!", rating: nil, user_id: steven.id, itinerary_id: winter_in_brooklyn.id)
 
+
+# Spring in Paris Reviews
+Review.create(comment: "I’ve been dying to go to Paris, and this trip made the wait so worth it. We loved the mix of touristy and “hidden” activities. My favorite was our afternoon in Le Marais; I could live there.", rating: nil, user_id: helen.id, itinerary_id: spring_in_paris.id)
+Review.create(comment: "We took their suggestion and went to see an opera at Palais Garnier. We dressed up, had drinks nearby, and had one of the most incredible nights ever. I felt like royalty!", rating: nil, user_id: wandermelon.id, itinerary_id: spring_in_paris.id)
+Review.create(comment: "Amazing trip! We added another full day and went out to see Versailles, definitely so worth the extra time in Paris.", rating: nil, user_id: erika.id, itinerary_id: spring_in_paris.id)
+
+
+# Fall in Edinburgh Reviews
+Review.create(comment: "I took this trip a few years ago now, and I fell so in love with Edinburgh that I actually just moved there! This city is enchanting, and so steeped in history. Wander’s itinerary truly shows you the best of Edinburgh, but there is even more to love!", rating: nil, user_id: savannah.id, itinerary_id: fall_in_edinburgh.id)
+Review.create(comment: "Simply magical. We planned our trip for the end of November, just as the itinerary suggests, and it was absolutely perfect. Edinburgh is truly spectacular during the holiday season, and we got to experience it without the intense crowds!", rating: nil, user_id: helen.id, itinerary_id: fall_in_edinburgh.id)
+Review.create(comment: "Incredible trip! If you have more time to spend in Scotland, though, I highly recommend taking a few extra days for the highlands tour and even going all the way up to the Isle of Skye! It’s the closest I’ve ever come to believing in magic.", rating: nil, user_id: nomadman.id, itinerary_id: fall_in_edinburgh.id)
 
 
 
