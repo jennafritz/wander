@@ -25,7 +25,6 @@ class ItinerariesController < ApplicationController
 
 
     def create_full_trip
-
         # create itinerary
         @new_itinerary = Itinerary.create(itinerary_params)
         # create days

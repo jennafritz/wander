@@ -35,21 +35,24 @@ nomadman = User.create(username: "nomadman", password: "admin", picture: "https:
 
 savannah = User.create(username: "savannah", password: "admin", picture: "https://cdn.cnn.com/cnnnext/dam/assets/170606121226-japan---travel-destination---shutterstock-230107657.jpg", latitude: 40.784464408532635, longitude: -73.97770002620597, travel_season: "Winter", travel_length: 12, travel_locale: "City", travel_classification: "Adventure", budget: 3, credits: 5, premium: false)
 
-
+new_wanderer = User.create(username: "new_wanderer", password: "admin", picture: nil, latitude: nil, longitude: nil, travel_season: nil, travel_length: nil, travel_locale: nil, travel_classification: nil, budget: nil, credits: 5, premium: false)
 
 # ITINERARIES
 puts "Seeding itineraries..."
-spring_in_vegas = Itinerary.create(name: "Spring in Las Vegas, Bachelorette-Style", description: "Grab your girls and head to Sin City for a bride-to-be’s last “single” hurrah before the big day!", destination: "Las Vegas, NV", latitude: 36.17925305657712, longitude: -115.21620882843669, season: "Spring", length: 4, locale: "City", classification: "Adventure", budget: 3, creator_id: erika.id)
+
+spring_in_paris = Itinerary.create(name: "Spring in Paris", description: "Explore the unique beauty of Paris on a six-day spring trip filled with cherry blossom trees, tours of stunning cathedrals and monuments, impressionist art, the best pastries, and so much more. Pro tip: Get a Paris Pass and plan to take the Paris Subway - it’s a cheap, easy way to get around the city!", destination: "Paris, France", latitude: 48.85685368229347, longitude: 2.3517475598308715, season: "Spring", length: 6, locale: "City", classification: "Culture", budget: 3, creator_id: jenna.id)
+
+summer_in_london = Itinerary.create(name: "Summer in London", description: "London’s calling! Take a tour through the capital of England, taking in the sights on a double decker bus, experiencing Shakespeare, checking in on the royal family, and more.", destination: "London, England", latitude: 51.50743439959798, longitude: -0.1273042971987896, season: "Summer", length: 5, locale: "City", classification: "Culture", budget: 3, creator_id: jenna.id)
+
+summer_in_rome = Itinerary.create(name: "Summer in Rome", description: "Wear comfortable shoes and pack snacks and a water bottle, because you’re about to take a whirlwind tour through the beautiful, historic city of Rome! Pro tip: Pick up a Roma Pass to book some free and/or discounted activities", destination: "Rome, Italy", latitude: 41.90272717712334, longitude: 12.495686573695641, season: "Summer", length: 5, locale: "City", classification: "Culture", budget: 3, creator_id: jenna.id)
+
+fall_in_edinburgh = Itinerary.create(name: "Fall in Edinburgh", description: "Visit the charming capital of Scotland and immerse yourself in the city’s rich history and stunning old architecture, from cobblestone streets to gothic monuments and a centuries-old castle. Tour the more rural highlands while you’re here to experience the breathtaking natural beauty this country has to offer! Pro Tip: if you time your visit for the end of November, you get all the magic Edinburgh has to offer during the holiday season, without all the crowds!", destination: "Edinburgh, UK", latitude: 55.95329138182551, longitude: -3.192330016154397, season: "Fall", length: 7, locale: "City", classification: "Culture", budget: 2, creator_id: jenna.id)
 
 fall_in_romania = Itinerary.create(name: "Fall in Romania", description: "Take a roadtrip through scenic, wild Romania, discovering the natural beauty, wildlife, picturesque towns, delicious food, and more.", destination: "Romania", latitude: 45.835819690528425, longitude: 24.886283519854103, season: "Fall", length: 7, locale: "Country", classification: "Adventure", budget: 2, creator_id: erika.id)
 
 winter_in_north_fork = Itinerary.create(name: "Winter in the North Fork, Winery Tour", description: "Pack your weekender bag and head to the North Fork for a few days filled with good food, great wine, and even better company!", destination: "Long Island, NY", latitude: 40.84244279187335, longitude: -73.12775341714618, season: "Winter", length: 3, locale: "Country", classification: "Culture", budget: 3, creator_id: erika.id)
 
-summer_in_rome = Itinerary.create(name: "Summer in Rome", description: "Wear comfortable shoes and pack snacks and a water bottle, because you’re about to take a whirlwind tour through the beautiful, historic city of Rome! Pro tip: Pick up a Roma Pass to book some free and/or discounted activities", destination: "Rome, Italy", latitude: 41.90272717712334, longitude: 12.495686573695641, season: "Summer", length: 5, locale: "City", classification: "Culture", budget: 3, creator_id: jenna.id)
-
 summer_in_boston = Itinerary.create(name: "Summer in Boston", description: "Take a trip to Boston, one of the oldest cities in America, for an activity-filled weekend with something for everyone!", destination: "Boston, MA", latitude: 42.35944883944112, longitude: -71.06079053334052, season: "Summer", length: 4, locale: "City", classification: "Culture", budget: 2, creator_id: erika.id)
-
-summer_in_london = Itinerary.create(name: "Summer in London", description: "London’s calling! Take a tour through the capital of England, taking in the sights on a double decker bus, experiencing Shakespeare, checking in on the royal family, and more.", destination: "London, England", latitude: 51.50743439959798, longitude: -0.1273042971987896, season: "Summer", length: 5, locale: "City", classification: "Culture", budget: 3, creator_id: jenna.id)
 
 winter_in_newport = Itinerary.create(name: "Winter in Newport", description: "Take an off-season long weekend trip to Newport, Rhode Island, taking advantage of lower prices (and fewer tourists!) while still enjoying the stunning mansions, amazing views, and incredible food.", destination: "Newport, RI", latitude: 41.489962510550725, longitude: -71.31296438562647, season: "Winter", length: 4, locale: "City", classification: "Culture", budget: 2, creator_id: erika.id)
 
@@ -57,9 +60,7 @@ spring_in_philadelphia = Itinerary.create(name: "Spring in Philadelphia", descri
 
 winter_in_brooklyn = Itinerary.create(name: "Winter in Brooklyn", description: "Spend a couple days in Williamsburg, enjoying a hotel with a rooftop (amazing views of Manhattan), ice skating, great food, and some late-night fun.", destination: "Brooklyn, NY", latitude: 40.67758753448411, longitude: -73.948028468185, season: "Winter", length: 3, locale: "City", classification: "Culture", budget: 3, creator_id: erika.id)
 
-spring_in_paris = Itinerary.create(name: "Spring in Paris", description: "Explore the unique beauty of Paris on a six-day spring trip filled with cherry blossom trees, tours of stunning cathedrals and monuments, impressionist art, the best pastries, and so much more. Pro tip: Get a Paris Pass and plan to take the Paris Subway - it’s a cheap, easy way to get around the city!", destination: "Paris, France", latitude: 48.85685368229347, longitude: 2.3517475598308715, season: "Spring", length: 6, locale: "City", classification: "Culture", budget: 3, creator_id: jenna.id)
-
-fall_in_edinburgh = Itinerary.create(name: "Fall in Edinburgh", description: "Visit the charming capital of Scotland and immerse yourself in the city’s rich history and stunning old architecture, from cobblestone streets to gothic monuments and a centuries-old castle. Tour the more rural highlands while you’re here to experience the breathtaking natural beauty this country has to offer! Pro Tip: if you time your visit for the end of November, you get all the magic Edinburgh has to offer during the holiday season, without all the crowds!", destination: "Edinburgh, UK", latitude: 55.95329138182551, longitude: -3.192330016154397, season: "Fall", length: 7, locale: "City", classification: "Culture", budget: 2, creator_id: jenna.id)
+spring_in_vegas = Itinerary.create(name: "Spring in Las Vegas, Bachelorette-Style", description: "Grab your girls and head to Sin City for a bride-to-be’s last “single” hurrah before the big day!", destination: "Las Vegas, NV", latitude: 36.17925305657712, longitude: -115.21620882843669, season: "Spring", length: 4, locale: "City", classification: "Adventure", budget: 3, creator_id: erika.id)
 
 
 #DAYS
@@ -431,7 +432,7 @@ Activity.create(name: "Check out of your AirBnB/hotel and begin your trip home!"
 # Fall in Edinburgh Activities
 Activity.create(name: "Check into your AirBnB; unpack and settle in", number: 1, info_url: "", day_id: fall_in_edinburgh_day_1.id)
 Activity.create(name: "Stroll around the neighborhood and find a place for a quiet dinner", number: 2, info_url: "", day_id: fall_in_edinburgh_day_1.id)
-Activity.create(name: "Head to the Royal Botanic Garden Edinburgh for a Christmas lights show (Note: runs 11/25 to ½, so be sure to plan your trip accordingly!)", number: 3, info_url: "https://www.rbge.org.uk/christmas", day_id: fall_in_edinburgh_day_1.id)
+Activity.create(name: "Head to the Royal Botanic Garden Edinburgh for a Christmas lights show (Note: runs Nov. 25th to Jan. 1st, so be sure to plan your trip accordingly!)", number: 3, info_url: "https://www.rbge.org.uk/christmas", day_id: fall_in_edinburgh_day_1.id)
 Activity.create(name: "Call it an early night to catch up on any jet lag and prepare for the rest of your trip", number: 4, info_url: "", day_id: fall_in_edinburgh_day_1.id)
 
 Activity.create(name: "Visit the Palace of Holyroodhouse, the official residence of the British monarch in Scotland! (pro tip: do the audio tour and definitely take the time to look around the ruins of the old abbey)", number: 1, info_url: "https://www.rct.uk/visit/palace-of-holyroodhouse", day_id: fall_in_edinburgh_day_2.id)
@@ -565,11 +566,11 @@ Photo.create(url: "https://pyxis.nymag.com/v1/imgs/efd/d35/08d678d196d9cb53dbf35
 
 
 # Spring in Paris Photos
-Photo.create(url: "https://upload.wikimedia.org/wikipedia/commons/4/4b/La_Tour_Eiffel_vue_de_la_Tour_Saint-Jacques%2C_Paris_ao%C3%BBt_2014_%282%29.jpg", caption: "Paris", itinerary_id: spring_in_paris.id)
+Photo.create(url: "https://www.thespiritsbusiness.com/content/http://www.thespiritsbusiness.com/media/2020/07/Paris.jpg", caption: "Paris", itinerary_id: spring_in_paris.id)
 Photo.create(url: "https://upload.wikimedia.org/wikipedia/commons/d/d0/Cath%C3%A9drale_Notre-Dame_de_Paris%2C_3_June_2010.jpg", caption: "Notre Dame", itinerary_id: spring_in_paris.id)
-Photo.create(url: "https://www.eutouring.com/le_calife_cruises_image_7.jpg", caption: "Le Calife", itinerary_id: spring_in_paris.id)
+Photo.create(url: "https://images.squarespace-cdn.com/content/v1/568ddcf1a2bab8ab4513cf82/1585349846408-TI3MRZ813P0M2KHB4F41/ke17ZwdGBToddI8pDm48kAEJrbsFhWLqsgpoQx73qC1Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpyf-i7HqzWRj6Qnixywj4DB-I0eAIFeuR6DviqjBRr8uBbu3jqDLNXNrXP7XxnmM3k/4+Well+Travelled+Bride+Bateau+Le+Calife+Honeymoon+Fine+Dining+Paris.jpg", caption: "Le Calife", itinerary_id: spring_in_paris.id)
 Photo.create(url: "https://media.timeout.com/images/105581784/630/472/image.jpg", caption: "Musee D'Orsay", itinerary_id: spring_in_paris.id)
-Photo.create(url: "Musee L'Orangerie", caption: "https://www.travelcaffeine.com/wp-content/uploads/2017/05/musee-orangerie-art-museum-paris-france-227.jpg", itinerary_id: spring_in_paris.id)
+Photo.create(url: "https://www.travelcaffeine.com/wp-content/uploads/2017/05/musee-orangerie-art-museum-paris-france-227.jpg", caption: "Musee L'Orangerie", itinerary_id: spring_in_paris.id)
 Photo.create(url: "https://cdn2.civitatis.com/francia/paris/guia/jardines-luxemburgo.jpg", caption: "Luxembourg Gardens", itinerary_id: spring_in_paris.id)
 Photo.create(url: "https://lp-cms-production.imgix.net/2020-11/1.%20shutterstock_1153527289.jpg?auto=format&fit=crop&sharp=10&vib=20&ixlib=react-8.6.4&w=850", caption: "Le Marais", itinerary_id: spring_in_paris.id)
 Photo.create(url: "https://lefloreenlile.fr/wp-content/themes/lefloreenlile/img/flore-nuit-saint-louis.jpg", caption: "Le Flore en l'Ile", itinerary_id: spring_in_paris.id)
@@ -672,8 +673,11 @@ UserItinerary.create(user_id: erika.id, itinerary_id: winter_in_brooklyn.id, pas
 
 
 # Jenna's
-UserItinerary.create(user_id: jenna.id, itinerary_id: summer_in_rome.id, past: true)
-UserItinerary.create(user_id: jenna.id, itinerary_id: summer_in_london.id, past: true)
+UserItinerary.create(user_id: jenna.id, itinerary_id: spring_in_paris.id, past: true)
+UserItinerary.create(user_id: jenna.id, itinerary_id: winter_in_newport.id, past: true)
+UserItinerary.create(user_id: jenna.id, itinerary_id: summer_in_london.id, past: false)
+UserItinerary.create(user_id: jenna.id, itinerary_id: fall_in_romania.id, past: false)
+
 
 
 # Helen's

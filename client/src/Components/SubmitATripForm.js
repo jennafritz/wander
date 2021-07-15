@@ -241,7 +241,12 @@ function SubmitATripForm() {
     )
 
     const handleCreateFullTrip = () => {
-        let fullTripObj = {itinerary: formData, activitiesArray, imagesArray}
+        let itineraryObj = {
+            ...formData,
+            length: parseInt(formData.length, 10),
+            budget: parseInt(formData.budget, 10)
+        }
+        let fullTripObj = {itinerary: itineraryObj, activitiesArray, imagesArray}
         if(tripValid()){
             dispatch(createFullTrip(fullTripObj)).then(response => {
                 if(response.payload.error){

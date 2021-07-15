@@ -16,7 +16,7 @@ class DaysController < ApplicationController
     end
     
     def get_itinerary_days
-        days = Day.where(itinerary_id: params[:itineraryId])
+        days = Day.where(itinerary_id: params[:itineraryId]).order(number: :asc)
         render json: days, status: :accepted
     end
     

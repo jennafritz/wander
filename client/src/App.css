@@ -395,6 +395,10 @@ div.container-fluid.containerWidth{
   background-color: lavender;
 }
 
+#upgradeModal .modal-content{
+  background-color: lavender;
+}
+
 #randomItineraryModal .modal-content{
   background-color: lavender;
 }
