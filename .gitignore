@@ -30,4 +30,8 @@
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
+#API Keys
 .env
+
+#Original README file
+OriginalReadMe.md
