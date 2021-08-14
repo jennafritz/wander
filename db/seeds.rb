@@ -566,7 +566,7 @@ Photo.create(url: "https://pyxis.nymag.com/v1/imgs/efd/d35/08d678d196d9cb53dbf35
 
 
 # Spring in Paris Photos
-Photo.create(url: "https://www.thespiritsbusiness.com/content/http://www.thespiritsbusiness.com/media/2020/07/Paris.jpg", caption: "Paris", itinerary_id: spring_in_paris.id)
+Photo.create(url: "https://thetourguy.com/wp-content/uploads/2020/01/eiffel-tower-day.jpg", caption: "Paris", itinerary_id: spring_in_paris.id)
 Photo.create(url: "https://upload.wikimedia.org/wikipedia/commons/d/d0/Cath%C3%A9drale_Notre-Dame_de_Paris%2C_3_June_2010.jpg", caption: "Notre Dame", itinerary_id: spring_in_paris.id)
 Photo.create(url: "https://images.squarespace-cdn.com/content/v1/568ddcf1a2bab8ab4513cf82/1585349846408-TI3MRZ813P0M2KHB4F41/ke17ZwdGBToddI8pDm48kAEJrbsFhWLqsgpoQx73qC1Zw-zPPgdn4jUwVcJE1ZvWQUxwkmyExglNqGp0IvTJZUJFbgE-7XRK3dMEBRBhUpyf-i7HqzWRj6Qnixywj4DB-I0eAIFeuR6DviqjBRr8uBbu3jqDLNXNrXP7XxnmM3k/4+Well+Travelled+Bride+Bateau+Le+Calife+Honeymoon+Fine+Dining+Paris.jpg", caption: "Le Calife", itinerary_id: spring_in_paris.id)
 Photo.create(url: "https://media.timeout.com/images/105581784/630/472/image.jpg", caption: "Musee D'Orsay", itinerary_id: spring_in_paris.id)
